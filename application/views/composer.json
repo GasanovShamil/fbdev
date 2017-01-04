@@ -1,0 +1,12 @@
+{
+    "name": "leo/flowerpower.fbdev.fr",
+    "authors": [
+        {
+            "name": "Leo Foltz",
+            "email": "leo.foltzrahem@gmail.com"
+        }
+    ],
+    "require": {
+    	"facebook/graph-sdk" : "~5.0"
+    }
+}
