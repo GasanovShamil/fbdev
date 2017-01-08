@@ -15,8 +15,7 @@
 					<span class="space"><strong>2, Boulevard du Général Gallieni, 94360 Bry sur Marne</strong></span>
 				</div>
 			</div>
-		</div>
-	
+		</div>	
 
 	<?php
 		$helper = $fb->getRedirectLoginHelper();
