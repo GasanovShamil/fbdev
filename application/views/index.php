@@ -3,7 +3,7 @@
 <section>
 	<?php
 		$helper = $fb->getRedirectLoginHelper();
-		$permissions = ['email', 'user_likes', 'user_photos'];
+		$permissions = ['email', 'user_likes', 'user_photos', 'user_birthday'];
 		$url = $helper->getLoginUrl(base_url().'callback', $permissions);
 
 		if (checkAccessToken()) {
