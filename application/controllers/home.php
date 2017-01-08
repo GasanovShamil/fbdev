@@ -33,13 +33,13 @@
 			$this->load->view('home/home');
 		}
 
-		public function homepage(){
-			$this->load->view('home/home');
-		}
-
 		public function logout() {
 			session_destroy();
 			redirect('/');
+		}
+
+		public function homepage(){
+			$this->load->view('home/home');
 		}
 	}
 	

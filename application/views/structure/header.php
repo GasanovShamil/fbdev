@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+	<title></title>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
