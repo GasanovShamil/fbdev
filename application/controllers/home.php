@@ -30,7 +30,7 @@
 
 			if (isset($accessToken)) $_SESSION['facebook-access-token'] = (string) $accessToken;
 
-			$this->load->view('home/homepage');
+			$this->load->view('home/home');
 		}
 
 		public function homepage(){
