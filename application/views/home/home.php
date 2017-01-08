@@ -3,7 +3,7 @@
 
 <section>
 	<!-- Logo & title -->
-	<div class="row">
+	<div class="row lineback">
 		<div class="col-md-2 col-md-offset-2" id="logo">
 			<img src="<?php echo base_url(); ?>images/logo.png" alt="logo concours photo"/>
 		</div>

@@ -1,5 +1,6 @@
 <?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
+
 	require_once(dirname(__FILE__).'/../libraries/facebook.php');
 
 	class Home extends CI_Controller {
@@ -32,13 +33,13 @@
 			$this->load->view('home/home');
 		}
 
-		public function homepage(){
-			$this->load->view('home/home');
-		}
-
 		public function logout() {
 			session_destroy();
 			redirect('/');
+		}
+
+		public function homepage(){
+			$this->load->view('home/home');
 		}
 	}
 

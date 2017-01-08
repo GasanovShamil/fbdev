@@ -1,6 +1,5 @@
 <?php
 	require_once(dirname(__FILE__).'/../views/vendor/autoload.php');
-	
 
 	function getFacebook() {
 		$fb = new Facebook\Facebook([
@@ -46,6 +45,7 @@
 			$_SESSION['rerequest-url'] = $rerequestUrl;
 			return false;
 		}
+
 		return true;
 	}
 
@@ -83,6 +83,6 @@
 		
 		$userName = $response->getGraphUser();
 		return $userName['id'];
-	}
+	}	
 
 ?>
