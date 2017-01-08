@@ -4,7 +4,7 @@
 	<?php
 		$helper = $fb->getRedirectLoginHelper();
 		$permissions = ['email', 'user_likes', 'user_photos'];
-		$url = $helper->getLoginUrl('http://flowerpower.fbdev.fr/callback', $permissions);
+		$url = $helper->getLoginUrl(base_url().'callback', $permissions);
 
 		if (checkAccessToken()) {
 

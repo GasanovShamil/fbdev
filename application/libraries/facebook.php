@@ -1,4 +1,5 @@
 <?php
+	require_once(dirname(__FILE__).'/../views/vendor/autoload.php');
 
 	function getFacebook() {
 		$fb = new Facebook\Facebook([
@@ -40,12 +41,30 @@
 		}
 
 		if (!empty($missingPermissions)) {
-			$rerequestUrl = $helper->getReRequestUrl('http://flowerpower.fbdev.fr/callback', $permissions);
+			$rerequestUrl = $helper->getReRequestUrl(base_url().'callback', $permissions);
 			$_SESSION['rerequest-url'] = $rerequestUrl;
 			return false;
 		}
 
 		return true;
+	}
+
+	function getUserName(){
+		$fb = getFacebook();
+		try{
+			$response = $fb->get("/me?fields=name");
+		}
+		catch(Facebook\Exceptions\FacebookResponseException $e) {
+  			echo 'Graph returned an error: ' . $e->getMessage();
+  			exit;
+		} 
+		catch(Facebook\Exceptions\FacebookSDKException $e) {
+  			echo 'Facebook SDK returned an error: ' . $e->getMessage();
+  			exit;
+		}
+		
+		$userName = $response->getGraphUser();
+		return $userName['name'];
 	}
 
 ?>
