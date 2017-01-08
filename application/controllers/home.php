@@ -19,6 +19,7 @@
 			$this->load->view('index');
 		}
 	}
+	
 
 // if (checkAccessToken()) {
 // 	if (checkPermissions()) {
