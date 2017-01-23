@@ -43,7 +43,8 @@
 		}
 	}
 	
-
+//COMMENTS
+	
 // if (checkAccessToken()) {
 // 	if (checkPermissions()) {
 // 		$this->load->view('index');
