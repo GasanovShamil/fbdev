@@ -13,7 +13,7 @@
 		public function index() {			
 			$fb = getFacebook();
 			$helper = $fb->getRedirectLoginHelper();
-			$permissions = ['email', 'user_likes', 'user_photos'];
+			$permissions = ['email', 'user_likes', 'user_photos', 'user_birthday', 'user_friends'];
 
 			if (!checkAccessToken()) {
 				$url = $helper->getLoginUrl(base_url().'callback', $permissions);
@@ -23,7 +23,9 @@
 				redirect($url);
 			} else {
 				$data = array('isAdmin' => isAdmin());
-				$this->load->view('index', $data);
+				$this->load->view('structure/header', $data);
+				$this->load->view('index');
+				$this->load->view('structure/footer');
 			}
 		}
 

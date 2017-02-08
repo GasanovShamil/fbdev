@@ -1,10 +1,3 @@
-<?php
-	require_once(dirname(__FILE__).'/../vendor/autoload.php');
-	require_once(dirname(__FILE__).'/../../libraries/facebook.php');
-
-	$fb = getFacebook();
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,8 +24,13 @@
 
     		<div id="navbar" class="collapse navbar-collapse">
     			<ul class="nav navbar-nav">
-    				<li class="active"><a href="#">Participer</a></li>
+    				<li><a href="#">Participer</a></li>
     				<li><a href="#">Voter</a></li>
+    				<?php
+    					if ($isAdmin) {
+    						echo '<li><a href="#">Administration</a></li>';
+    					}
+    				?>
     			</ul>
     		</div>
 

@@ -1,5 +1,6 @@
 <?php
 	require_once(dirname(__FILE__).'/../views/vendor/autoload.php');
+	// require_once('appconfig.php');
 
 	function getFacebook() {
 		$fb = new Facebook\Facebook([
@@ -86,10 +87,10 @@
 		return $userName['id'];
 	}	
 
-	function isAdmin(){
+	function isAdmin() {
 		$fb = getFacebook();
-		$appAccessToken = "1158724760874896|2a7b383ebccb6b0df49dc991e0aaf23e";
-		$response = $fb-> get("/1158724760874896/roles?fields=role,user", $appAccessToken);
+		$appAccessToken = '1158724760874896|2a7b383ebccb6b0df49dc991e0aaf23e';
+		$response = $fb-> get('/1158724760874896/roles?fields=role,user', $appAccessToken);
 		$admins = $response->getDecodedBody();
 		$userId = getUserId();
 		foreach ($admins['data'] as $value) {
