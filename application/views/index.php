@@ -1,4 +1,4 @@
-<?php include dirname(__FILE__)."/../structure/header.php"; ?>
+<?php include dirname(__FILE__)."/structure/header.php"; ?>
 
 <section>
 	<!-- Logo & title -->
@@ -33,4 +33,4 @@
 	</div>
 </section>
 
-<?php include dirname(__FILE__)."/../structure/footer.php"; ?>
+<?php include dirname(__FILE__)."/structure/footer.php"; ?>

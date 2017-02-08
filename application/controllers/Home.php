@@ -22,7 +22,7 @@
 				$url = $_SESSION['rerequest-url'];
 				redirect($url);
 			} else {
-				$this->load->view('home/index');
+				$this->load->view('index');
 			}
 		}
 
@@ -44,7 +44,7 @@
 			if (isset($accessToken))
 				$_SESSION['facebook-access-token'] = (string) $accessToken;
 
-			redirect('Home/index', 'refresh');
+			redirect('/', 'refresh');
 		}
 	}
 	
