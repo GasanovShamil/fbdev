@@ -29,7 +29,6 @@
 		public function callback() {
 			$fb = getFacebook();
 			$helper = $fb->getRedirectLoginHelper();
-			// $_SESSION['FBRLH_' . 'state'] = $this->input->get('state');
 
 			try {
 				$accessToken = $helper->getAccessToken();
@@ -41,21 +40,8 @@
 				$this->load->view('errors/access.php', $data);
 			}
 
-			if (isset($accessToken))
-				$_SESSION['facebook-access-token'] = (string) $accessToken;
+			if (isset($accessToken)) $_SESSION['facebook-access-token'] = (string) $accessToken;
 
 			redirect('/', 'refresh');
 		}
 	}
-	
-//COMMENTS
-	
-// if (checkAccessToken()) {
-// 	if (checkPermissions()) {
-// 		$this->load->view('index');
-// 	} else {
-// 		$this->load->view('error-permissions');
-// 	}
-// } else {
-// 	$this->load->view('error-access-token');
-// }
