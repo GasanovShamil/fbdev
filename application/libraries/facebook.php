@@ -16,7 +16,8 @@
 	function checkAccessToken() {
 		$fb = getFacebook();
 
-		if (empty($_SESSION['facebook-access-token'])) return false;
+		if (empty($_SESSION['facebook-access-token']))
+			return false;
 
 		try {
 			$response = $fb->get('/debug_token?input_token='.$_SESSION['facebook-access-token']);
@@ -28,9 +29,9 @@
 		return true;
 	}
 
-	function checkPermissions() {
+	function checkPermissions($permissions) {
 		$fb = getFacebook();
-
+		$helper = $fb->getRedirectLoginHelper();
 		$response = $fb->get("/me/permissions");
 		$userPermissions = $response->getDecodedBody();
 

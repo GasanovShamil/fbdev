@@ -1,6 +1,5 @@
 <?php include dirname(__FILE__)."/../structure/header.php"; ?>
 
-
 <section>
 	<!-- Logo & title -->
 	<div class="row lineback">

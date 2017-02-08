@@ -33,7 +33,6 @@
     			<ul class="nav navbar-nav">
     				<li class="active"><a href="#">Participer</a></li>
     				<li><a href="#">Voter</a></li>
-    				<li><a href="logout">Déconnexion</a></li>
     			</ul>
     		</div>
 

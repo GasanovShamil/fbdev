@@ -4,42 +4,47 @@
 	require_once(dirname(__FILE__).'/../libraries/facebook.php');
 
 	class Home extends CI_Controller {
+
 		public function __construct() {
 			parent::__construct();
 			session_start();
 		}
 
-		public function index() {
-			$this->load->view('index');
+		public function index() {			
+			$fb = getFacebook();
+			$helper = $fb->getRedirectLoginHelper();
+			$permissions = ['email', 'user_likes', 'user_photos'];
+
+			if (!checkAccessToken()) {
+				$url = $helper->getLoginUrl(base_url().'callback', $permissions);
+				redirect($url);
+			} else if (!checkPermissions($permissions)) {
+				$url = $_SESSION['rerequest-url'];
+				redirect($url);
+			} else {
+				$this->load->view('home/index');
+			}
 		}
 
 		public function callback() {
 			$fb = getFacebook();
 			$helper = $fb->getRedirectLoginHelper();
-			$_SESSION['FBRLH_' . 'state'] = $this->input->get('state');
+			// $_SESSION['FBRLH_' . 'state'] = $this->input->get('state');
 
 			try {
 				$accessToken = $helper->getAccessToken();
 			} catch(Facebook\Exceptions\FacebookResponseException $e) {
-				echo 'Graph returned an error: ' . $e->getMessage() . '<div>' . $this->input->get('state') . '</div>';
-				exit;
+				$data = array('message' => 'Graph returned an error: ' . $e->getMessage() . '<div>' . $this->input->get('state') . '</div>');
+				$this->load->view('errors/access.php', $data);
 			} catch(Facebook\Exceptions\FacebookSDKException $e) {
-				echo 'Facebook SDK returned an error: '  . '<div>' . $this->input->get('state') . '</div>';
-				exit;
+				$data = array('message' => 'Facebook SDK returned an error: '  . '<div>' . $this->input->get('state') . '</div>');
+				$this->load->view('errors/access.php', $data);
 			}
 
-			if (isset($accessToken)) $_SESSION['facebook-access-token'] = (string) $accessToken;
+			if (isset($accessToken))
+				$_SESSION['facebook-access-token'] = (string) $accessToken;
 
-			$this->load->view('home/home');
-		}
-
-		public function logout() {
-			session_destroy();
-			redirect('/');
-		}
-
-		public function homepage(){
-			$this->load->view('home/home');
+			redirect('Home/index', 'refresh');
 		}
 	}
 	

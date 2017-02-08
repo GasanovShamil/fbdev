@@ -1,23 +1,36 @@
-<?php include "structure/header.php"; ?>
+<?php include dirname(__FILE__)."/../structure/header.php"; ?>
 
 <section>
-	<?php
-		$helper = $fb->getRedirectLoginHelper();
-		$permissions = ['email', 'user_likes', 'user_photos'];
-		$url = $helper->getLoginUrl(base_url().'callback', $permissions);
+	<!-- Logo & title -->
+	<div class="row lineback">
+		<div class="col-md-2 col-md-offset-2" id="logo">
+			<img src="<?php echo base_url(); ?>images/logo.png" alt="logo concours photo"/>
+		</div>
+		<div class="col-md-6" id="titre">
+			<h1> Concours Photo </h1>
+			<h2> You wanna' become a future star <?php echo getUserName(); ?>? </h2>
+		</div>
+	</div>
 
-		if (checkAccessToken()) {
+	<!-- Central pictures -->
+	<div class="row">
+		<div class="col-md-5 col-md-offset-2" id="cadre">
+			<img src="<?php echo base_url(); ?>images/background.png" alt="cadre photo" />
+		</div>
+	</div>
 
-			if (checkPermissions()) {
-				echo '<a href="logout" class="btn btn-primary">Se déconnecter</a>';
-			} else {
-				echo '<a href="'.$_SESSION['rerequest-url'].'" class="btn btn-primary">Ajouter les permissions manquantes</a>';
-			}
 
-		} else {
-			echo '<a href="'.$url.'" class="btn btn-primary">En savoir plus</a>';
-		}
-	?>
+	<br/>
+	<!-- Bottom -->
+	<!-- TODO : les deux pages des boutons -->
+	<div class="row">
+		<div class="col-md-3 col-md-offset-3" id="button_participate">
+			<a href="#" class="btn btn-primary btn-lg">Je participe !</a>
+		</div>
+		<div class="col-md-3" id="button_see">
+			<a href="#" class="btn btn-primary btn-lg">Juste voir !</a>
+		</div>
+	</div>
 </section>
 
-<?php include "structure/footer.php"; ?>
+<?php include dirname(__FILE__)."/../structure/footer.php"; ?>
