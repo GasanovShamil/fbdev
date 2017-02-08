@@ -22,7 +22,8 @@
 				$url = $_SESSION['rerequest-url'];
 				redirect($url);
 			} else {
-				$this->load->view('index');
+				$data = array('isAdmin' => isAdmin());
+				$this->load->view('index', $data);
 			}
 		}
 

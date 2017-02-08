@@ -8,6 +8,7 @@
 		</div>
 		<div class="col-md-6" id="titre">
 			<h1> Concours Photo </h1>
+			<h2><?php echo $isAdmin ?> </h2>
 			<h2> You wanna' become a future star <?php echo getUserName(); ?>? </h2>
 		</div>
 	</div>

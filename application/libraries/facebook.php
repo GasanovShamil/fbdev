@@ -86,4 +86,18 @@
 		return $userName['id'];
 	}	
 
+	function isAdmin(){
+		$fb = getFacebook();
+		$appAccessToken = "1158724760874896|2a7b383ebccb6b0df49dc991e0aaf23e";
+		$response = $fb-> get("/1158724760874896/roles?fields=role,user", $appAccessToken);
+		$admins = $response->getDecodedBody();
+		$userId = getUserId();
+		foreach ($admins['data'] as $value) {
+			if ($value['user'] == $userId && $value['role'] == 'administrators') {
+				return true;
+			}
+		}
+		return false;
+	}
+
 ?>
