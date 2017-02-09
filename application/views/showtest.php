@@ -1,5 +1,5 @@
 <section>
 	<?php
-		echo $message;
+		var_dump($test);
 	?>
 </section>

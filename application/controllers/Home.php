@@ -1,45 +1,72 @@
 <?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 
-	require_once(dirname(__FILE__).'/../libraries/facebook.php');
+	// require_once(dirname(__FILE__).'/../libraries/facebook.php');
+	require_once(dirname(__FILE__).'/../models/User.php');
 
 	class Home extends CI_Controller {
+
+		private $facebook;
 
 		public function __construct() {
 			parent::__construct();
 			session_start();
+
+			$this->load->library('fblib');
+			$this->facebook = $this->fblib->getFacebook();
 		}
 
-		public function index() {			
-			$fb = getFacebook();
-			$helper = $fb->getRedirectLoginHelper();
+		public function index() {
+			$helper = $this->facebook->getRedirectLoginHelper();
 			$permissions = ['email', 'user_likes', 'user_photos', 'user_birthday', 'user_friends'];
 
-			if (!checkAccessToken()) {
+			if (!$this->fblib->checkAccessToken()) {
 				$url = $helper->getLoginUrl(base_url().'callback', $permissions);
 				redirect($url);
-			} else if (!checkPermissions($permissions)) {
+			} else if (!$this->fblib->checkPermissions($permissions)) {
 				$url = $_SESSION['rerequest-url'];
 				redirect($url);
 			} else {
-				$data = array('isAdmin' => isAdmin());
+
+				try {
+					$response = $this->facebook->get("me?fields=first_name,last_name,email,gender,birthday");
+				} catch(Exception $e) {
+					$data['message'] = $e->getMessage();
+					$this->load->view('errors/access.php', $data);
+				}
+				
+				$result = $response->getGraphUser();
+
+				$facebookId = $result['id'];
+				$firstName = $result['first_name'];
+				$lastName = $result['last_name'];
+				$email = $result['email'];
+				$birth = $result['birthday'];
+				$gender = $result['gender'] == 'male' ? 0 : 1;
+
+				$user = new User($facebookId, $firstName, $lastName, $email, $birth, $gender);
+
+
+				//TODO : NIKSAMER - Add or Update user to db
+
+				$data['isAdmin'] = $this->fblib->isAdmin();
 				$this->load->view('structure/header', $data);
-				$this->load->view('index');
+				$data['firstName'] = $firstName;
+				$this->load->view('index', $data);
 				$this->load->view('structure/footer');
 			}
 		}
 
 		public function callback() {
-			$fb = getFacebook();
-			$helper = $fb->getRedirectLoginHelper();
+			$helper = $this->facebook->getRedirectLoginHelper();
 
 			try {
 				$accessToken = $helper->getAccessToken();
 			} catch(Facebook\Exceptions\FacebookResponseException $e) {
-				$data = array('message' => 'Graph returned an error: ' . $e->getMessage() . '<div>' . $this->input->get('state') . '</div>');
+				$data['message'] = 'Graph returned an error: ' . $e->getMessage() . '<div>' . $this->input->get('state') . '</div>';
 				$this->load->view('errors/access.php', $data);
 			} catch(Facebook\Exceptions\FacebookSDKException $e) {
-				$data = array('message' => 'Facebook SDK returned an error: '  . '<div>' . $this->input->get('state') . '</div>');
+				$data['message'] = 'Facebook SDK returned an error: '  . '<div>' . $this->input->get('state') . '</div>';
 				$this->load->view('errors/access.php', $data);
 			}
 

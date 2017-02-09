@@ -1,9 +1,13 @@
+DROP DATABASE IF EXISTS `fbdev`;
+CREATE DATABASE `fbdev`;
+USE `fbdev`;
+
 CREATE TABLE `Users` (
 	facebookId varchar(150) NOT NULL,
 	firstName varchar(150) NOT NULL,
 	lastName varchar(150) NOT NULL,
 	email varchar(150) NOT NULL,
-	age int,
+	birth DATETIME,
 	gender int,
 	PRIMARY KEY (facebookId)
 );
@@ -14,32 +18,30 @@ CREATE TABLE `Prizes` (
 	image varchar(150),
 	createdAt DATETIME NOT NULL,
 	createdBy varchar(150) NOT NULL,
-	updatedAt DATETIME NOT NULL,
-	updatedBy varchar(150) NOT NULL,
 	PRIMARY KEY (prizeId)
 );
 
-CREATE TABLE `Competitions` (
-	competitionId int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `Contest` (
+	contestId int NOT NULL AUTO_INCREMENT,
 	startDate DATETIME NOT NULL,
 	endDate DATETIME NOT NULL,
 	prize int,
 	status BOOLEAN NOT NULL,
 	createdAt DATETIME NOT NULL,
 	createdBy varchar(150) NOT NULL,
-	PRIMARY KEY (competitionId),
+	PRIMARY KEY (contestId),
 	FOREIGN KEY (prize) REFERENCES Prizes(prizeId),
 	FOREIGN KEY (createdBy) REFERENCES Users(facebookId)
 );
 
 CREATE TABLE `Photos` (
 	photoId int NOT NULL AUTO_INCREMENT,
-	competition int NOT NULL,
+	contest int NOT NULL,
 	facebookUrl varchar(150) NOT NULL,
 	createdAt DATETIME NOT NULL,
 	createdBy varchar(150) NOT NULL,
 	PRIMARY KEY (photoId),
-	FOREIGN KEY (competition) REFERENCES Competitions(competitionId),
+	FOREIGN KEY (contest) REFERENCES Contest(contestId),
 	FOREIGN KEY (createdBy) REFERENCES Users(facebookId)
 );
 
