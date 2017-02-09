@@ -22,7 +22,7 @@
 			$signedRequest = $canvasHelper->getSignedRequest();
 			$loggedUser = $signedRequest ? $signedRequest->getUserId() : null;
 
-			if (isset($_SESSION['facebook-user-id']) && $_SESSION['facebook-user-id']) != $loggedUser)
+			if (isset($_SESSION['facebook-user-id']) && $_SESSION['facebook-user-id'] != $loggedUser)
 				session_destroy();
 
 			if (!$this->fblib->checkAccessToken()) {
