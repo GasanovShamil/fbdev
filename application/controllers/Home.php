@@ -72,7 +72,7 @@
 
 			if (isset($accessToken))
 				// $_SESSION['facebook-access-token'] = (string) $accessToken;
-				$this->fb->setDefaultAccessToken((string) $accessToken);
+				$this->facebook->setDefaultAccessToken((string) $accessToken);
 
 			redirect('/', 'refresh');
 		}
