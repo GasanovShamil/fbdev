@@ -67,7 +67,7 @@
 				$redirectHelper = $this->facebook->getRedirectLoginHelper();
 				$accessToken = $redirectHelper->getAccessToken();
 
-				$response = $this->facebook->get("/me?fields=id");
+				$response = $this->facebook->get("/me?fields=id", $accessToken);
 				$result = $response->getGraphUser();
 				$facebookId = $result['id'];
 			} catch(Facebook\Exceptions\FacebookResponseException $e) {
@@ -78,10 +78,11 @@
 				$this->load->view('errors/access.php', $data);
 			}
 
-			if (isset($accessToken) && isset($facebookId)) {
+			if (isset($accessToken))
 				$_SESSION['facebook-access-token'] = (string) $accessToken;
+
+			if (isset($facebookId))
 				$_SESSION['facebook-user-id'] = (string) $facebookId;
-			}
 				
 			redirect('/', 'refresh');
 		}
