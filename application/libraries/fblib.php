@@ -46,7 +46,7 @@
 			}
 
 			if (!empty($missingPermissions)) {
-				$rerequestUrl = $helper->getReRequestUrl(base_url().'callback', $permissions);
+				$rerequestUrl = $helper->getReRequestUrl(base_url().'callback', $missingPermissions);
 				$_SESSION['rerequest-url'] = $rerequestUrl;
 				return false;
 			}
