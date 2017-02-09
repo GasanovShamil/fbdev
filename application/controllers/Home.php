@@ -15,54 +15,48 @@
 		}
 
 		public function index() {
-			$helper = $this->facebook->getCanvasHelper();
-			$sr = $helper->getSignedRequest();
-			$user = $sr ? $sr->getUserId() : null;
-			$data['test'] = $user;
-			$this->load->view('showtest.php', $data);
+			$helper = $this->facebook->getRedirectLoginHelper();
+			$permissions = ['email', 'user_likes', 'user_photos', 'user_birthday', 'user_friends'];
 
+			if (!$this->fblib->checkAccessToken()) {
+				$url = $helper->getLoginUrl(base_url().'callback', $permissions);
+				redirect($url);
+			} else if (!$this->fblib->checkPermissions($permissions)) {
+				$url = $_SESSION['rerequest-url'];
+				redirect($url);
+			} else {
 
-			// $helper = $this->facebook->getRedirectLoginHelper();
-			// $permissions = ['email', 'user_likes', 'user_photos', 'user_birthday', 'user_friends'];
-
-			// if (!$this->fblib->checkAccessToken()) {
-			// 	$url = $helper->getLoginUrl(base_url().'callback', $permissions);
-			// 	redirect($url);
-			// } else if (!$this->fblib->checkPermissions($permissions)) {
-			// 	$url = $_SESSION['rerequest-url'];
-			// 	redirect($url);
-			// } else {
-
-			// 	try {
-			// 		$response = $this->facebook->get("/me?fields=first_name,last_name,email,gender,birthday");
-			// 	} catch(Exception $e) {
-			// 		$data['message'] = $e->getMessage();
-			// 		$this->load->view('errors/access.php', $data);
-			// 	}
+				try {
+					$response = $this->facebook->get("/me?fields=first_name,last_name,email,gender,birthday");
+				} catch(Exception $e) {
+					$data['message'] = $e->getMessage();
+					$this->load->view('errors/access.php', $data);
+				}
 				
-			// 	$result = $response->getGraphUser();
+				$result = $response->getGraphUser();
 
-			// 	$facebookId = $result['id'];
-			// 	$firstName = $result['first_name'];
-			// 	$lastName = $result['last_name'];
-			// 	$email = $result['email'];
-			// 	$birth = $result['birthday'];
-			// 	$gender = $result['gender'];
+				$facebookId = $result['id'];
+				$firstName = $result['first_name'];
+				$lastName = $result['last_name'];
+				$email = $result['email'];
+				$birth = $result['birthday'];
+				$gender = $result['gender'];
 
-			// 	$user = new User($facebookId, $firstName, $lastName, $email, $birth, $gender);
+				$user = new User($facebookId, $firstName, $lastName, $email, $birth, $gender);
 
-			// 	//TODO : NIKSAMER - Add or Update user to db
+				//TODO : NIKSAMER - Add or Update user to db
 
-			// 	$data['isAdmin'] = $this->fblib->isAdmin();
-			// 	$this->load->view('structure/header', $data);
-			// 	$data['firstName'] = $firstName;
-			// 	$this->load->view('index', $data);
-			// 	$this->load->view('structure/footer');
-			// }
+				$data['isAdmin'] = $this->fblib->isAdmin();
+				$this->load->view('structure/header', $data);
+				$data['firstName'] = $firstName;
+				$this->load->view('index', $data);
+				$this->load->view('structure/footer');
+			}
 		}
 
 		public function callback() {
-			$helper = $this->facebook->getRedirectLoginHelper();
+			// $helper = $this->facebook->getRedirectLoginHelper();
+			$helper = $this->facebook->getCanvasHelper();
 
 			try {
 				$accessToken = $helper->getAccessToken();
