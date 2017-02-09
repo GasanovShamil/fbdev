@@ -8,7 +8,7 @@ CREATE TABLE `Users` (
 	lastName varchar(150) NOT NULL,
 	email varchar(150) NOT NULL,
 	birth DATETIME,
-	gender int,
+	gender varchar(150),
 	PRIMARY KEY (facebookId)
 );
 
