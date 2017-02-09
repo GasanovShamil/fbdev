@@ -16,17 +16,17 @@
 
 		public function index() {
 			$redirectHelper = $this->facebook->getRedirectLoginHelper();
+			$url = $redirectHelper->getLoginUrl(base_url().'callback', $permissions);
 			$permissions = ['email', 'user_likes', 'user_photos', 'user_birthday', 'user_friends'];
 
 			$canvasHelper = $this->facebook->getCanvasHelper();
 			$signedRequest = $canvasHelper->getSignedRequest();
 			$loggedUser = $signedRequest ? $signedRequest->getUserId() : null;
 
-			if (isset($_SESSION['facebook-user-id']) && $_SESSION['facebook-user-id'] != $loggedUser)
+			if (isset($_SESSION['facebook-user-id']) && $_SESSION['facebook-user-id'] != $loggedUser) {
 				session_destroy();
-
-			if (!$this->fblib->checkAccessToken()) {
-				$url = $redirectHelper->getLoginUrl(base_url().'callback', $permissions);
+				redirect($url);
+			} else if (!$this->fblib->checkAccessToken()) {
 				redirect($url);
 			} else if (!$this->fblib->checkPermissions($permissions)) {
 				$url = $_SESSION['rerequest-url'];
@@ -79,7 +79,7 @@
 
 			if (isset($accessToken) && isset($facebookId)) {
 				$_SESSION['facebook-access-token'] = (string) $accessToken;
-				$_SESSION['facebook-user-id'] = $facebookId;
+				$_SESSION['facebook-user-id'] = (string) $facebookId;
 			}
 				
 			redirect('/', 'refresh');
