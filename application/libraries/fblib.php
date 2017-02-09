@@ -1,7 +1,7 @@
 <?php
 	// require_once('appconfig.php');
 
-	class Fblib {
+	class fblib {
 
 		private $fb;
 
