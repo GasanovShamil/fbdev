@@ -10,7 +10,8 @@
 				'app_id' => '1158724760874896',
 				'app_secret' => '2a7b383ebccb6b0df49dc991e0aaf23e',
 				'default_graph_version' => 'v2.8',
-				'persistent_data_handler' => 'session'
+				'cookie' => true,
+				'status' => true
 			]);
 
 			if (!empty($_SESSION['facebook-access-token']))
