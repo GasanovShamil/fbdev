@@ -19,13 +19,13 @@
 			$permissions = ['email', 'user_likes', 'user_photos', 'user_birthday', 'user_friends'];
 			$url = $redirectHelper->getLoginUrl(base_url().'callback', $permissions);
 
-
 			$canvasHelper = $this->facebook->getCanvasHelper();
 			$signedRequest = $canvasHelper->getSignedRequest();
 			$loggedUser = $signedRequest ? $signedRequest->getUserId() : null;
 
 			if (isset($_SESSION['facebook-user-id']) && $_SESSION['facebook-user-id'] != $loggedUser) {
-				session_destroy();
+				unset($_SESSION['facebook-user-id']);
+				unset($_SESSION['facebook-access-token']);
 				redirect($url);
 			} else if (!$this->fblib->checkAccessToken()) {
 				redirect($url);
