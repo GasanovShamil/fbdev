@@ -42,7 +42,7 @@
 				$lastName = $result['last_name'];
 				$email = $result['email'];
 				$birth = $result['birthday'];
-				$gender = $result['gender'] == 'male' ? 0 : 1;
+				$gender = $result['gender'];
 
 				$user = new User($facebookId, $firstName, $lastName, $email, $birth, $gender);
 
@@ -70,7 +70,9 @@
 				$this->load->view('errors/access.php', $data);
 			}
 
-			if (isset($accessToken)) $_SESSION['facebook-access-token'] = (string) $accessToken;
+			if (isset($accessToken))
+				// $_SESSION['facebook-access-token'] = (string) $accessToken;
+				$this->fb->setDefaultAccessToken((string) $accessToken);
 
 			redirect('/', 'refresh');
 		}
