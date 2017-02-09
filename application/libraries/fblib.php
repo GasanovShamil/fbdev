@@ -9,9 +9,7 @@
 			$this->fb = new Facebook\Facebook([
 				'app_id' => '1158724760874896',
 				'app_secret' => '2a7b383ebccb6b0df49dc991e0aaf23e',
-				'default_graph_version' => 'v2.8',
-				'cookie' => true,
-				'status' => true
+				'default_graph_version' => 'v2.8'
 			]);
 
 			if (!empty($_SESSION['facebook-access-token']))
@@ -29,11 +27,11 @@
 			try {
 				$response = $this->fb->get('/debug_token?input_token='.$_SESSION['facebook-access-token']);
 				$result = $response->getGraphObject();
-
-				return $result['is_valid'] == 'true';
 			} catch (Exception $e) {
 				return false;
 			}
+
+			return true;
 		}
 
 		public function checkPermissions($permissions) {
