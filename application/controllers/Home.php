@@ -16,8 +16,9 @@
 
 		public function index() {
 			$redirectHelper = $this->facebook->getRedirectLoginHelper();
-			$url = $redirectHelper->getLoginUrl(base_url().'callback', $permissions);
 			$permissions = ['email', 'user_likes', 'user_photos', 'user_birthday', 'user_friends'];
+			$url = $redirectHelper->getLoginUrl(base_url().'callback', $permissions);
+
 
 			$canvasHelper = $this->facebook->getCanvasHelper();
 			$signedRequest = $canvasHelper->getSignedRequest();
