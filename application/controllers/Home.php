@@ -10,7 +10,6 @@
 
 		public function __construct() {
 			parent::__construct();
-			session_start();
 
 			$this->load->library('fblib');
 			$this->facebook = $this->fblib->getFacebook();
@@ -46,7 +45,6 @@
 
 				$user = new User($facebookId, $firstName, $lastName, $email, $birth, $gender);
 
-
 				//TODO : NIKSAMER - Add or Update user to db
 
 				$data['isAdmin'] = $this->fblib->isAdmin();
@@ -71,8 +69,7 @@
 			}
 
 			if (isset($accessToken))
-				// $_SESSION['facebook-access-token'] = (string) $accessToken;
-				$this->facebook->setDefaultAccessToken((string) $accessToken);
+				$_SESSION['facebook-access-token'] = (string) $accessToken;
 
 			redirect('/', 'refresh');
 		}

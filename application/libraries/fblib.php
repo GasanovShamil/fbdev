@@ -10,51 +10,29 @@
 				'app_id' => '1158724760874896',
 				'app_secret' => '2a7b383ebccb6b0df49dc991e0aaf23e',
 				'default_graph_version' => 'v2.8',
+				'persistent_data_handler' => 'session'
 			]);
 
-			// if (!empty($_SESSION['facebook-access-token']))
-			// 	$this->fb->setDefaultAccessToken($_SESSION['facebook-access-token']);
+			if (!empty($_SESSION['facebook-access-token']))
+				$this->fb->setDefaultAccessToken($_SESSION['facebook-access-token']);
 		}
 
 		public function getFacebook() {
-
 			return $this->fb;
 		}
 
-		public function checkUser() {
-			if (empty($_SESSION['facebook-id']))
-				return false;
-
-			try {
-				$response = $this->fb->get("/me?fields=id");
-			}
-			catch(Facebook\Exceptions\FacebookResponseException $e) {
-				echo 'Graph returned an error: ' . $e->getMessage();
-				exit;
-			} 
-			catch(Facebook\Exceptions\FacebookSDKException $e) {
-				echo 'Facebook SDK returned an error: ' . $e->getMessage();
-				exit;
-			}
-
-			$user = $response->getGraphUser();
-
-			return $_SESSION['facebook-id'] == $user['id'];
-		}
-
 		public function checkAccessToken() {
-			// if (empty($_SESSION['facebook-access-token']))
-			if (empty($this->fb->getDefaultAccessToken()))
+			if (empty($_SESSION['facebook-access-token']))
 				return false;
 
 			try {
 				$response = $this->fb->get('/debug_token?input_token='.$_SESSION['facebook-access-token']);
-				$graphObject = $response->getGraphObject();
+				$result = $response->getGraphObject();
+
+				return $result['is_valid'] == 'true';
 			} catch (Exception $e) {
 				return false;
 			}
-
-			return true;
 		}
 
 		public function checkPermissions($permissions) {
