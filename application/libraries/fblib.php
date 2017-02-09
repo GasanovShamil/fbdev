@@ -12,7 +12,13 @@
 				'default_graph_version' => 'v2.8',
 			]);
 
-			if (!empty($_SESSION['facebook-access-token'])) $this->fb->setDefaultAccessToken($_SESSION['facebook-access-token']);
+			if (!empty($_SESSION['facebook-access-token']))
+				$this->fb->setDefaultAccessToken($_SESSION['facebook-access-token']);
+		}
+
+		public function __destruct() {
+			if (!empty($_SESSION['facebook-access-token']))
+				session_destroy();
 		}
 
 		public function getFacebook() {
