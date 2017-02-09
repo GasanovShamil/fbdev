@@ -15,11 +15,18 @@
 		}
 
 		public function index() {
-			$helper = $this->facebook->getRedirectLoginHelper();
+			$redirectHelper = $this->facebook->getRedirectLoginHelper();
 			$permissions = ['email', 'user_likes', 'user_photos', 'user_birthday', 'user_friends'];
 
+			$canvasHelper = $this->facebook->getCanvasHelper();
+			$signedRequest = $canvasHelper->getSignedRequest();
+			$loggedUser = $signedRequest ? $signedRequest->getUserId() : null;
+
+			if (isset($_SESSION['facebook-user-id']) && $_SESSION['facebook-user-id']) != $loggedUser)
+				session_destroy();
+
 			if (!$this->fblib->checkAccessToken()) {
-				$url = $helper->getLoginUrl(base_url().'callback', $permissions);
+				$url = $redirectHelper->getLoginUrl(base_url().'callback', $permissions);
 				redirect($url);
 			} else if (!$this->fblib->checkPermissions($permissions)) {
 				$url = $_SESSION['rerequest-url'];
@@ -56,10 +63,12 @@
 
 		public function callback() {
 			try {
-				// $helper = $this->facebook->getRedirectLoginHelper();
-				$helper = $this->facebook->getCanvasHelper();
-				$signedRequest = $helper->getSignedRequest();
-				$accessToken = $signedRequest->getAccessToken();
+				$redirectHelper = $this->facebook->getRedirectLoginHelper();
+				$accessToken = $redirectHelper->getAccessToken();
+
+				$response = $this->facebook->get("/me?fields=id");
+				$result = $response->getGraphUser();
+				$facebookId = $result['id'];
 			} catch(Facebook\Exceptions\FacebookResponseException $e) {
 				$data['message'] = 'Graph returned an error: ' . $e->getMessage() . '<div>' . $this->input->get('state') . '</div>';
 				$this->load->view('errors/access.php', $data);
@@ -68,8 +77,9 @@
 				$this->load->view('errors/access.php', $data);
 			}
 
-			if (isset($accessToken)) {
+			if (isset($accessToken) && isset($facebookId)) {
 				$_SESSION['facebook-access-token'] = (string) $accessToken;
+				$_SESSION['facebook-user-id'] = $facebookId;
 			}
 				
 			redirect('/', 'refresh');
