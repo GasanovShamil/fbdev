@@ -55,11 +55,11 @@
 		}
 
 		public function callback() {
-			// $helper = $this->facebook->getRedirectLoginHelper();
-			$helper = $this->facebook->getCanvasHelper();
-
 			try {
-				$accessToken = $helper->getAccessToken();
+				// $helper = $this->facebook->getRedirectLoginHelper();
+				$helper = $this->facebook->getCanvasHelper();
+				$signedRequest = $helper->getSignedRequest();
+				$accessToken = $signedRequest->getAccessToken();
 			} catch(Facebook\Exceptions\FacebookResponseException $e) {
 				$data['message'] = 'Graph returned an error: ' . $e->getMessage() . '<div>' . $this->input->get('state') . '</div>';
 				$this->load->view('errors/access.php', $data);
