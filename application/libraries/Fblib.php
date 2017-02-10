@@ -91,9 +91,7 @@
 		}
 
 		public function jsRedirect($url) {
-			?>
-				<script>top.location = '<?php echo $url; ?>';</script>
-			<?php
+			?> <script>top.location = '<?php echo $url; ?>';</script> <?php
 		}
 	}
 ?>

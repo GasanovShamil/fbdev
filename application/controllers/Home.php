@@ -35,7 +35,8 @@
 			}
 			
 			if (!$this->fblib->checkAccessToken()) {
-					?> <script>top.location = '<?php echo $loginUrl; ?>';</script> <?php
+				// ICI REDIRECT JS
+				$this->fblib->jsRedirect($loginUrl);
 				//redirect($loginUrl);
 			} else if (!$this->fblib->checkPermissions($permissions)) {
 				$rerequestUrl = $_SESSION['rerequest-url'];
