@@ -25,8 +25,9 @@
 				return false;
 
 			try {
-				$response = $this->fb->get('/debug_token?input_token='.$_SESSION['facebook-access-token']);
+				$response = $this->fb->get('/debug_token?input_token='.$_SESSION['facebook-access-token'],'1158724760874896|2a7b383ebccb6b0df49dc991e0aaf23e');
 				$result = $response->getGraphObject();
+        return $result['is_valid'];
 			} catch (Exception $e) {
 				return false;
 			}
@@ -36,7 +37,7 @@
 
 		public function checkPermissions($permissions) {
 			$helper = $this->fb->getRedirectLoginHelper();
-			$response = $this->fb->get("/me/permissions");
+			$response = $this->fb->get("/me/permissions", $_SESSION['facebook-access-token']);
 			$userPermissions = $response->getDecodedBody();
 
 			foreach ($userPermissions['data'] as $value) {
@@ -74,14 +75,14 @@
 
 		public function getUserId(){
 			try{
-				$response = $this->fb->get("/me?fields=id");
+				$response = $this->fb->get("/me?fields=id", $_SESSION['facebook-access-token']);
 			}
 			catch(Facebook\Exceptions\FacebookResponseException $e) {
-				echo 'Graph returned an error: ' . $e->getMessage();
+				echo 'Graph returned an error bizzare1: ' . $e->getMessage();
 				exit;
 			} 
 			catch(Facebook\Exceptions\FacebookSDKException $e) {
-				echo 'Facebook SDK returned an error: ' . $e->getMessage();
+				echo 'Facebook SDK returned an error bizzare2: ' . $e->getMessage();
 				exit;
 			}
 
