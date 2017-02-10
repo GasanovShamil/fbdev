@@ -18,33 +18,29 @@
 			$redirectHelper = $this->facebook->getRedirectLoginHelper();
 			$permissions = ['email', 'user_likes', 'user_photos', 'user_birthday', 'user_friends'];
 			$loginUrl = $redirectHelper->getLoginUrl('https://www.facebook.com/projetconcourphoto/app/1158724760874896/', $permissions);
-      $pageHelper = $this->facebook->getPageTabHelper();
 
-      try {
-        $accessToken = $pageHelper->getAccessToken();
-      } catch(Facebook\Exceptions\FacebookResponseException $e) {
-        // When Graph returns an error
-        echo 'Graph returned an error: ' . $e->getMessage();
-      } catch(Facebook\Exceptions\FacebookSDKException $e) {
-        // When validation fails or other local issues
-        echo 'Facebook SDK returned an error: ' . $e->getMessage();
-      }
-      
-      if (isset($accessToken)) {
-       $_SESSION['facebook-access-token'] = (string) $accessToken;
-      }
+			try {
+				$pageHelper = $this->facebook->getPageTabHelper();
+				$accessToken = $pageHelper->getAccessToken();
+			} catch(Facebook\Exceptions\FacebookResponseException $e) {
+				$data['message'] = 'Graph returned an error: ' . $e->getMessage();
+				$this->load->view('errors/access.php', $data);
+			} catch(Facebook\Exceptions\FacebookSDKException $e) {
+				$data['message'] = 'Facebook SDK returned an error: ' . $e->getMessage();
+				$this->load->view('errors/access.php', $data);
+			}
+
+			if (isset($accessToken)) {
+				$_SESSION['facebook-access-token'] = (string) $accessToken;
+			}
 			
 			if (!$this->fblib->checkAccessToken()) {
-      ?>
-				<script>top.location = '<?php echo $loginUrl; ?>'; </script>
-        <?php
-        //redirect($loginUrl);
+					?> <script>top.location = '<?php echo $loginUrl; ?>';</script> <?php
+				//redirect($loginUrl);
 			} else if (!$this->fblib->checkPermissions($permissions)) {
 				$rerequestUrl = $_SESSION['rerequest-url'];
-				?>
-        <script>top.location = '<?php echo $rerequestUrl;?>'; </script>
-        <?php
-        //redirect($rerequestUrl);
+				?> <script>top.location = '<?php echo $rerequestUrl;?>'; </script> <?php
+        		//redirect($rerequestUrl);
 			} else {
 
 				try {
@@ -75,30 +71,30 @@
 			}
 		}
 
-		public function callback() {
-			try {
-				$redirectHelper = $this->facebook->getRedirectLoginHelper();
-				$accessToken = $redirectHelper->getAccessToken();
+		// public function callback() {
+		// 	try {
+		// 		$redirectHelper = $this->facebook->getRedirectLoginHelper();
+		// 		$accessToken = $redirectHelper->getAccessToken();
 
-				// $response = $this->facebook->get("/me?fields=id", $accessToken);
-				// $result = $response->getGraphUser();
-				// $facebookId = $result['id'];
-			} catch(Facebook\Exceptions\FacebookResponseException $e) {
-				$data['message'] = 'Graph returned an error: ' . $e->getMessage() . '<div>' . $this->input->get('state') . '</div>';
-				$this->load->view('errors/access.php', $data);
-			} catch(Facebook\Exceptions\FacebookSDKException $e) {
-				$data['message'] = 'Facebook SDK returned an error: '  . '<div>' . $this->input->get('state') . '</div>';
-				$this->load->view('errors/access.php', $data);
-			}
+		// 		// $response = $this->facebook->get("/me?fields=id", $accessToken);
+		// 		// $result = $response->getGraphUser();
+		// 		// $facebookId = $result['id'];
+		// 	} catch(Facebook\Exceptions\FacebookResponseException $e) {
+		// 		$data['message'] = 'Graph returned an error: ' . $e->getMessage() . '<div>' . $this->input->get('state') . '</div>';
+		// 		$this->load->view('errors/access.php', $data);
+		// 	} catch(Facebook\Exceptions\FacebookSDKException $e) {
+		// 		$data['message'] = 'Facebook SDK returned an error: '  . '<div>' . $this->input->get('state') . '</div>';
+		// 		$this->load->view('errors/access.php', $data);
+		// 	}
 
-			if (isset($accessToken))
-				$_SESSION['facebook-access-token'] = (string) $accessToken;
+		// 	if (isset($accessToken))
+		// 		$_SESSION['facebook-access-token'] = (string) $accessToken;
 
-			// if (isset($facebookId))
-			// 	$_SESSION['facebook-user-id'] = (string) $facebookId;
+		// 	// if (isset($facebookId))
+		// 	// 	$_SESSION['facebook-user-id'] = (string) $facebookId;
 				
-			//redirect('https://www.facebook.com/projetconcourphoto/app/1158724760874896/', 'refresh');
-      //redirect('/', 'refresh');
-      $this->index();
-		}
+		// 	//redirect('https://www.facebook.com/projetconcourphoto/app/1158724760874896/', 'refresh');
+		// 	//redirect('/', 'refresh');
+		// 	$this->index();
+		// }
 	}
