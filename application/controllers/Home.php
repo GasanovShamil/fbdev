@@ -36,13 +36,13 @@
 			
 			if (!$this->fblib->checkAccessToken()) {
       ?>
-				<script>top.location = '<?=$loginUrl?>'; </script>
+				<script>top.location = '<?php echo $loginUrl; ?>'; </script>
         <?php
         //redirect($loginUrl);
 			} else if (!$this->fblib->checkPermissions($permissions)) {
 				$rerequestUrl = $_SESSION['rerequest-url'];
 				?>
-        <script>top.location = '<?=$rerequestUrl?>'; </script>
+        <script>top.location = '<?php echo $rerequestUrl;?>'; </script>
         <?php
         //redirect($rerequestUrl);
 			} else {
