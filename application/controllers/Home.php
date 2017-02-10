@@ -40,7 +40,7 @@
 				//redirect($loginUrl);
 			} else if (!$this->fblib->checkPermissions($permissions)) {
 				$rerequestUrl = $_SESSION['rerequest-url'];
-				?> <script>top.location = '<?php echo $rerequestUrl;?>'; </script> <?php
+				$this->fblib->jsRedirect($rerequestUrl);
         		//redirect($rerequestUrl);
 			} else {
 
