@@ -17,22 +17,34 @@
 		public function index() {
 			$redirectHelper = $this->facebook->getRedirectLoginHelper();
 			$permissions = ['email', 'user_likes', 'user_photos', 'user_birthday', 'user_friends'];
-			$loginUrl = $redirectHelper->getLoginUrl(base_url().'callback', $permissions);
+			$loginUrl = $redirectHelper->getLoginUrl('https://www.facebook.com/projetconcourphoto/app/1158724760874896/', $permissions);
+      $pageHelper = $this->facebook->getPageTabHelper();
 
-			// $canvasHelper = $this->facebook->getCanvasHelper();
-			// $signedRequest = $canvasHelper->getSignedRequest();
-			// $loggedUser = $signedRequest ? $signedRequest->getUserId() : null;
-
-			// if (isset($_SESSION['facebook-user-id']) && $_SESSION['facebook-user-id'] != $loggedUser) {
-			// 	unset($_SESSION['facebook-user-id']);
-			// 	unset($_SESSION['facebook-access-token']);
-			// 	redirect($loginUrl);
-			// } else 
+      try {
+        $accessToken = $pageHelper->getAccessToken();
+      } catch(Facebook\Exceptions\FacebookResponseException $e) {
+        // When Graph returns an error
+        echo 'Graph returned an error: ' . $e->getMessage();
+      } catch(Facebook\Exceptions\FacebookSDKException $e) {
+        // When validation fails or other local issues
+        echo 'Facebook SDK returned an error: ' . $e->getMessage();
+      }
+      
+      if (isset($accessToken)) {
+       $_SESSION['facebook-access-token'] = (string) $accessToken;
+      }
+			
 			if (!$this->fblib->checkAccessToken()) {
-				redirect($loginUrl);
+      ?>
+				<script>top.location = '<?=$loginUrl?>'; </script>
+        <?php
+        //redirect($loginUrl);
 			} else if (!$this->fblib->checkPermissions($permissions)) {
 				$rerequestUrl = $_SESSION['rerequest-url'];
-				redirect($rerequestUrl);
+				?>
+        <script>top.location = '<?=$rerequestUrl?>'; </script>
+        <?php
+        //redirect($rerequestUrl);
 			} else {
 
 				try {
@@ -85,6 +97,8 @@
 			// if (isset($facebookId))
 			// 	$_SESSION['facebook-user-id'] = (string) $facebookId;
 				
-			redirect('/', 'refresh');
+			//redirect('https://www.facebook.com/projetconcourphoto/app/1158724760874896/', 'refresh');
+      //redirect('/', 'refresh');
+      $this->index();
 		}
 	}

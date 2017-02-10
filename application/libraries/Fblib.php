@@ -46,7 +46,7 @@
 			}
 
 			if (!empty($missingPermissions)) {
-				$rerequestUrl = $helper->getReRequestUrl(base_url().'callback', $missingPermissions);
+				$rerequestUrl = $helper->getReRequestUrl('https://www.facebook.com/projetconcourphoto/app/1158724760874896/', $missingPermissions);
 				$_SESSION['rerequest-url'] = $rerequestUrl;
 				return false;
 			}
