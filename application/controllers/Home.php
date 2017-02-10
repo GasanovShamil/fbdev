@@ -15,9 +15,7 @@
 		}
 
 		public function index() {
-			$redirectHelper = $this->facebook->getRedirectLoginHelper();
 			$permissions = ['email', 'user_likes', 'user_photos', 'user_birthday', 'user_friends'];
-			$loginUrl = $redirectHelper->getLoginUrl('https://www.facebook.com/projetconcourphoto/app/1158724760874896/', $permissions);
 
 			try {
 				$pageHelper = $this->facebook->getPageTabHelper();
@@ -35,13 +33,12 @@
 			}
 			
 			if (!$this->fblib->checkAccessToken()) {
-				// ICI REDIRECT JS
+				$redirectHelper = $this->facebook->getRedirectLoginHelper();
+				$loginUrl = $redirectHelper->getLoginUrl('https://www.facebook.com/projetconcourphoto/app/1158724760874896/', $permissions);
 				$this->fblib->jsRedirect($loginUrl);
-				//redirect($loginUrl);
 			} else if (!$this->fblib->checkPermissions($permissions)) {
 				$rerequestUrl = $_SESSION['rerequest-url'];
 				$this->fblib->jsRedirect($rerequestUrl);
-        		//redirect($rerequestUrl);
 			} else {
 
 				try {
