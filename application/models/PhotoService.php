@@ -14,11 +14,11 @@
 			foreach ($query->result() as $row)
 			{
 				$photo = new Photo(
-					$row->$facebookId,
-					$row->$firstName,
-					$row->$lastName,
-					$row->$email,
-					$row->$birth
+					$row->photoId,
+					$row->contest,
+					$row->facebookUrl,
+					$row->createdAt,
+					$row->createdBy
 				);
 
 				$photos[] = $photo
