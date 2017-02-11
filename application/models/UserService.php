@@ -8,7 +8,7 @@
 		protected $table = "users";
 
 		public function getUser($facebookId) {
-			$query = $this->db->get_where($this->table, array('facebookId' => , $facebookId);
+			$query = $this->db->get_where($this->table, 'facebookId = $facebookId');
 			$row = $query->row();
 
 			if (isset($row)) {
