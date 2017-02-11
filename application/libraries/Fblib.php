@@ -6,11 +6,9 @@
 		private $facebook;
 
 		public function __construct() {
-			appconfig::init();
-
 			$this->fb = new Facebook\Facebook([
-				'app_id' => appconfig::$app_id,
-				'app_secret' => appconfig::$app_secret,
+				'app_id' => appconfig::app_id(),
+				'app_secret' => appconfig::app_secret(),
 				'default_graph_version' => 'v2.8'
 			]);
 
@@ -27,7 +25,7 @@
 				return false;
 
 			try {
-				$response = $this->facebook->get('/debug_token?input_token='.$_SESSION['facebook-access-token'], appconfig::$app_token);
+				$response = $this->facebook->get('/debug_token?input_token='.$_SESSION['facebook-access-token'], appconfig::app_token());
 				$result = $response->getGraphObject();
 
 				if (!empty($_SESSION['facebook-access-token']))
@@ -60,7 +58,7 @@
 		}
 
 		public function isAdmin() {
-			$response = $this->fb-> get('/'.appconfig::$app_id.'/roles?fields=role,user', appconfig::$app_token);
+			$response = $this->fb-> get('/'.appconfig::app_id().'/roles?fields=role,user', appconfig::app_token());
 			$admins = $response->getDecodedBody();
 			$userId = $_SESSION['facebook-user-id'];
 

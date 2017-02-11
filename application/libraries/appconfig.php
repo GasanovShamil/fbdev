@@ -1,15 +1,18 @@
 <?php
 	class appconfig {
-		public static $app_id;
-		public static $app_secret;
-		public static $app_token;
-		public static $app_permissions;
-	
-		public static function init() {
-			self::$app_id = '1158724760874896';
-			self::$app_secret = '2a7b383ebccb6b0df49dc991e0aaf23e';
-			self::$app_token = self::$app_id.'|'.self::$app_secret;
-			self::$app_permissions = ['email', 'user_likes', 'user_photos', 'user_birthday', 'user_friends'];
+		public static function app_id() {
+			return '1158724760874896';
 		}
-	}
+
+		public static function app_secret() {
+			return '2a7b383ebccb6b0df49dc991e0aaf23e';
+		}
+
+		public static function app_token() {
+			return self::app_id().'|'.self::app_secret();
+		}
+
+		public static function app_permissions() {
+			return ['email', 'user_likes', 'user_photos', 'user_birthday', 'user_friends'];
+		}
 ?>

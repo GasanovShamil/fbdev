@@ -20,7 +20,7 @@
 		public function index() {
 			if (!$this->fblib->checkAccessToken()) {
 				$redirectHelper = $this->facebook->getRedirectLoginHelper();
-				$loginUrl = $redirectHelper->getLoginUrl('https://www.facebook.com/projetconcourphoto/app/'.appconfig::$app_id.'/', appconfig::$app_permissions);
+				$loginUrl = $redirectHelper->getLoginUrl('https://www.facebook.com/projetconcourphoto/app/'.appconfig::app_id().'/', appconfig::app_permissions());
 				$this->fblib->jsRedirect($loginUrl);
 			} else if (!$this->fblib->checkPermissions()) {
 				$rerequestUrl = $_SESSION['rerequest-url'];
