@@ -13,7 +13,7 @@
 			]);
 
 			if (!empty($_SESSION['facebook-access-token']))
-				$this->fb->setDefaultAccessToken($_SESSION['facebook-access-token']);
+				$this->facebook->setDefaultAccessToken($_SESSION['facebook-access-token']);
 		}
 
 		public function getFacebook() {
