@@ -62,7 +62,7 @@
 					$_SESSION['facebook-access-token']
 				);
 
-				$exist = $this->UserService->getUser($facebookId);
+				$exist = $this->UserService->getUser($result['id']);
 
 				if (isset($exist)) {
 					$this->UserService->updateUser($user);
