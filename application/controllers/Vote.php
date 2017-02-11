@@ -1,7 +1,8 @@
 <?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 
-	 require_once(dirname(__FILE__).'/../popo/Contest.php');
+	require_once(dirname(__FILE__).'/../libraries/appconfig.php');
+	require_once(dirname(__FILE__).'/../popo/Contest.php');
 
 	class Vote extends CI_Controller {
 
@@ -20,8 +21,7 @@
 		public function index() {
 			if (!$this->fblib->checkAccessToken()) {
 				$redirectHelper = $this->facebook->getRedirectLoginHelper();
-				$loginUrl = $redirectHelper->getLoginUrl('https://www.facebook.com/projetconcourphoto/app/1158724760874896/',
-					['email', 'user_likes', 'user_photos', 'user_birthday', 'user_friends']);
+				$loginUrl = $redirectHelper->getLoginUrl('https://www.facebook.com/projetconcourphoto/app/'.appconfig::getAppId().'/', appconfig::getAppPermissions());
 				$this->fblib->jsRedirect($loginUrl);
 			} else if (!$this->fblib->checkPermissions()) {
 				$rerequestUrl = $_SESSION['rerequest-url'];

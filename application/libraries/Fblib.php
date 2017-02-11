@@ -1,14 +1,14 @@
 <?php
-	// require_once('appconfig.php');
+	require_once('appconfig.php');
 
 	class Fblib {
 
 		private $facebook;
 
 		public function __construct() {
-			$this->fb = new Facebook\Facebook([
-				'app_id' => '1158724760874896',
-				'app_secret' => '2a7b383ebccb6b0df49dc991e0aaf23e',
+			$this->facebook = new Facebook\Facebook([
+				'app_id' => appconfig::getAppId(),
+				'app_secret' => appconfig::getAppSecret(),
 				'default_graph_version' => 'v2.8'
 			]);
 
@@ -25,7 +25,7 @@
 				return false;
 
 			try {
-				$response = $this->facebook->get('/debug_token?input_token='.$_SESSION['facebook-access-token'], '1158724760874896|2a7b383ebccb6b0df49dc991e0aaf23e');
+				$response = $this->facebook->get('/debug_token?input_token='.$_SESSION['facebook-access-token'], appconfig::getAppToken());
 				$result = $response->getGraphObject();
 
 				if (!empty($_SESSION['facebook-access-token']))
@@ -49,7 +49,7 @@
 			}
 
 			if (!empty($missingPermissions)) {
-				$rerequestUrl = $redirectHelper->getReRequestUrl('https://www.facebook.com/projetconcourphoto/app/1158724760874896/', $missingPermissions);
+				$rerequestUrl = $redirectHelper->getReRequestUrl('https://www.facebook.com/projetconcourphoto/app/'.appconfig::getAppId().'/', $missingPermissions);
 				$_SESSION['rerequest-url'] = $rerequestUrl;
 				return false;
 			}
@@ -58,7 +58,7 @@
 		}
 
 		public function isAdmin() {
-			$response = $this->fb-> get('/1158724760874896/roles?fields=role,user', '1158724760874896|2a7b383ebccb6b0df49dc991e0aaf23e');
+			$response = $this->fb-> get('/'.appconfig::getAppId().'/roles?fields=role,user', appconfig::getAppToken();
 			$admins = $response->getDecodedBody();
 			$userId = $_SESSION['facebook-user-id'];
 
