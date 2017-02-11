@@ -8,7 +8,7 @@
 		protected $table = "users";
 
 		public function getUser($facebookId) {
-			$query = $this->db->get_where($this->table, 'facebookId = $facebookId');
+			$query = $this->db->get_where($this->table, 'facebookId = '.$facebookId);
 			$row = $query->row();
 
 			if (isset($row)) {
@@ -47,11 +47,11 @@
 		}
 
 		public function updateUser($user) {
-			$this->db->update($this->table, $user, 'facebookid = $user->facebookId');
+			$this->db->update($this->table, $user, 'facebookid = '.$user->facebookId);
 		}
 
 		public function deleteUser($facebookId) {
-			$this->db->delete($this->table, 'facebookid = $facebookId');
+			$this->db->delete($this->table, 'facebookid = '.$facebookId);
 		}
 	}
 ?>
