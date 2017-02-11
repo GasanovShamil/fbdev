@@ -5,7 +5,7 @@
 
 	class UserService extends CI_Model {
 
-		protected $table = "users";
+		protected $table = "Users";
 
 		public function getUser($facebookId) {
 			$query = $this->db->get_where($this->table, 'facebookId = '.$facebookId);
