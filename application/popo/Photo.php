@@ -14,6 +14,10 @@
 			$this->createdAt = $createdAt;
 			$this->createdBy = $createdBy;
 		}
+
+		public function getVoteUrl() {
+			return $this->facebookUrl.'/contest-'.$this->contest.'/photo-'.$this->photoId
+		}
 	}
 
 ?>

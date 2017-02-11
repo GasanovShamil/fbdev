@@ -1,14 +1,16 @@
 <?php
-	// require_once('appconfig.php');
+	require_once('appconfig.php');
 
 	class Fblib {
 
-		private $fb;
+		private $facebook;
 
 		public function __construct() {
+			appconfig::init();
+
 			$this->fb = new Facebook\Facebook([
-				'app_id' => '1158724760874896',
-				'app_secret' => '2a7b383ebccb6b0df49dc991e0aaf23e',
+				'app_id' => appconfig::$app_id,
+				'app_secret' => appconfig::$app_secret,
 				'default_graph_version' => 'v2.8'
 			]);
 
@@ -17,7 +19,7 @@
 		}
 
 		public function getFacebook() {
-			return $this->fb;
+			return $this->facebook;
 		}
 
 		public function checkAccessToken() {
@@ -25,21 +27,21 @@
 				return false;
 
 			try {
-				$response = $this->fb->get('/debug_token?input_token='.$_SESSION['facebook-access-token'],'1158724760874896|2a7b383ebccb6b0df49dc991e0aaf23e');
+				$response = $this->facebook->get('/debug_token?input_token='.$_SESSION['facebook-access-token'], appconfig::$app_token);
 				$result = $response->getGraphObject();
 
 				if (!empty($_SESSION['facebook-access-token']))
-					$this->fb->setDefaultAccessToken($_SESSION['facebook-access-token']);
+					$this->facebook->setDefaultAccessToken($_SESSION['facebook-access-token']);
 
-        		return $result['is_valid'];
+				return $result['is_valid'];
 			} catch (Exception $e) {
 				return false;
 			}
 		}
 
-		public function checkPermissions($permissions) {
-			$helper = $this->fb->getRedirectLoginHelper();
-			$response = $this->fb->get("/me/permissions");
+		public function checkPermissions() {
+			$redirectHelper = $this->facebook->getRedirectLoginHelper();
+			$response = $this->facebook->get("/me/permissions");
 			$userPermissions = $response->getDecodedBody();
 
 			foreach ($userPermissions['data'] as $value) {
@@ -49,7 +51,7 @@
 			}
 
 			if (!empty($missingPermissions)) {
-				$rerequestUrl = $helper->getReRequestUrl('https://www.facebook.com/projetconcourphoto/app/1158724760874896/', $missingPermissions);
+				$rerequestUrl = $redirectHelper->getReRequestUrl('https://www.facebook.com/projetconcourphoto/app/1158724760874896/', $missingPermissions);
 				$_SESSION['rerequest-url'] = $rerequestUrl;
 				return false;
 			}
@@ -57,29 +59,10 @@
 			return true;
 		}
 
-		public function getUserId(){
-			try{
-				$response = $this->fb->get("/me?fields=id");
-			}
-			catch(Facebook\Exceptions\FacebookResponseException $e) {
-				echo 'Graph returned an error bizzare1: ' . $e->getMessage();
-				exit;
-			} 
-			catch(Facebook\Exceptions\FacebookSDKException $e) {
-				echo 'Facebook SDK returned an error bizzare2: ' . $e->getMessage();
-				exit;
-			}
-
-			$user = $response->getGraphUser();
-
-			return $user['id'];
-		}	
-
 		public function isAdmin() {
-			$appAccessToken = '1158724760874896|2a7b383ebccb6b0df49dc991e0aaf23e';
-			$response = $this->fb-> get('/1158724760874896/roles?fields=role,user', $appAccessToken);
+			$response = $this->fb-> get('/'.appconfig::$app_id.'/roles?fields=role,user', appconfig::$app_token);
 			$admins = $response->getDecodedBody();
-			$userId = ['facebook-user-id'];
+			$userId = $_SESSION['facebook-user-id'];
 
 			foreach ($admins['data'] as $value) {
 				if ($value['user'] == $userId && $value['role'] == 'administrators') {

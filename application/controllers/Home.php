@@ -19,8 +19,6 @@
 		}
 
 		public function index() {
-			$permissions = appconfig::$app_permissions;
-
 			try {
 				$pageHelper = $this->facebook->getPageTabHelper();
 				$accessToken = $pageHelper->getAccessToken();
@@ -38,9 +36,9 @@
 			
 			if (!$this->fblib->checkAccessToken()) {
 				$redirectHelper = $this->facebook->getRedirectLoginHelper();
-				$loginUrl = $redirectHelper->getLoginUrl('https://www.facebook.com/projetconcourphoto/app/1158724760874896/', $permissions);
+				$loginUrl = $redirectHelper->getLoginUrl('https://www.facebook.com/projetconcourphoto/app/'.appconfig::$app_id.'/', appconfig::$app_permissions);
 				$this->fblib->jsRedirect($loginUrl);
-			} else if (!$this->fblib->checkPermissions($permissions)) {
+			} else if (!$this->fblib->checkPermissions()) {
 				$rerequestUrl = $_SESSION['rerequest-url'];
 				$this->fblib->jsRedirect($rerequestUrl);
 			} else {
@@ -67,7 +65,7 @@
 					$_SESSION['facebook-access-token']
 				);
 
-				$exists = $this->UserService->exists($facebookId);
+				$exists = $this->UserService->getUser($facebookId);
 
 				if (isset($exists)) {
 					$this->UserService->updateUser($user);

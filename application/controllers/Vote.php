@@ -1,7 +1,7 @@
 <?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 
-	// require_once(dirname(__FILE__).'/../popo/User.php');
+	 require_once(dirname(__FILE__).'/../popo/Contest.php');
 
 	class Vote extends CI_Controller {
 
@@ -18,64 +18,29 @@
 		}
 
 		public function index() {
-			$permissions = ['email', 'user_likes', 'user_photos', 'user_birthday', 'user_friends'];
-
-			try {
-				$pageHelper = $this->facebook->getPageTabHelper();
-				$accessToken = $pageHelper->getAccessToken();
-			} catch(Facebook\Exceptions\FacebookResponseException $e) {
-				$data['message'] = 'Graph returned an error: ' . $e->getMessage();
-				$this->load->view('errors/access.php', $data);
-			} catch(Facebook\Exceptions\FacebookSDKException $e) {
-				$data['message'] = 'Facebook SDK returned an error: ' . $e->getMessage();
-				$this->load->view('errors/access.php', $data);
-			}
-
-			if (isset($accessToken)) {
-				$_SESSION['facebook-access-token'] = (string) $accessToken;
-			}
-			
 			if (!$this->fblib->checkAccessToken()) {
 				$redirectHelper = $this->facebook->getRedirectLoginHelper();
-				$loginUrl = $redirectHelper->getLoginUrl('https://www.facebook.com/projetconcourphoto/app/1158724760874896/', $permissions);
+				$loginUrl = $redirectHelper->getLoginUrl('https://www.facebook.com/projetconcourphoto/app/'.appconfig::$app_id.'/', appconfig::$app_permissions);
 				$this->fblib->jsRedirect($loginUrl);
-			} else if (!$this->fblib->checkPermissions($permissions)) {
+			} else if (!$this->fblib->checkPermissions()) {
 				$rerequestUrl = $_SESSION['rerequest-url'];
 				$this->fblib->jsRedirect($rerequestUrl);
 			} else {
-
-				try {
-					$response = $this->facebook->get("/me?fields=first_name,last_name,email,gender,birthday");
-				} catch(Exception $e) {
-					$data['message'] = $e->getMessage();
-					$this->load->view('errors/access.php', $data);
-				}
-				
-				$result = $response->getGraphUser();
-
-				$user = new User(
-					$result['id'],
-					$result['first_name'],
-					$result['last_name'],
-					$result['email'],
-					$result['birthday'],
-					$result['gender'],
-					$_SESSION['facebook-access-token']
-				);
-
-				$exists = $this->UserService->exists($result['id']);
-
-				if (isset($exists)) {
-					$this->UserService->updateUser($user);
-				} else {
-					$this->UserService->addUser($user);
-				}
+				$currentContest = $this->ContestService->getCurrentContest();
 
 				$data['isAdmin'] = $this->fblib->isAdmin();
 				$this->load->view('structure/header', $data);
 
-				$data['firstName'] = $user->firstName;
-				$this->load->view('index', $data);
+				if (isset($currentContest)) {
+					$data['start'] = $currentContest->startDate;
+					$data['end'] = $currentContest->endDate;
+					$data['photos'] = $this->PhotoService->getPhotosOfContest($currentContest->contestId);
+					$this->load->view('vote', $data);
+				} else {
+					// TODO : show no active contest
+					$data['test'] = 'NO CONTEST';
+					$this->load->view('showtest', $data);
+				}
 
 				$this->load->view('structure/footer');
 			}

@@ -1,15 +1,18 @@
-.space{
+.space {
 	margin-left : 5px;
 }
 
-.lineback{
+.lineback {
 	margin-top : 50px;
 }
 
-#informations{
+#informations {
 	width : 40%;
 	padding:5px;
 	border-radius: 2px;
 }
 
-
+.contest-picture {
+	width: 50px;
+	height: 50px;
+}

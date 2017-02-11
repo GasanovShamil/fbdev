@@ -28,16 +28,6 @@
 			return null;
 		}
 
-		public function exists($facebookId) {
-			$query = $this->db->get_where($this->table, 'facebookId = '.$facebookId);
-			$row = $query->row();
-
-			if (isset($row))
-				return true;
-
-			return false;
-		}
-
 		public function addUser($user) {
 			$this->db->insert($this->table, $user);
 		}

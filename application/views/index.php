@@ -26,7 +26,7 @@
 			<a href="#" class="btn btn-primary btn-lg">Je participe !</a>
 		</div>
 		<div class="col-md-3" id="button_see">
-			<a href="#" class="btn btn-primary btn-lg">Juste voir !</a>
+			<a href="Vote/" class="btn btn-primary btn-lg">Votez !</a>
 		</div>
 	</div>
 </section>
