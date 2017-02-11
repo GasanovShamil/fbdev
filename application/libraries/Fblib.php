@@ -58,7 +58,7 @@
 		}
 
 		public function isAdmin() {
-			$response = $this->fb-> get('/'.appconfig::getAppId().'/roles?fields=role,user', appconfig::getAppToken());
+			$response = $this->facebook-> get('/'.appconfig::getAppId().'/roles?fields=role,user', appconfig::getAppToken());
 			$admins = $response->getDecodedBody();
 			$userId = $_SESSION['facebook-user-id'];
 
