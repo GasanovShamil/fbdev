@@ -1,7 +1,7 @@
 <?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 
-	require_once(dirname(__FILE__).'/../models/User.php');
+	require_once(dirname(__FILE__).'/../popo/User.php');
 
 	class UserService extends CI_Model {
 
@@ -28,19 +28,19 @@
 			return null;
 		}
 
-		public function addUser($facebookId, $firstName, $lastName, $email, $birth, $gender, $token) {
-			$data = array(
-				'facebookId' => $facebookId,
-				'firstName' => $firstName,
-				'lastName' => $lastName,
-				'email' => $email,
-				'birth' => $birth,
-				'gender' => $gender,
-				'token' => $token
-			);
+		// public function addUser($facebookId, $firstName, $lastName, $email, $birth, $gender, $token) {
+		// 	$data = array(
+		// 		'facebookId' => $facebookId,
+		// 		'firstName' => $firstName,
+		// 		'lastName' => $lastName,
+		// 		'email' => $email,
+		// 		'birth' => $birth,
+		// 		'gender' => $gender,
+		// 		'token' => $token
+		// 	);
 
-			$this->db->insert($this->table, $data);
-		}
+		// 	$this->db->insert($this->table, $data);
+		// }
 
 		public function addUser($user) {
 			$this->db->insert($this->table, $user);

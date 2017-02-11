@@ -12,6 +12,8 @@
 
 			$this->load->library('fblib');
 			$this->facebook = $this->fblib->getFacebook();
+
+			$this->load->model('UserService');
 		}
 
 		public function index() {
@@ -50,21 +52,30 @@
 				
 				$result = $response->getGraphUser();
 
-				$facebookId = $result['id'];
-				$firstName = $result['first_name'];
-				$lastName = $result['last_name'];
-				$email = $result['email'];
-				$birth = $result['birthday'];
-				$gender = $result['gender'];
+				$user = new User(
+					$result['id'],
+					$result['first_name'],
+					$result['last_name'],
+					$result['email'],
+					$result['birthday'],
+					$result['gender'],
+					$_SESSION['facebook-access-token']
+				);
 
-				$user = new User($facebookId, $firstName, $lastName, $email, $birth, $gender);
+				$exist = $this->UserService->getUser($facebookId);
 
-				//TODO : NIKSAMER - Add or Update user to db
+				if (isset($exist)) {
+					$this->UserService->updateUser($user);
+				} else {
+					$this->UserService->addUser($user);
+				}
 
 				$data['isAdmin'] = $this->fblib->isAdmin();
 				$this->load->view('structure/header', $data);
-				$data['firstName'] = $firstName;
+
+				$data['firstName'] = $user->firstName;
 				$this->load->view('index', $data);
+
 				$this->load->view('structure/footer');
 			}
 		}
