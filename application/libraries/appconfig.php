@@ -15,4 +15,5 @@
 		public static function app_permissions() {
 			return ['email', 'user_likes', 'user_photos', 'user_birthday', 'user_friends'];
 		}
+	}
 ?>
