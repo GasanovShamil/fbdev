@@ -1,25 +1,24 @@
 <?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 
-	require_once(dirname(__FILE__).'/../libraries/appconfig.php');
-	require_once(dirname(__FILE__).'/../popo/User.php');
+	// require_once(dirname(__FILE__).'/../popo/User.php');
 
-	class Home extends CI_Controller {
+	class Vote extends CI_Controller {
 
 		private $facebook;
 
 		public function __construct() {
 			parent::__construct();
-			appconfig::init();
 
 			$this->load->library('fblib');
 			$this->facebook = $this->fblib->getFacebook();
 
-			$this->load->model('UserService');
+			$this->load->model('ContestService');
+			$this->load->model('PhotoService');
 		}
 
 		public function index() {
-			$permissions = appconfig::$app_permissions;
+			$permissions = ['email', 'user_likes', 'user_photos', 'user_birthday', 'user_friends'];
 
 			try {
 				$pageHelper = $this->facebook->getPageTabHelper();
@@ -54,11 +53,8 @@
 				
 				$result = $response->getGraphUser();
 
-				$facebookId = $result['id'];
-				$_SESSION['facebook-user-id'] = $facebookId;
-
 				$user = new User(
-					$facebookId,
+					$result['id'],
 					$result['first_name'],
 					$result['last_name'],
 					$result['email'],
@@ -67,7 +63,7 @@
 					$_SESSION['facebook-access-token']
 				);
 
-				$exists = $this->UserService->exists($facebookId);
+				$exists = $this->UserService->exists($result['id']);
 
 				if (isset($exists)) {
 					$this->UserService->updateUser($user);
@@ -84,31 +80,4 @@
 				$this->load->view('structure/footer');
 			}
 		}
-
-		// public function callback() {
-		// 	try {
-		// 		$redirectHelper = $this->facebook->getRedirectLoginHelper();
-		// 		$accessToken = $redirectHelper->getAccessToken();
-
-		// 		// $response = $this->facebook->get("/me?fields=id", $accessToken);
-		// 		// $result = $response->getGraphUser();
-		// 		// $facebookId = $result['id'];
-		// 	} catch(Facebook\Exceptions\FacebookResponseException $e) {
-		// 		$data['message'] = 'Graph returned an error: ' . $e->getMessage() . '<div>' . $this->input->get('state') . '</div>';
-		// 		$this->load->view('errors/access.php', $data);
-		// 	} catch(Facebook\Exceptions\FacebookSDKException $e) {
-		// 		$data['message'] = 'Facebook SDK returned an error: '  . '<div>' . $this->input->get('state') . '</div>';
-		// 		$this->load->view('errors/access.php', $data);
-		// 	}
-
-		// 	if (isset($accessToken))
-		// 		$_SESSION['facebook-access-token'] = (string) $accessToken;
-
-		// 	// if (isset($facebookId))
-		// 	// 	$_SESSION['facebook-user-id'] = (string) $facebookId;
-				
-		// 	//redirect('https://www.facebook.com/projetconcourphoto/app/1158724760874896/', 'refresh');
-		// 	//redirect('/', 'refresh');
-		// 	$this->index();
-		// }
 	}

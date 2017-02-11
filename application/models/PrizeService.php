@@ -3,9 +3,9 @@
 
 	require_once(dirname(__FILE__).'/../popo/User.php');
 
-	class UserService extends CI_Model {
+	class PrizeService extends CI_Model {
 
-		protected $table = "Users";
+		protected $table = "Prizes";
 
 		public function getUser($facebookId) {
 			$query = $this->db->get_where($this->table, 'facebookId = '.$facebookId);
@@ -28,16 +28,6 @@
 			return null;
 		}
 
-		public function exists($facebookId) {
-			$query = $this->db->get_where($this->table, 'facebookId = '.$facebookId);
-			$row = $query->row();
-
-			if (isset($row))
-				return true;
-
-			return false;
-		}
-
 		public function addUser($user) {
 			$this->db->insert($this->table, $user);
 		}
@@ -46,8 +36,8 @@
 			$this->db->update($this->table, $user, 'facebookid = '.$user->facebookId);
 		}
 
-		// public function deleteUser($facebookId) {
-		// 	$this->db->delete($this->table, 'facebookid = '.$facebookId);
-		// }
+		public function deleteUser($facebookId) {
+			$this->db->delete($this->table, 'facebookid = '.$facebookId);
+		}
 	}
 ?>

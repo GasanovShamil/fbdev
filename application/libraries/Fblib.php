@@ -79,7 +79,7 @@
 			$appAccessToken = '1158724760874896|2a7b383ebccb6b0df49dc991e0aaf23e';
 			$response = $this->fb-> get('/1158724760874896/roles?fields=role,user', $appAccessToken);
 			$admins = $response->getDecodedBody();
-			$userId = $this->getUserId();
+			$userId = ['facebook-user-id'];
 
 			foreach ($admins['data'] as $value) {
 				if ($value['user'] == $userId && $value['role'] == 'administrators') {
