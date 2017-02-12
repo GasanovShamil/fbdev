@@ -23,7 +23,7 @@
 							echo '</div>';
 
 							echo '<div class="col-sm-4">';
-								echo '<span>'.$photo->nbVote.'</span>'
+								echo '<span>'.$photo->nbVote.'</span>';
 							echo '</div>';
 						echo '</div>';
 					echo '</div>';
