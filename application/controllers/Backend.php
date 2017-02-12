@@ -21,7 +21,8 @@
 
 	public function index(){
 		$this->load->view('structure/admin_header.php');
-		echo 'Bienvenue dans console admin';
+		$this->load->view('');
+		$this->load->view('structure/footer.php');
 	}
 
 
