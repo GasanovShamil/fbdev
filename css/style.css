@@ -28,8 +28,8 @@ body {
 }
 
 .box-content img {
-	width: 75%;
-	height: 75%;
+	max-width: 75%;
+	max-height: 75%;
 }
 
 .box-footer .btn-group {

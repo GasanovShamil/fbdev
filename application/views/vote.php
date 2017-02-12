@@ -6,23 +6,23 @@
 		echo '<div class="row">';
 
 		foreach ($photos as $photo) {
-			echo '<div class="col-md-3 box">';
+			echo '<div class="col-sm-6 box">';
+				echo '<div class="row">';
+					echo '<div class="box-header col-sm-12" data-name="'.$photo->createdBy.'">';
+						echo $photo->createdBy;
+					echo '</div>';
 
-				echo '<div class="box-header" data-name="'.$photo->createdBy.'">';
-					echo $photo->createdBy;
-				echo '</div>';
+					echo '<div class="box-content col-sm-12" data-url="'.$photo->facebookUrl.'">';
+						echo '<img src="'.$photo->facebookUrl.'" alt="photo"/>';
+					echo '</div>';
 
-				echo '<div class="box-content" data-url="'.$photo->facebookUrl.'">';
-					echo '<img src="'.$photo->facebookUrl.'" alt="photo"/>';
-				echo '</div>';
-
-				echo '<div class="box-footer">';
-					echo '<div class="btn-group" role="group" aria-label="...">';
-						echo '<button class="btn btn-default">Je vote</button>';
-						echo '<button class="btn btn-default">'.$photo->nbVote.'</button>';
+					echo '<div class="box-footer col-sm-12">';
+						echo '<div class="btn-group" role="group" aria-label="...">';
+							echo '<button class="btn btn-default">Je vote</button>';
+							echo '<button class="btn btn-default">'.$photo->nbVote.'</button>';
+						echo '</div>';
 					echo '</div>';
 				echo '</div>';
-
 			echo '</div>';
 		}
 
