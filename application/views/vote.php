@@ -14,7 +14,7 @@
 
 					echo '<div class="box-content col-sm-12" ';
 					echo 'data-toggle="modal" ';
-					echo 'data-target="#photo-modal-container" ';
+					echo 'data-target="#photo-modal" ';
 					echo 'data-url="'.$photo->facebookUrl.'" ';
 					echo 'data-name="'.$photo->createdBy.'">';
 						echo '<img src="'.$photo->facebookUrl.'" alt="photo"/>';
@@ -48,7 +48,7 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span class="icon icon-remove" aria-hidden="true"></span>
 					</button>
-					<h4 id="modal_title" class="modal-title"></h4>
+					<h4 class="modal-title"></h4>
 				</div>
 
 				<div class="modal-body">

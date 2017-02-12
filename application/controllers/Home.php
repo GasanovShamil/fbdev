@@ -72,7 +72,6 @@
 				} else {
 					$this->UserService->addUser($user);
 				}
-
 				
 				$data['hideNav'] = true;
 				$this->load->view('structure/header', $data);
