@@ -6,7 +6,7 @@
 		echo '<div class="row">';
 
 		foreach ($photos as $photo) {
-			echo '<div class="box">';
+			echo '<div class="col-sm-4 box">';
 				echo '<div class="row">';
 					echo '<div class="box-header col-sm-12" data-name="'.$photo->createdBy.'">';
 						echo $photo->createdBy;

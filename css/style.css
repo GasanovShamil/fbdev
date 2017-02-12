@@ -17,17 +17,15 @@ body {
 }
 
 .box {
-	width: 29%;
 	border: 2px groove #0a3d6a;
-    background-color: #fff;
-    border-radius: 8px;
-    margin-left: 2%;
-    margin-right: 2%;
+	background-color: #fff;
+	border-radius: 8px;
+	margin-left: 5px;
 }
 
 .box-header {
 	background-color: #0a3d6a;
-    color: #fff;
+	color: #fff;
 }
 
 .box-content img {
@@ -36,7 +34,7 @@ body {
 }
 
 .box-footer .btn-group {
-    width: 100%;
+	width: 100%;
 }
 
 .box-header, .box-footer {
