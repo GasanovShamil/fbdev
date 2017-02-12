@@ -8,6 +8,8 @@
     <script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.js"></script>
 </head>
 <body>
+<!--     <?php if ($showNav) { ?>
+ -->    <?php if ($showNav) :?>
 	<!-- Navbar -->
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
@@ -36,5 +38,7 @@
 
 		</div>
 	</nav>
+<!--     <?php } ?>
+ -->    <?php endif;?>
 	
 	<div class="container">
