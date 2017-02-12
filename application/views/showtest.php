@@ -1,5 +1,5 @@
-<section>
+<div class="container">
 	<?php
 		var_dump($test);
 	?>
-</section>
+</div>

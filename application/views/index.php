@@ -1,4 +1,4 @@
-<section>
+<div class="container">
 	<!-- Logo & title -->
 	<div class="row lineback">
 		<div class="col-md-2 col-md-offset-2" id="logo">
@@ -19,4 +19,4 @@
 			<a href="/vote/index" class="btn btn-primary btn-lg">Votez !</a>
 		</div>
 	</div>
-</section>
+</div>

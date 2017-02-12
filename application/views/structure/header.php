@@ -26,8 +26,8 @@
 
 					<div id="navbar" class="collapse navbar-collapse">
 						<ul class="nav navbar-nav">
-							<li><a href="#">Participer</a></li>
-							<li><a href="#">Voter</a></li>
+							<li><a href="/participate/index">Participer</a></li>
+							<li><a href="/vote/index">Voter</a></li>
 							
 							<?php if ($isAdmin) { ?>
 								<li><a href="#">Administration</a></li>
@@ -37,5 +37,3 @@
 				</div>
 			</nav>
 		<?php } ?>
-
-		<div class="container">

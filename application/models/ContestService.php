@@ -50,6 +50,7 @@
 		// }
 
 		public function addContest($contest) {
+			//TODO: trigger all contest status to 0
 			$this->db->insert($this->table, $contest);
 		}
 

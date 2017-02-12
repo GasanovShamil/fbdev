@@ -16,11 +16,6 @@ body {
 	border-radius: 2px;
 }
 
-.contest-picture {
-	width: 75%;
-	height: 75%;
-}
-
 .box {
 	border: 2px groove #0a3d6a;
     background-color: #fff;
@@ -32,6 +27,19 @@ body {
     color: #fff;
 }
 
+.box-content img {
+	width: 75%;
+	height: 75%;
+}
+
 .box-footer .btn-group {
     width: 100%;
+}
+
+.box-header, .box-footer {
+	font-family: 'gotham_bookregular','Roboto', sans-serif;
+	font-size: 15px;
+	font-weight: 600;
+	padding-top: 7px;
+	padding-bottom: 7px;
 }
