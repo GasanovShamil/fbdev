@@ -1,43 +1,24 @@
 <?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 
-	require_once(dirname(__FILE__).'/../popo/User.php');
-
 	class VoteService extends CI_Model {
 
 		protected $table = "Votes";
 
-		public function getUser($facebookId) {
-			$query = $this->db->get_where($this->table, 'facebookId = '.$facebookId);
-			$row = $query->row();
+		public $user;
+		public $photo;
+		public $createdAt;
 
-			if (isset($row)) {
-				$user = new User(
-					$row->facebookId, 
-					$row->firstName, 
-					$row->lastName, 
-					$row->email, 
-					$row->birth, 
-					$row->gender, 
-					$row->token
-				);
+		public function vote($user, $photo) {
+			$this->user = $user;
+			$this->photo = $photo;
+			$this->createdAt = date('Y-m-d H:i:s').'.000';
 
-				return $user;
-			}
-
-			return null;
+			$this->db->insert($this->table, $this);
 		}
 
-		public function addUser($user) {
-			$this->db->insert($this->table, $user);
-		}
-
-		public function updateUser($user) {
-			$this->db->update($this->table, $user, 'facebookid = '.$user->facebookId);
-		}
-
-		public function deleteUser($facebookId) {
-			$this->db->delete($this->table, 'facebookid = '.$facebookId);
+		public function unvote($user, $photo) {
+			$this->db->delete($this->table, 'user = '.$user.' AND photo = '.$photo);
 		}
 	}
 ?>

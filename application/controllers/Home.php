@@ -2,7 +2,6 @@
 	defined('BASEPATH') OR exit('No direct script access allowed');
 
 	require_once(dirname(__FILE__).'/../libraries/appconfig.php');
-	require_once(dirname(__FILE__).'/../popo/User.php');
 
 	class Home extends CI_Controller {
 
@@ -52,30 +51,27 @@
 				$result = $response->getGraphUser();
 
 				$facebookId = $result['id'];
+				$firstName = $result['first_name'];
+				$lastName = $result['last_name'];
+				$email = $result['email'];
+				$birth = $result['birthday'];
+				$gender = $result['gender'];
+				$token = $_SESSION['facebook-access-token'];
+
 				$_SESSION['facebook-user-id'] = $facebookId;
 				$_SESSION['facebook-is-admin'] = $this->fblib->isAdmin();
-
-				$user = new User(
-					$facebookId,
-					$result['first_name'],
-					$result['last_name'],
-					$result['email'],
-					$result['birthday'],
-					$result['gender'],
-					$_SESSION['facebook-access-token']
-				);
 
 				$exists = $this->UserService->getUser($facebookId);
 
 				if (isset($exists)) {
-					$this->UserService->updateUser($user);
+					$this->UserService->updateUser($facebookId, $firstName, $lastName, $email, $birth, $gender, $token);
 				} else {
-					$this->UserService->addUser($user);
+					$this->UserService->addUser($facebookId, $firstName, $lastName, $email, $birth, $gender, $token);
 				}
 				
 				$this->load->view('structure/header');
 
-				$data['firstName'] = $user->firstName;
+				$data['firstName'] = $firstName;
 				$this->load->view('index', $data);
 
 				$this->load->view('structure/footer');

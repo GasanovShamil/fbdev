@@ -1,4 +1,4 @@
-<?php require_once(dirname(__FILE__).'/../popo/Photo.php'); ?>
+<?php require_once(dirname(__FILE__).'/../viewModels/Photo.php'); ?>
 
 <div class="container">
 	<?php
@@ -9,15 +9,15 @@
 			echo '<div class="col-sm-3 box">';
 				echo '<div class="row">';
 					echo '<div class="box-header col-sm-12">';
-						echo $photo->createdBy;
+						echo $photo->author;
 					echo '</div>';
 
 					echo '<div class="box-content center-div col-sm-12" ';
 					echo 'data-toggle="modal" ';
 					echo 'data-target="#photo-modal" ';
-					echo 'data-url="'.$photo->facebookUrl.'" ';
-					echo 'data-name="'.$photo->createdBy.'">';
-						echo '<img src="'.$photo->facebookUrl.'" alt="photo"/>';
+					echo 'data-url="'.$photo->url.'" ';
+					echo 'data-name="'.$photo->author.'">';
+						echo '<img src="'.$photo->url.'" alt="photo"/>';
 					echo '</div>';
 
 					echo '<div class="box-footer col-sm-12">';
@@ -27,7 +27,7 @@
 							echo '</div>';
 
 							echo '<div class="col-sm-4 center-div">';
-								echo '<span>'.$photo->nbVote.'</span>';
+								echo '<span>'.$photo->nbVotes.'</span>';
 							echo '</div>';
 						echo '</div>';
 					echo '</div>';
