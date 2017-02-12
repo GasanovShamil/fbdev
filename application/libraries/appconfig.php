@@ -13,7 +13,7 @@
 		}
 
 		public static function getAppPermissions() {
-			return ['email', 'user_likes', 'user_photos', 'user_birthday', 'user_friends'];
+			return ['email', 'user_likes', 'user_photos', 'user_birthday', 'user_friends', 'publish_actions'];
 		}
 	}
 ?>

@@ -13,12 +13,12 @@
 
 			if (isset($row)) {
 				$user = new User(
-					$row->facebookId, 
-					$row->firstName, 
-					$row->lastName, 
-					$row->email, 
-					$row->birth, 
-					$row->gender, 
+					$row->facebookId,
+					$row->firstName,
+					$row->lastName,
+					$row->email,
+					$row->birth,
+					$row->gender,
 					$row->token
 				);
 
