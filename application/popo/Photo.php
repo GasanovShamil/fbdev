@@ -16,7 +16,7 @@
 		}
 
 		public function getVoteUrl() {
-			return $this->facebookUrl.'/contest-'.$this->contest.'/photo-'.$this->photoId
+			return $this->facebookUrl.'/contest-'.$this->contest.'/photo-'.$this->photoId;
 		}
 	}
 
