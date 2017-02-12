@@ -1,12 +1,12 @@
 <?php require_once(dirname(__FILE__).'/../popo/Photo.php'); ?>
 
-
+<div class="container">
 	<?php
 		echo '<h1>Concours du '.$start.' au '.$end.'</h1>';
 		echo '<div class="row">';
 
 		foreach ($photos as $photo) {
-			echo '<div class="col-sm-4 box">';
+			echo '<div class="col-sm-3 box">';
 				echo '<div class="row">';
 					echo '<div class="box-header col-sm-12" data-name="'.$photo->createdBy.'">';
 						echo $photo->createdBy;
@@ -28,7 +28,7 @@
 
 		echo '</div>';
 	?>
-
+</div>
 
 <!-- Modal -->
 <div id="photoModalContainer" class="div-modal-container">
