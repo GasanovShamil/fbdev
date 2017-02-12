@@ -73,8 +73,7 @@
 					$this->UserService->addUser($user);
 				}
 				
-				$data['hideNav'] = true;
-				$this->load->view('structure/header', $data);
+				$this->load->view('structure/header');
 
 				$data['firstName'] = $user->firstName;
 				$this->load->view('index', $data);
