@@ -3,7 +3,7 @@
 }
 
 .box {
-	border: 2px groove #0a3d6a;
+	border: 2px groove #109cdf;
 	background-color: #fff;
 	border-radius: 8px;
 	margin-left: 25px;
@@ -13,8 +13,8 @@
 }
 
 .box-header {
-	background-color: #0a3d6a;
 	color: #fff;
+	background-color: #109cdf;
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
@@ -27,7 +27,7 @@
 	text-align: center;
 }
 
-.box-content img {
+.box-content img, #photo-modal-container img {
 	max-width: 100%;
 	max-height: 100%;
 }
@@ -36,4 +36,9 @@
 	font-family: 'gotham_bookregular','Roboto', sans-serif;
 	font-size: 15px;
 	font-weight: 600;
+}
+
+.modal-header {
+	color: #fff;
+	background-color: #109cdf;
 }
