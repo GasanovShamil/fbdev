@@ -29,8 +29,7 @@
 			} else {
 				$currentContest = $this->ContestService->getCurrentContest();
 
-				$data['isAdmin'] = $this->fblib->isAdmin();
-				$this->load->view('structure/header', $data);
+				$this->load->view('structure/header');
 
 				if (isset($currentContest)) {
 					$data['start'] = $currentContest->startDate;

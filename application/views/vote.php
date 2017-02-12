@@ -12,7 +12,7 @@
 						echo $photo->createdBy;
 					echo '</div>';
 
-					echo '<div class="box-content center-img col-sm-12" ';
+					echo '<div class="box-content center-div col-sm-12" ';
 					echo 'data-toggle="modal" ';
 					echo 'data-target="#photo-modal" ';
 					echo 'data-url="'.$photo->facebookUrl.'" ';
@@ -22,11 +22,11 @@
 
 					echo '<div class="box-footer col-sm-12">';
 						echo '<div class="row">';
-							echo '<div class="col-sm-8 vote-button">';
-								echo '<button class="btn btn-default">Je vote !</button>';
+							echo '<div class="col-sm-8">';
+								echo '<button id="btn-vote" class="btn btn-default">Je vote !</button>';
 							echo '</div>';
 
-							echo '<div class="col-sm-4">';
+							echo '<div class="col-sm-4 center-div">';
 								echo '<span>'.$photo->nbVote.'</span>';
 							echo '</div>';
 						echo '</div>';
@@ -51,7 +51,7 @@
 					<h4 class="modal-title"></h4>
 				</div>
 
-				<div class="modal-body center-img">
+				<div class="modal-body center-div">
 					<img src="" alt="photo"/>
 				</div>
 			</div>
