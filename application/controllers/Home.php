@@ -73,7 +73,7 @@
 				}
 
 				$data['isAdmin'] = $this->fblib->isAdmin();
-				$data['showNav'] = false;
+				$data['hideNav'] = true;
 				$this->load->view('structure/header', $data);
 
 				$data['firstName'] = $user->firstName;

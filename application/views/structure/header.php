@@ -9,7 +9,7 @@
 	</head>
 
 	<body>
-		<?php if ($showNav) { ?>
+		<?php if (!isset($hideNav)) { ?>
 			<!-- Navbar -->
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 				<div class="container">
