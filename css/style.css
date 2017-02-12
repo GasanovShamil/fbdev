@@ -17,11 +17,12 @@ body {
 }
 
 .box {
+	width: 29%;
 	border: 2px groove #0a3d6a;
     background-color: #fff;
     border-radius: 8px;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 .box-header {
