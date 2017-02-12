@@ -34,7 +34,7 @@
 		public function hasVoted($user, $photo) {
 			$result = $this->db->select('COUNT(user) AS hasVoted')
 								->from($this->table)
-								->where('user ='.$contest.' AND photo = '.$photo)
+								->where('user ='.$user.' AND photo = '.$photo)
 								->get()
 								->row();
 

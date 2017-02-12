@@ -28,7 +28,6 @@
 			foreach ($result as $row)
 			{
 				$id = $row->photoId;
-				$contest = $row->contest;
 				$author = $row->firstName.' '.$row->lastName;
 				$url = $row->facebookUrl;
 				$nbVotes = $this->VoteService->getNbVotes($id);
