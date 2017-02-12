@@ -21,7 +21,7 @@
 					$row->createdBy
 				);
 
-				$photos[] = $photo
+				$photos[] = $photo;
 			}
 
 			return $photos;
