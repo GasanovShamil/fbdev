@@ -20,7 +20,8 @@
 	}
 
 	public function index(){
-			echo 'Bienvenue dans console admin';
+		$this->load->veiw('/structure/admin_header.php');
+		echo 'Bienvenue dans console admin';
 	}
 
 
