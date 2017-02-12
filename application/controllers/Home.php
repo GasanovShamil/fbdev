@@ -77,15 +77,10 @@
 				$this->load->view('structure/header', $data);
 
 				$data['firstName'] = $user->firstName;
-				$data['voteUrl'] = base_url().'/vote';
 				$this->load->view('index', $data);
 
 				$this->load->view('structure/footer');
 			}
-		}
-
-		public function vote() {
-			redirect('/vote');
 		}
 
 		// public function callback() {
