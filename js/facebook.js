@@ -15,14 +15,14 @@ $(document).ready(function() {
 
 	window.fbAsyncInit = function() {
 		FB.init({
-			appId      : '1306220739418909',
-			cookie     : true,  // enable cookies to allow the server to access the session
-			xfbml      : true,  // parse social plugins on this page
-			version    : 'v2.5' // use graph api version 2.5
+			appId      : '1158724760874896',
+			cookie     : true,
+			xfbml      : true,
+			version    : 'v2.8'
 		});
 
 		FB.getLoginStatus(function(response) {
-		statusChangeCallback(response);
+			statusChangeCallback(response);
 		});
 
 		function onLogin(response) {
@@ -55,15 +55,9 @@ $(document).ready(function() {
 	}
 
 	function statusChangeCallback(response) {
-		console.log('statusChangeCallback');
-		console.log(response);
-		// The response object is returned with a status field that lets the app know the current login status of the person.
-		// Full docs on the response object can be found in the documentation for FB.getLoginStatus().
 		if (response.status === 'connected') {
-			// Logged into your app and Facebook.
 			verifyScope(testAPI, response);
 		} else if (response.status === 'not_authorized') {
-			// The person is logged into Facebook, but not your app.
 			document.getElementById('status').innerHTML = 'Please log ' + 'into this app.';
 			$("#login").show();
 			$("#logout").hide();
@@ -100,7 +94,6 @@ $(document).ready(function() {
 			} else {
 				$("#login").hide();
 				$("#logout").show();
-				console.log(arguments);
 				callback(values);
 			}
 
