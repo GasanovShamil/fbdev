@@ -1,21 +1,51 @@
-<?php
-	require_once(dirname(__FILE__).'/../popo/Photo.php');
-?>
+<?php require_once(dirname(__FILE__).'/../popo/Photo.php'); ?>
 
 <section>
 	<?php
 		echo '<h1>Concours du '.$start.' au '.$end.'</h1>';
 		echo '<div class="row">';
-			
+
 		foreach ($photos as $photo) {
-			echo '<div class="col-md-3 contest-item">';
-			echo '<img class="contest-picture" src="'.$photo->facebookUrl.'" alt="photo"/>';
-			echo 'Auteur : '.$photo->createdBy;
-			echo '<br />';
-			echo $photo->getLikeDiv();
+			echo '<div class="col-md-3 box">';
+
+				echo '<div class="box-header" data-name="'.$photo->createdBy.'">';
+					echo $photo->createdBy;
+				echo '</div>';
+
+				echo '<div class="box-content" data-url="'.$photo->facebookUrl.'">';
+					echo '<img src="'.$photo->facebookUrl.'" alt="photo"/>';
+				echo '</div>';
+
+				echo '<div class="box-footer">';
+					echo '<div class="btn-group" role="group" aria-label="...">';
+						echo '<button class="btn btn-default">Je vote</button>';
+						echo '<button class="btn btn-default">'.$photo->nbVote.'</button>';
+					echo '</div>';
+				echo '</div>';
+
 			echo '</div>';
 		}
 			
 		echo '</div>';
 	?>
 </section>
+
+<!-- Modal -->
+<div id="photoModalContainer" class="div-modal-container">
+	<div tabindex="-1" id="photo-modal" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span class="icon icon-remove" aria-hidden="true"></span>
+					</button>
+					<h4 id="modal_title" class="modal-title"></h4>
+				</div>
+
+				<div class="modal-body">
+					<img src="" alt="photo"/>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

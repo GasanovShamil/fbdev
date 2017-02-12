@@ -21,6 +21,17 @@ body {
 	height: 75%;
 }
 
-.contest-item {
-	border: 2px groove gray; 
+.box {
+	border: 2px groove #0a3d6a;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.box-header {
+	background-color: #0a3d6a;
+    color: #fff;
+}
+
+.box-footer .btn-group {
+    width: 100%;
 }

@@ -18,7 +18,8 @@
 					$row->contest,
 					$row->facebookUrl,
 					$row->createdAt,
-					$row->createdBy
+					$row->createdBy,
+					0
 				);
 
 				$photos[] = $photo;
