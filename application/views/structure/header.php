@@ -33,7 +33,7 @@
 							<li><a href="/vote/index">Voter</a></li>
 							
 							<?php if ($_SESSION['facebook-is-admin']) { ?>
-								<li><a href="#">Administration</a></li>
+								<li><a href="/backend/index">Administration</a></li>
 							<?php } ?>
 						</ul>
 					</div>
