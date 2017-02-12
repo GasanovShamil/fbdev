@@ -3,23 +3,32 @@
 <div class="container">
 	<?php
 		echo '<h1>Concours du '.$start.' au '.$end.'</h1>';
-		echo '<div class="row">';
+		echo '<div id="box-group" class="row">';
 
 		foreach ($photos as $photo) {
-			echo '<div class="col-sm-6 box">';
+			echo '<div class="col-sm-3 box">';
 				echo '<div class="row">';
-					echo '<div class="box-header col-sm-12" data-name="'.$photo->createdBy.'">';
+					echo '<div class="box-header col-sm-12">';
 						echo $photo->createdBy;
 					echo '</div>';
 
-					echo '<div class="box-content col-sm-12" data-url="'.$photo->facebookUrl.'">';
+					echo '<div class="box-content col-sm-12" ';
+					echo 'data-toggle="modal" ';
+					echo 'data-target="#photo-modal-container" ';
+					echo 'data-url="'.$photo->facebookUrl.'" ';
+					echo 'data-name="'.$photo->createdBy.'">';
 						echo '<img src="'.$photo->facebookUrl.'" alt="photo"/>';
 					echo '</div>';
 
 					echo '<div class="box-footer col-sm-12">';
-						echo '<div class="btn-group" role="group" aria-label="...">';
-							echo '<button class="btn btn-default">Je vote</button>';
-							echo '<button class="btn btn-default">'.$photo->nbVote.'</button>';
+						echo '<div class="row">';
+							echo '<div class="col-sm-8 vote-button">';
+								echo '<button class="btn btn-default">Je vote !</button>';
+							echo '</div>';
+
+							echo '<div class="col-sm-4">';
+								echo '<span>'.$photo->nbVote.'</span>';
+							echo '</div>';
 						echo '</div>';
 					echo '</div>';
 				echo '</div>';
@@ -31,7 +40,7 @@
 </div>
 
 <!-- Modal -->
-<div id="photoModalContainer" class="div-modal-container">
+<div id="photo-modal-container" class="div-modal-container">
 	<div tabindex="-1" id="photo-modal" class="modal fade" role="dialog">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
