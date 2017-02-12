@@ -1,6 +1,6 @@
 <?php require_once(dirname(__FILE__).'/../popo/Photo.php'); ?>
 
-<div class="container">
+
 	<?php
 		echo '<h1>Concours du '.$start.' au '.$end.'</h1>';
 		echo '<div class="row">';
@@ -28,7 +28,7 @@
 
 		echo '</div>';
 	?>
-</div>
+
 
 <!-- Modal -->
 <div id="photoModalContainer" class="div-modal-container">
