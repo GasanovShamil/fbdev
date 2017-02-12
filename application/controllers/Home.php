@@ -53,6 +53,7 @@
 
 				$facebookId = $result['id'];
 				$_SESSION['facebook-user-id'] = $facebookId;
+				$_SESSION['facebook-is-admin'] = $this->fblib->isAdmin();
 
 				$user = new User(
 					$facebookId,
@@ -72,7 +73,7 @@
 					$this->UserService->addUser($user);
 				}
 
-				$data['isAdmin'] = $this->fblib->isAdmin();
+				
 				$data['hideNav'] = true;
 				$this->load->view('structure/header', $data);
 
