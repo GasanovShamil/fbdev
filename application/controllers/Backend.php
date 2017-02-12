@@ -20,7 +20,7 @@
 	}
 
 	public function index(){
-		$this->load->veiw('structure/admin_header.php');
+		$this->load->view('structure/admin_header.php');
 		echo 'Bienvenue dans console admin';
 	}
 
