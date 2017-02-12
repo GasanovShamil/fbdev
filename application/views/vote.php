@@ -3,7 +3,7 @@
 <div class="container">
 	<?php
 		echo '<h1>Concours du '.$start.' au '.$end.'</h1>';
-		echo '<div class="row">';
+		echo '<div id="box-group" class="row">';
 
 		foreach ($photos as $photo) {
 			echo '<div class="col-sm-3 box">';
@@ -17,9 +17,14 @@
 					echo '</div>';
 
 					echo '<div class="box-footer col-sm-12">';
-						echo '<div class="btn-group" role="group" aria-label="...">';
-							echo '<button class="btn btn-default">Je vote</button>';
-							echo '<button class="btn btn-default">'.$photo->nbVote.'</button>';
+						echo '<div class="row">';
+							echo '<div class="col-sm-8 vote-button">';
+								echo '<button class="btn btn-default">Je vote !</button>';
+							echo '</div>';
+
+							echo '<div class="col-sm-4">';
+								echo '<span>'.$photo->nbVote.'</span>'
+							echo '</div>';
 						echo '</div>';
 					echo '</div>';
 				echo '</div>';
