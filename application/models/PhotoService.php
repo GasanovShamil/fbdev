@@ -14,42 +14,30 @@
 		public $createdBy;
 
 		public function getPhotosOfContest($contest) {
-			$query = $this->db->get_where($this->table, 'contest = '.$contest);
+			$this->load->model('VoteService');
+
+			$result = $this->db->select('Photos.photoId, Users.firstName, Users.lastName, Photos.facebookUrl')
+								->from($this->table)
+								->join('Users', 'Users.facebookId = Photos.createdBy', 'inner')
+								->where('Photos.contest ='.$contest)
+								->get()
+								->result();
+
 			$photos = array();
 
-			foreach ($query->result() as $row)
+			foreach ($result as $row)
 			{
 				$id = $row->photoId;
-				$contest;
-				$author;
-				$url;
-				$nbVotes;
-				$hasVoted;
+				$contest = $row->contest;
+				$author = $row->firstName.' '.$row->lastName;
+				$url = $row->facebookUrl;
+				$nbVotes = $this->VoteService->getNbVotes($id);
+				$hasVoted = $this->VoteService->hasVoted($_SESSION['facebook-user-id'], $id);
 
-				$photo = new Photo(
-					$row->photoId,
-					$row->contest,
-					$row->firstName.' '.$row->lastName,
-					$row->facebookUrl,
-					0,
-					false
-				);
-
-				$photos[] = $photo;
+				$photos[] = new Photo($id, $contest, $author, $url, $nbVotes, $hasVoted);
 			}
 
 			return $photos;
-
-$select = 'Photos.photoId, ';
-$select .= 'Users.firstName, ';
-$select .= 'Users.lastName, ';
-$select .= 'Photos.facebookUrl';
-
-$this->db->select($select);
-$this->db->from($this->table);
-$this->db->join('Users', 'Users.facebookId = Photos.createdBy', 'inner');
-$this->db->where('Photos.contest', $contest);
-$result = $this->db->get()->result();
 		}
 
 		// public function getPhoto($photoId) {
