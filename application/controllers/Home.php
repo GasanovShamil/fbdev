@@ -77,7 +77,7 @@
 				$this->load->view('structure/header', $data);
 
 				$data['firstName'] = $user->firstName;
-				$data['voteUrl'] = redirect('/vote/');
+				// $data['voteUrl'] = redirect('/vote/');
 				$this->load->view('index', $data);
 
 				$this->load->view('structure/footer');

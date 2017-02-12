@@ -51,6 +51,7 @@
 			if (!empty($missingPermissions)) {
 				$rerequestUrl = $redirectHelper->getReRequestUrl('https://www.facebook.com/projetconcourphoto/app/'.appconfig::getAppId().'/', $missingPermissions);
 				$_SESSION['rerequest-url'] = $rerequestUrl;
+				
 				return false;
 			}
 
@@ -60,10 +61,9 @@
 		public function isAdmin() {
 			$response = $this->facebook-> get('/'.appconfig::getAppId().'/roles?fields=role,user', appconfig::getAppToken());
 			$admins = $response->getDecodedBody();
-			$userId = $_SESSION['facebook-user-id'];
 
 			foreach ($admins['data'] as $value) {
-				if ($value['user'] == $userId && $value['role'] == 'administrators') {
+				if ($value['user'] == $_SESSION['facebook-user-id'] && $value['role'] == 'administrators') {
 					return true;
 				}
 			}
