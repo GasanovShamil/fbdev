@@ -12,7 +12,7 @@
 						echo $photo->createdBy;
 					echo '</div>';
 
-					echo '<div class="box-content col-sm-12" ';
+					echo '<div class="box-content center-img col-sm-12" ';
 					echo 'data-toggle="modal" ';
 					echo 'data-target="#photo-modal" ';
 					echo 'data-url="'.$photo->facebookUrl.'" ';
@@ -51,7 +51,7 @@
 					<h4 class="modal-title"></h4>
 				</div>
 
-				<div class="modal-body">
+				<div class="modal-body center-img">
 					<img src="" alt="photo"/>
 				</div>
 			</div>

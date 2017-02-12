@@ -10,7 +10,7 @@ $(document).ready(function() {
 
 		// Change the modal
 		var modal = $(this);
-		modal.find(".modal-header .modal-title").val(name);
+		modal.find(".modal-header .modal-title").html(name);
 		modal.find(".modal-body img").attr("src", url);
 	})
 });

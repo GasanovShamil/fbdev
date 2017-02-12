@@ -22,6 +22,9 @@
 .box-content {
 	height: 150px;
 	background-color: #e9ebee;
+}
+
+.center-img {
 	display: table-cell;
 	vertical-align: middle;
 	text-align: center;
@@ -41,4 +44,5 @@
 .modal-header {
 	color: #fff;
 	background-color: #109cdf;
+	padding: 10px;
 }
