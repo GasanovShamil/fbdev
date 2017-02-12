@@ -20,6 +20,8 @@ body {
 	border: 2px groove #0a3d6a;
     background-color: #fff;
     border-radius: 8px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .box-header {
