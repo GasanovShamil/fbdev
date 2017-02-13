@@ -26,7 +26,7 @@ $(document).ready(function() {
 				$('.btn-unvote[data-photo="'+photo+'"').show();
 				
 				var nbVotes = parseInt($('.nbVotes[data-photo="'+photo+'"').html());
-				$('.nbVotes[data-photo="'+photo+'"').html(nbVotes++);
+				$('.nbVotes[data-photo="'+photo+'"').html(++nbVotes);
 			}
 		});
 	});

@@ -30,7 +30,9 @@
 							echo '<div class="col-sm-8 buttons">';
 								if ($photo->hasVoted) {
 									echo '<button class="btn-unvote btn btn-success" data-photo="'.$photo->id.'" data-unvote="'.$url.$photo->getUnvoteUrl().'"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>';
+									echo '<button class="hidden btn-vote btn btn-primary" data-photo="'.$photo->id.'" data-vote="'.$url.$photo->getVoteUrl().'">Je vote !</button>';
 								} else {
+									echo '<button class="hidden btn-unvote btn btn-success" data-photo="'.$photo->id.'" data-unvote="'.$url.$photo->getUnvoteUrl().'"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>';
 									echo '<button class="btn-vote btn btn-primary" data-photo="'.$photo->id.'" data-vote="'.$url.$photo->getVoteUrl().'">Je vote !</button>';
 								}
 							echo '</div>';
