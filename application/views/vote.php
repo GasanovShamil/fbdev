@@ -37,7 +37,9 @@
 								}
 							echo '</div>';
 
-							echo '<div class="col-sm-4 center-div nb-votes" data-photo="'.$photo->id.'">'.$photo->nbVotes.'</div>';
+							echo '<div class="col-sm-4 center-div nb-votes">';
+								echo '<span class="photo-vote" data-photo="'.$photo->id.'"" data-photo="'.$photo->id.'">'.$photo->nbVotes.'</span>';
+							echo '</div>';
 						echo '</div>';
 					echo '</div>';
 				echo '</div>';

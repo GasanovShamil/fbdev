@@ -1,4 +1,12 @@
 $(document).ready(function() {
+	$('.btn-success').hover(function () {
+		$(this).removeClass('btn-success');
+		$(this).addClass('btn-danger');
+		$(this).child('.glyphicon').removeClass('glyphicon-ok');
+		$(this).child('.glyphicon').addClass('glyphicon-remove');
+	});
+
+
 	$("#photo-modal").off("show.bs.modal");
 	$("#photo-modal").on("show.bs.modal", function (event) {
 		// Source
@@ -42,8 +50,8 @@ $(document).ready(function() {
 				$('.btn-unvote[data-photo="'+photo+'"]').addClass('hidden');
 				$('.btn-vote[data-photo="'+photo+'"]').removeClass('hidden');
 				
-				var nbVotes = parseInt($('.nbVotes[data-photo="'+photo+'"]').html());
-				$('.nbVotes[data-photo="'+photo+'"]').html(--nbVotes);
+				var nbVotes = parseInt($('.photo-vote[data-photo="'+photo+'"]').html());
+				$('.photo-vote[data-photo="'+photo+'"]').html(--nbVotes);
 			}
 		});
 	});
