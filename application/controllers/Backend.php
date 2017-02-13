@@ -47,7 +47,7 @@
             }
             else
             {
-                		$this->ContestService->addContest($this->input->post('name'), $this->input->post('startDate'),$this->input->post('endDate'), $this->input->post('prize'), 1, $createdAt, $createdBy);
+                		$this->ContestService->addContest($this->input->post('name'), $this->input->post('startDate'),$this->input->post('endDate'), $this->input->post('prize'), 1, date("Y-m-d"), 'Admin');
                 		$this->load->view('structure/admin_header.php');
                         $this->load->view('admin/form_success.php');
                         $this->load->view('structure/footer.php');
@@ -59,18 +59,18 @@
 		}	
 
 
-		// public function verifDate($date_debut) |callback_verifDate
-	 //    {
-	 //        if ($date_debut < date("Y-m-d") || $date_debut > $this->input->post('date_END'))
-	 //        {
-	 //            $this->form_validation->set_message('verifDate', 'Veuillez vérifier vos dates');
-	 //            return FALSE;
-	 //        }
-	 //        else
-	 //        {
-	 //            return TRUE;
-	 //        }
-	 //    }	
+		public function verifDate($date_debut) |callback_verifDate
+	    {
+	        if ($date_debut < date("Y-m-d") || $date_debut > $this->input->post('date_END'))
+	        {
+	            $this->form_validation->set_message('verifDate', 'Veuillez vérifier vos dates');
+	            return FALSE;
+	        }
+	        else
+	        {
+	            return TRUE;
+	        }
+	    }	
 
 
 	}
