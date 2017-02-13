@@ -53,7 +53,7 @@ CREATE TABLE `Votes` (
 	user varchar(250) NOT NULL,
 	photo int NOT NULL,
 	createdAt DATETIME NOT NULL,
-	PRIMARY KEY (user, photo)
+	PRIMARY KEY (user, photo),
 	FOREIGN KEY (photo) REFERENCES Photos(photoId),
 	FOREIGN KEY (user) REFERENCES Users(facebookId)
 );
