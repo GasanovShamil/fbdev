@@ -33,8 +33,7 @@
 				$this->load->view('structure/header');
 
 				if (isset($currentContest)) {
-					$data['start'] = $currentContest->startDate;
-					$data['end'] = $currentContest->endDate;
+					$data['contest'] = $currentContest;
 					$data['photos'] = $this->PhotoService->getPhotosOfContest($currentContest->contestId);
 					$this->load->view('vote', $data);
 				} else {
