@@ -20,7 +20,7 @@
 
 		public function index(){
 			$this->load->view('structure/admin_header.php');
-			$this->load->view('structure/admin_index.php');
+			$this->load->view('admin/admin_index.php');
 			$this->load->view('structure/footer.php');
 		}
 
