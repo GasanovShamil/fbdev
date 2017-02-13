@@ -50,9 +50,14 @@
 	padding-left: 0;
 }
 
-#btn-vote, #btn-unvote {
+.btn-vote, .btn-unvote {
 	width: 100%;
 	border-radius: 0;
+}
+
+.nb-votes {
+	width: 100%;
+	height: 100%;
 }
 
 .modal-header {

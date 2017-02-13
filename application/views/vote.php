@@ -29,15 +29,13 @@
 						echo '<div class="row">';
 							echo '<div class="col-sm-8 buttons">';
 								if ($photo->hasVoted) {
-									echo '<button id="btn-unvote" class="btn btn-primary" data-photo="'.$photo->id.'"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>';
+									echo '<button class="btn-unvote btn btn-primary" data-photo="'.$photo->id.'"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>';
 								} else {
-									echo '<button id="btn-vote" class="btn btn-default"" data-photo="'.$photo->id.'">Je vote !</button>';
+									echo '<button class="btn-vote btn btn-default"" data-photo="'.$photo->id.'">Je vote !</button>';
 								}
 							echo '</div>';
 
-							echo '<div class="col-sm-4 center-div">';
-								echo $photo->nbVotes;
-							echo '</div>';
+							echo '<div class="col-sm-4 center-div nb-votes">'.$photo->nbVotes.'</div>';
 						echo '</div>';
 					echo '</div>';
 				echo '</div>';
