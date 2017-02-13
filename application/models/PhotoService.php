@@ -20,6 +20,7 @@
 								->from($this->table)
 								->join('Users', 'Users.facebookId = Photos.createdBy', 'inner')
 								->where('Photos.contest ='.$contest)
+								->order_by('RAND()')
 								->get()
 								->result();
 
