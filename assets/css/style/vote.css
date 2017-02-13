@@ -52,16 +52,11 @@
 }
 
 .btn-vote, .btn-unvote {
-	background-color: #4080ff;
 	width: 100%;
 	border-top: 0;
 	border-bottom: 0;
 	border-left: 0;
 	border-radius: 0;
-}
-
-.btn-vote:hover, .btn-unvote:hover {
-	background-color: #5c84d1;
 }
 
 .nb-votes {
