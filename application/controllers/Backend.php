@@ -34,30 +34,24 @@
 			if ($this->ContestService->getCurrentContest()!=null){
 				$data['alert'] = "Il y a un autre concours en cours. L'ajout d'un nouveau concours va desactiver l'ancien !!!";
 			}
+			$this->form_validation->set_rules('name','Nom du concours', 'required');
+            $this->form_validation->set_rules('startDate', 'Date de debut', 'required|callback_verifDate');
+			$this->form_validation->set_rules('endDate', 'Date de fin', 'required');
+			$this->form_validation->set_rules('prize','Le pris', 'required');
 			
-			 if ($this->form_validation->run() == FALSE)
-                {
-                		$this->form_validation->set_rules('name','Nom du concours', 'required');
-                		$this->form_validation->set_rules('startDate', 'Date de debut', 'required|callback_verifDate');
-			            $this->form_validation->set_rules('endDate', 'Date de fin', 'required');
-			            $this->form_validation->set_rules('prize','Le pris', 'required');
-                        
+			if ($this->form_validation->run() === FALSE)
+            {                     
                         $this->load->view('structure/admin_header.php', $data);
                         $this->load->view('admin/create_contest.php');
                         $this->load->view('structure/footer.php');
-                }
-                else
-                {
-                		
+            }
+            else
+            {
                 		$this->ContestService->addContest($this->input->post('name'), $this->input->post('startDate'),$this->input->post('endDate'), $this->input->post('prize'), 1, $createdAt, $createdBy);
                 		$this->load->view('structure/admin_header.php');
                         $this->load->view('admin/form_success.php');
                         $this->load->view('structure/footer.php');
-                }
-
-			
-			
-
+            }
 		}
 
 		public function getStats(){
