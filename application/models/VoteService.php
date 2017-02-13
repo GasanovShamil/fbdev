@@ -20,5 +20,25 @@
 		public function unvote($user, $photo) {
 			$this->db->delete($this->table, 'user = '.$user.' AND photo = '.$photo);
 		}
+
+		public function getNbVotes($photo) {
+			$result = $this->db->select('COUNT(user) AS nbVotes')
+								->from($this->table)
+								->where('photo = '.$photo)
+								->get()
+								->row();
+
+			return $result->nbVotes;
+		}
+
+		public function hasVoted($user, $photo) {
+			$result = $this->db->select('COUNT(user) AS hasVoted')
+								->from($this->table)
+								->where('user ='.$user.' AND photo = '.$photo)
+								->get()
+								->row();
+
+			return $result->hasVoted;
+		}
 	}
 ?>
