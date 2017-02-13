@@ -9,7 +9,7 @@
 }
 
 .box {
-	border: 2px solid #109cdf;
+	border: 2px solid #4267b2;
 	background-color: #fff;
 	border-radius: 8px;
 	margin-left: 25px;
@@ -20,7 +20,7 @@
 
 .box-header {
 	color: #fff;
-	background-color: #109cdf;
+	background-color: #4267b2;
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
@@ -43,7 +43,7 @@
 
 .box-footer {
 	background-color: #e9ebee;
-	color: #109cdf;
+	color: #4267b2;
 	font-weight: 600;
 }
 
@@ -52,11 +52,16 @@
 }
 
 .btn-vote, .btn-unvote {
+	background-color: #4080ff;
 	width: 100%;
 	border-top: 0;
 	border-bottom: 0;
 	border-left: 0;
 	border-radius: 0;
+}
+
+.btn-vote:hover, .btn-unvote:hover {
+	background-color: #5c84d1;
 }
 
 .nb-votes {
