@@ -29,7 +29,8 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Site</a></li>
 				</ul>
-			</d		</nav>
+			</div>
+		</nav>
 		<?php
 			if (isset($alert)) {
 				echo '<div class="alert alert-warning">';
