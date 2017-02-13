@@ -25,29 +25,15 @@
 					</button>
 					<a class="navbar-brand" href="#">PARDON MAMAN</a>
 				</div>
-
-<<<<<<< HEAD
-					<div id="navbar" class="collapse navbar-collapse">
-						<ul class="nav navbar-nav">
-							<li><a href="/participate/index">Participer</a></li>
-							<li><a href="/vote/index">Voter</a></li>
-							
-							<?php if ($_SESSION['facebook-is-admin']) { ?>
-								<li><a href="/backend/index">Administration</a></li>
-							<?php } ?>
-						</ul>
-					</div>
-=======
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
 						<li><a href="/participate/index">Participer</a></li>
 						<li><a href="/vote/index">Voter</a></li>
 						
 						<?php if ($_SESSION['facebook-is-admin']) { ?>
-							<li><a href="#">Administration</a></li>
+							<li><a href="/backend/index">Administration</a></li>
 						<?php } ?>
 					</ul>
->>>>>>> Front
 				</div>
 			</div>
 		</nav>

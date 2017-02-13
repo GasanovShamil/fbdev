@@ -23,11 +23,17 @@
 	                	<?php echo anchor('/backend/index', 'Accueil', 'title="Accueil"'); ?>
 	                </li>
 	                <li>
-	                	<?php echo anchor('/backend/createContest', 'Creer concours', 'title="Creer concours"'); ?>
+	                	<?php echo anchor('/backend/createCcontest', 'Créer concours', 'title="Creer concours"'); ?>
 	                </li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Exit</a></li>
+					<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Site</a></li>
 				</ul>
-			</div>
-		</nav>
+			</d		</nav>
+		<?php
+			if (isset($alert)) {
+				echo '<div class="alert alert-warning">';
+					echo '<strong>Attention : </strong>'.$alert
+				echo '</div>';
+			}
+		?>

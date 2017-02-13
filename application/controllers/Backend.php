@@ -26,18 +26,54 @@
 
 		public function createContest(){
 			$this->load->model('ContestService');
+			$this->load->helper('form');
+    		$this->load->library('form_validation');
+			
+			$data['title'] = 'Create contest';
+			
 			if ($this->ContestService->getCurrentContest()!=null){
-				$_SESSION['facebook-alert'] = true;
-				$message = ""
+				$data['alert'] = "Il y a un autre concours en cours. L'ajout d'un nouveau concours va desactiver l'ancien !!!";
 			}
+			
+			 if ($this->form_validation->run() == FALSE)
+                {
+                		$this->form_validation->set_rules('name','Nom du concours', 'required');
+                		$this->form_validation->set_rules('startDate', 'Date de debut', 'required|callback_verifDate');
+			            $this->form_validation->set_rules('endDate', 'Date de fin', 'required');
+			            $this->form_validation->set_rules('prize','Le pris', 'required');
+                        
+                        $this->load->view('structure/admin_header.php', $data);
+                        $this->load->view('admin/create_contest.php');
+                }
+                else
+                {
+                		$this->load->view('structure/admin_header.php');
+                        $this->load->view('admin/form_success.php');
+                        $this->load->view('structure/footer.php');
+                }
+
+			
+			
+
 		}
 
 		public function getStats(){
 
-		}
+		}	
 
 
-
+		public function verifDate($date_debut)
+	    {
+	        if ($date_debut < date("Y-m-d") || $date_debut > $this->input->post('date_END'))
+	        {
+	            $this->form_validation->set_message('verifDate', 'Veuillez vérifier vos dates');
+	            return FALSE;
+	        }
+	        else
+	        {
+	            return TRUE;
+	        }
+	    }	
 
 
 	}
