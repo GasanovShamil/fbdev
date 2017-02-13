@@ -8,6 +8,7 @@
 		protected $table = "Contests";
 
 		public $contestId;
+		public $name;
 		public $startDate;
 		public $endDate;
 		public $prize;
@@ -22,6 +23,7 @@
 			if (isset($row)) {
 				$contest = new Contest(
 					$row->contestId,
+					$row->name,
 					$row->startDate,
 					$row->endDate,
 					$row->prize,
@@ -57,8 +59,8 @@
 		// 	return null;
 		// }
 
-		public function addContest($contestId, $startDate, $endDate, $prize, $status, $createdAt, $createdBy) {
-			$this->contestId = $contestId;
+		public function addContest($name, $startDate, $endDate, $prize, $status, $createdAt, $createdBy) {
+			$this->name = $name;
 			$this->startDate = $startDate;
 			$this->endDate = $endDate;
 			$this->prize = $prize;
