@@ -2,7 +2,7 @@
 
 <?php echo validation_errors(); ?>
 
-<?php echo form_open('backend/createcontest'); ?>
+<?php echo form_open('/backend/createContest'); ?>
 	<div class="form-group">
 		<label for="name">Nom du concours:</label>
 		<input type="text" class="form-control" id="name">
