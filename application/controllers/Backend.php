@@ -48,6 +48,7 @@
                 }
                 else
                 {
+                		
                 		$this->load->view('structure/admin_header.php');
                         $this->load->view('admin/form_success.php');
                         $this->load->view('structure/footer.php');

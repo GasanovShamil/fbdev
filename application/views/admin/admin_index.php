@@ -9,12 +9,4 @@
 			<h2> Be careful when making any changes.</h2>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-3" id="button_participate">
-			<a href="#" class="btn btn-primary btn-lg">Je participe !</a>
-		</div>
-		<div class="col-md-3" id="button_see">
-			<a href="/vote/index" class="btn btn-primary btn-lg">Votez !</a>
-		</div>
-	</div>
 </div>
