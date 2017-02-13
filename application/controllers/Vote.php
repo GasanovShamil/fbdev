@@ -35,6 +35,7 @@
 				if (isset($currentContest)) {
 					$data['contest'] = $currentContest;
 					$data['photos'] = $this->PhotoService->getPhotosOfContest($currentContest->contestId);
+					$data['url'] = $this->base_url();
 					$this->load->view('vote', $data);
 				} else {
 					// TODO : show no active contest
