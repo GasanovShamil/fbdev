@@ -22,8 +22,8 @@ $(document).ready(function() {
 			url: voteUrl,
 			dataType: "html",
 			success: function (data) {
-				$('.btn-vote[data-photo="'+photo+'"').hide();
-				$('.btn-unvote[data-photo="'+photo+'"').show();
+				$('.btn-vote[data-photo="'+photo+'"').addClass('hidden');
+				$('.btn-unvote[data-photo="'+photo+'"').removeClass('hidden');
 				
 				var nbVotes = parseInt($('.nbVotes[data-photo="'+photo+'"').html());
 				$('.nbVotes[data-photo="'+photo+'"').html(++nbVotes);
@@ -39,8 +39,8 @@ $(document).ready(function() {
 			url: unvoteUrl,
 			dataType: "html",
 			success: function (data) {
-				$('.btn-unvote[data-photo="'+photo+'"').hide();
-				$('.btn-vote[data-photo="'+photo+'"').show();
+				$('.btn-unvote[data-photo="'+photo+'"').addClass('hidden');
+				$('.btn-vote[data-photo="'+photo+'"').removeClass('hidden');
 				
 				var nbVotes = $('.nbVotes[data-photo="'+photo+'"').innerHTML;
 				$('.nbVotes[data-photo="'+photo+'"').html(nbVotes - 1);
