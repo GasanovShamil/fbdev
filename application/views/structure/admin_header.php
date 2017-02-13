@@ -23,7 +23,7 @@
 	                	<?php echo anchor('/backend/index', 'Accueil', 'title="Accueil"'); ?>
 	                </li>
 	                <li>
-	                	<?php echo anchor('/backend/createCcontest', 'Créer concours', 'title="Creer concours"'); ?>
+	                	<?php echo anchor('/backend/createContest', 'Créer concours', 'title="Creer concours"'); ?>
 	                </li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">

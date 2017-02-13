@@ -1,1 +1,4 @@
-<h3>Your form was successfully submitted!</h3>
+<div class="alert alert-success">
+  <strong>Success!</strong> Your form was successfully submitted!
+</div>
+

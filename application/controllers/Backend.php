@@ -44,6 +44,7 @@
                         
                         $this->load->view('structure/admin_header.php', $data);
                         $this->load->view('admin/create_contest.php');
+                        $this->load->view('structure/footer.php');
                 }
                 else
                 {
