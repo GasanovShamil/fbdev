@@ -22,11 +22,11 @@ $(document).ready(function() {
 			url: voteUrl,
 			dataType: "html",
 			success: function (data) {
-				$(this).hide();
-				$('.btn-unvote[data-photo='+photo).show();
+				$('.btn-vote[data-photo="'+photo+'"').hide();
+				$('.btn-unvote[data-photo="'+photo+'"').show();
 				
-				var nbVotes = $('.nbVotes[data-photo='+photo).innerHTML;
-				$('.nbVotes[data-photo='+photo).html(nbVotes + 1);
+				var nbVotes = parseInt($('.nbVotes[data-photo="'+photo+'"').html());
+				$('.nbVotes[data-photo="'+photo+'"').html(nbVotes++);
 			}
 		});
 	});
@@ -39,11 +39,11 @@ $(document).ready(function() {
 			url: unvoteUrl,
 			dataType: "html",
 			success: function (data) {
-				$(this).hide();
-				$('.btn-vote[data-photo='+photo).show();
+				$('.btn-unvote[data-photo="'+photo+'"').hide();
+				$('.btn-vote[data-photo="'+photo+'"').show();
 				
-				var nbVotes = $('.nbVotes[data-photo='+photo).innerHTML;
-				$('.nbVotes[data-photo='+photo).html(nbVotes - 1);
+				var nbVotes = $('.nbVotes[data-photo="'+photo+'"').innerHTML;
+				$('.nbVotes[data-photo="'+photo+'"').html(nbVotes - 1);
 			}
 		});
 	});
