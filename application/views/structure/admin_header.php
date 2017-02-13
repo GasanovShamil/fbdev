@@ -33,7 +33,7 @@
 		<?php
 			if (isset($alert)) {
 				echo '<div class="alert alert-warning">';
-					echo '<strong>Attention : </strong>'.$alert
+					echo '<strong>Attention : </strong>'.$alert;
 				echo '</div>';
 			}
 		?>
