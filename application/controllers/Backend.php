@@ -27,7 +27,8 @@
 		public function createContest(){
 			$this->load->model('ContestService');
 			if ($this->ContestService->getCurrentContest()!=null){
-				$_SESSION['facebook-is-admin'] = true;
+				$_SESSION['facebook-alert'] = true;
+				$message = ""
 			}
 		}
 

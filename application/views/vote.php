@@ -1,4 +1,4 @@
-<?php require_once(dirname(__FILE__).'/../popo/Photo.php'); ?>
+<?php require_once(dirname(__FILE__).'/../viewModels/Photo.php'); ?>
 
 <div class="container">
 	<?php
@@ -9,25 +9,25 @@
 			echo '<div class="col-sm-3 box">';
 				echo '<div class="row">';
 					echo '<div class="box-header col-sm-12">';
-						echo $photo->createdBy;
+						echo $photo->author;
 					echo '</div>';
 
-					echo '<div class="box-content col-sm-12" ';
+					echo '<div class="box-content center-div col-sm-12" ';
 					echo 'data-toggle="modal" ';
-					echo 'data-target="#photo-modal-container" ';
-					echo 'data-url="'.$photo->facebookUrl.'" ';
-					echo 'data-name="'.$photo->createdBy.'">';
-						echo '<img src="'.$photo->facebookUrl.'" alt="photo"/>';
+					echo 'data-target="#photo-modal" ';
+					echo 'data-url="'.$photo->url.'" ';
+					echo 'data-name="'.$photo->author.'">';
+						echo '<img src="'.$photo->url.'" alt="photo"/>';
 					echo '</div>';
 
 					echo '<div class="box-footer col-sm-12">';
 						echo '<div class="row">';
-							echo '<div class="col-sm-8 vote-button">';
-								echo '<button class="btn btn-default">Je vote !</button>';
+							echo '<div class="col-sm-8">';
+								echo '<button id="btn-vote" class="btn btn-default">Je vote !</button>';
 							echo '</div>';
 
-							echo '<div class="col-sm-4">';
-								echo '<span>'.$photo->nbVote.'</span>';
+							echo '<div class="col-sm-4 center-div">';
+								echo '<span>'.$photo->nbVotes.'</span>';
 							echo '</div>';
 						echo '</div>';
 					echo '</div>';
@@ -48,10 +48,10 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span class="icon icon-remove" aria-hidden="true"></span>
 					</button>
-					<h4 id="modal_title" class="modal-title"></h4>
+					<h4 class="modal-title"></h4>
 				</div>
 
-				<div class="modal-body">
+				<div class="modal-body center-div">
 					<img src="" alt="photo"/>
 				</div>
 			</div>

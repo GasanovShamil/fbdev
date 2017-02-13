@@ -16,6 +16,7 @@
 
 			$this->load->model('ContestService');
 			$this->load->model('PhotoService');
+			$this->load->model('VoteService');
 		}
 
 		public function index() {
@@ -29,8 +30,7 @@
 			} else {
 				$currentContest = $this->ContestService->getCurrentContest();
 
-				$data['isAdmin'] = $this->fblib->isAdmin();
-				$this->load->view('structure/header', $data);
+				$this->load->view('structure/header');
 
 				if (isset($currentContest)) {
 					$data['start'] = $currentContest->startDate;
@@ -44,6 +44,32 @@
 				}
 
 				$this->load->view('structure/footer');
+			}
+		}
+
+		public function vote($photo) {
+			if (!$this->fblib->checkAccessToken()) {
+				$redirectHelper = $this->facebook->getRedirectLoginHelper();
+				$loginUrl = $redirectHelper->getLoginUrl('https://www.facebook.com/projetconcourphoto/app/'.appconfig::getAppId().'/', appconfig::getAppPermissions());
+				$this->fblib->jsRedirect($loginUrl);
+			} else if (!$this->fblib->checkPermissions()) {
+				$rerequestUrl = $_SESSION['rerequest-url'];
+				$this->fblib->jsRedirect($rerequestUrl);
+			} else {
+				$this->VoteService->vote($_SESSION['facebook-user-id'], $photo);
+			}
+		}
+
+		public function unvote($photo) {
+			if (!$this->fblib->checkAccessToken()) {
+				$redirectHelper = $this->facebook->getRedirectLoginHelper();
+				$loginUrl = $redirectHelper->getLoginUrl('https://www.facebook.com/projetconcourphoto/app/'.appconfig::getAppId().'/', appconfig::getAppPermissions());
+				$this->fblib->jsRedirect($loginUrl);
+			} else if (!$this->fblib->checkPermissions()) {
+				$rerequestUrl = $_SESSION['rerequest-url'];
+				$this->fblib->jsRedirect($rerequestUrl);
+			} else {
+				$this->VoteService->unvote($_SESSION['facebook-user-id'], $photo);
 			}
 		}
 	}

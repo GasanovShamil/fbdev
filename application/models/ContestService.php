@@ -1,11 +1,19 @@
 <?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 
-	require_once(dirname(__FILE__).'/../popo/Contest.php');
+	require_once(dirname(__FILE__).'/../viewModels/Contest.php');
 
 	class ContestService extends CI_Model {
 
 		protected $table = "Contests";
+
+		public $contestId;
+		public $startDate;
+		public $endDate;
+		public $prize;
+		public $status;
+		public $createdAt;
+		public $createdBy;
 
 		public function getCurrentContest() {
 			$query = $this->db->get_where($this->table, 'status = 1');
@@ -49,9 +57,16 @@
 		// 	return null;
 		// }
 
-		public function addContest($contest) {
-			//TODO: trigger all contest status to 0
-			$this->db->insert($this->table, $contest);
+		public function addContest($contestId, $startDate, $endDate, $prize, $status, $createdAt, $createdBy) {
+			$this->contestId = $contestId;
+			$this->startDate = $startDate;
+			$this->endDate = $endDate;
+			$this->prize = $prize;
+			$this->status = $status;
+			$this->createdAt = $createdAt;
+			$this->createdBy = $createdBy;
+
+			$this->db->insert($this->table, $this);
 		}
 
 		// public function updateContest($contest) {
