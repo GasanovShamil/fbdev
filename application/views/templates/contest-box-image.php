@@ -10,10 +10,10 @@
 		</div>
 
 		<div class="box-content center-div col-sm-12" 
-			data-toggle="modal" 
-			data-target="#photo-modal" 
-			data-label=<?php quote($photo->label); ?> 
-			data-url=<?php quote($photo->url); ?>>
+		data-toggle="modal" 
+		data-target="#photo-modal" 
+		data-label=<?php quote($photo->label); ?> 
+		data-url=<?php quote($photo->url); ?>>
 			<img src=<?php quote($photo->url); ?> alt="Photo"/>
 		</div>
 
