@@ -38,21 +38,21 @@
 
 		public function getContests($isFuture = false, $isPast = false, $before = null, $after = null) {
 
-			$this->db->select('*');
-			$this->db->from($this->table);
-			
+			$where='';
 			if ($isFuture && $isPast){
-				$this->db->where('status = 2 OR status = 0');
-			} else if ($isPast ){
-				$this->db->where('status = 0');
+				$where='status = 2 OR status = 0';
+			} else if ($isPast){
+				$where='status = 0';
 			}else {
-				$this->db->where('status = 1');
+				$where='status = 1';
 			}
-			if ($before != null) $this->db->where('endDate <= '.$before);
-			if ($after != null) $this->db->where('startDate >= '.$after);
-
-			$result = $this->db->get()->result();
+			if ($before != null) $where=$where.' AND endDate <= '.$before);
+			if ($after != null) $where=$where.' AND startDate >= '.$after);
+			
+			$query = $this->db->get_where($this->table, $where);
+			$result = $query->result;
 			$contest_array=array();
+			
 			foreach ($result as $row) {
 				$contest = new Contest(
 					$row->contestId,
