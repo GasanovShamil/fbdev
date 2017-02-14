@@ -38,13 +38,13 @@
 
 		public function getContests($before = null, $after = null) {
 
-			$where='';
+			$where='status != 1';
 			if ($before != null && $after != null){
-				$where.='endDate <= '.$before.' AND startDate >= '.$after;
+				$where='endDate <= '.$before.' AND startDate >= '.$after;
 			} else if ($after != null){
-				$where.='startDate >= '.$after;
+				$where='startDate >= '.$after;
 			} else if ($before != null){
-				$where.='endDate <= '.$before;
+				$where='endDate <= '.$before;
 			}
 			
 			$query = $this->db->get_where($this->table, $where);
