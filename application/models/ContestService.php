@@ -36,7 +36,7 @@
 
 			return null;
 		}
-		
+
 		public function getNextContest() {
 			$query = $this->db->get_where($this->table, 'status = 2 AND startDate=MIN(startDate)');
 			$row = $query->row();
@@ -78,30 +78,30 @@
 		// 	return null;
 		// }
 
-		public function addContest($name, $startDate, $endDate, $prize, $status, $multipleParticipation, $createdAt, $createdBy) {
+		public function addContest($name, $startDate, $endDate, $prize, $multipleParticipation, $createdBy) {
 			$this->db->update($this->table, array('status' => 0), 'status = 1');
 
 			$this->name = $name;
 			$this->startDate = $startDate;
 			$this->endDate = $endDate;
 			$this->prize = $prize;
-			$this->status = $status;
+			$this->status = 1;
 			$this->multipleParticipation = $multipleParticipation;
-			$this->createdAt = $createdAt;
+			$this->createdAt = date('Y-m-d');
 			$this->createdBy = $createdBy;
 
 			$this->db->insert($this->table, $this);
 		}
 
-		public function updateContest($contestId, $name, $startDate, $endDate, $prize, $status, $multipleParticipation, $createdAt, $createdBy) {
+		public function updateContest($contestId, $name, $startDate, $endDate, $prize, $multipleParticipation, $createdBy) {
 			$this->contestId = $contestId;
 			$this->name = $name;
 			$this->startDate = $startDate;
 			$this->endDate = $endDate;
 			$this->prize = $prize;
-			$this->status = $status;
+			$this->status = 1;
 			$this->multipleParticipation = $multipleParticipation;
-			$this->createdAt = $createdAt;
+			$this->createdAt = date('Y-m-d');
 			$this->createdBy = $createdBy;
 
 			$this->db->update($this->table, $this, 'contestId = '.$contestId);
