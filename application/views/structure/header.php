@@ -12,7 +12,10 @@
 
 		<!-- Vote -->
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style/vote.css" />
-		<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/vote.js"></script>
+		<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/scripts/vote.js"></script>
+
+		<!-- Participate -->
+		<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/scripts/participate.js"></script>
 	</head>
 
 	<body>
@@ -30,19 +33,13 @@
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li>
-							<?php echo anchor('/participate/index', 'Participer', 'title="Participer au concours"'); ?>
-						</li>
-						<li>
-							<?php echo anchor('/vote/index', 'Voter', 'title="Voter pour les photos"'); ?>
-						</li>
+						<li><?php echo anchor('/participate/index', 'Participer', 'title="Participer au concours"'); ?></li>
+						<li><?php echo anchor('/vote/index', 'Voter', 'title="Voter pour les photos"'); ?></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">	
 						<?php 
 							if ($_SESSION['facebook-is-admin']) { 
-								echo '<li>';
-								echo anchor('/backend/index', 'Administration', 'title="Administrer l\'application" class="glyphicon glyphicon-log-in"');
-								echo '</li>';
+								echo '<li>'.anchor('/backend/index', 'Administration', 'title="Administrer l\'application" class="glyphicon glyphicon-log-in"').'</li>';
 							}
 						?>
 					</ul>
