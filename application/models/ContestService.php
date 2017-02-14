@@ -38,8 +38,19 @@
 
 		public function getFutureContests(){
 			$query = $this->db->get_where($this->table, 'status = 2');
-			
-			return $query->result_array();
+			$contest_array[];
+			foreach ($query->result() as $row) {
+				$contest = new Contest(
+					$row->contestId,
+					$row->name,
+					$row->startDate,
+					$row->endDate,
+					$row->prize,
+					$row->multipleParticipation
+				);
+				$contest_array[]=$contest;
+			}
+			return $contest_array;
 		}
 
 		public function getNextContest() {

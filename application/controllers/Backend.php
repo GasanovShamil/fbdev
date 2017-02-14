@@ -25,7 +25,7 @@
 			$this->load->view('structure/admin_header.php');
 			$contests = $this->ContestService->getFutureContests();
 			foreach ($contests as $contest) {
-				$this->load->view('templates/contest-infos.php', $contest);
+				$this->load->view('templates/contest-infos.php', array('contest' => $contest);
 			}
 			$this->load->view('structure/footer.php');
 		}
