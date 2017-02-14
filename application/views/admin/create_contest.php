@@ -1,6 +1,14 @@
 <h2><?php echo $title; ?></h2>
 
-<?php echo validation_errors(); ?>
+<div class="panel panel-danger">
+	<div class="panel-heading">
+		<h3 class="panel-title">Erreur</h3>
+	</div>
+	<div class="panel-body">
+		<?php echo validation_errors(); ?>
+	</div>
+</div>
+
 
 <?php echo form_open('backend/createContest'); ?>
 	<div class="form-group">
