@@ -69,16 +69,16 @@
 		}
 
 
-		public function verifDate($date_debut) 
+		public function verifDate($dateDebut) 
 		{
-			if ($date_debut < date("Y-m-d"))
+			if ($dateDebut < date("Y-m-d"))
 			{
-				$this->form_validation->set_message('verifDate', 'La date de debut est dans le passé');
+				$this->form_validation->set_message('verifDate', 'La date de début est dans le passé');
 				return false;
 			}
-			else if ($date_debut > $this->input->post('date_END')) 
+			else if ($dateDebut > $this->input->post('endDate')) 
 			{
-				$this->form_validation->set_message('verifDate', 'La date de debut est apares la date de fin');
+				$this->form_validation->set_message('verifDate', 'La date de début est après la date de fin');
 				return false;
 			}
 			//  else if () 
