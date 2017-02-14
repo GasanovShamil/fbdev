@@ -40,10 +40,10 @@
 						$this->load->view('errors/access.php', $data);
 					}
 
-					$result = $response->getDecodedBody();
+					$result = $response->getDecodedBody()->AsArray();
 					$photos = array();
 
-					foreach ($result['data'] as $id) {
+					foreach ($result as $id) {
 						$photos[] = $id;
 					}
 
