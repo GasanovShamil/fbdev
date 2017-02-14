@@ -39,12 +39,12 @@
 			foreach ($result as $row)
 			{
 				$id = $row->photoId;
-				$author = $row->firstName.' '.$row->lastName;
+				$label = $row->firstName.' '.$row->lastName;
 				$url = $row->facebookUrl;
 				$nbVotes = $this->VoteService->getNbVotes($id);
 				$hasVoted = $this->VoteService->hasVoted($_SESSION['facebook-user-id'], $id);
 
-				$photos[] = new Photo($id, $contest, $author, $url, $nbVotes, $hasVoted);
+				$photos[] = new Photo($id, $label, $url, $nbVotes, $hasVoted);
 			}
 
 			return $photos;

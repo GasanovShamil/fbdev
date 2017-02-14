@@ -3,6 +3,7 @@
 
 	require_once(dirname(__FILE__).'/../libraries/appconfig.php');
 	require_once(dirname(__FILE__).'/../viewModels/Album.php');
+	require_once(dirname(__FILE__).'/../viewModels/Photo.php');
 
 	class Participate extends CI_Controller {
 
@@ -39,7 +40,7 @@
 				$this->load->view('structure/header', $data);
 
 				if (isset($currentContest)) {
-					$response = $this->facebook->get('/me/albums?fields=id,name,picture');
+					$response = $this->facebook->get('/me/albums?fields=id,name,picture{url}');
 					$result = $response->getDecodedBody();
 
 					$albums = array();
@@ -74,8 +75,17 @@
 				$rerequestUrl = $_SESSION['rerequest-url'];
 				$this->fblib->jsRedirect($rerequestUrl);
 			} else {
-				$data['test'] = 'ok ?';
-				$this->load->view('showtest', $data);
+				$response = $this->facebook->get('/'.$albumId.'?fields=photos{id,images{source}}');
+				$result = $response->getDecodedBody();
+
+				$photos = array();
+
+				foreach ($result['photos']['data'] as $photo) {
+					$photos[] = new Photo($photo['id'], '', $photo['images'][0]['source'], 0, 0);
+				}
+
+				$data['photos'] = $photos;
+				$this->load->view('templates/participate-list-photos', $data);
 			}
 		}
 	}
