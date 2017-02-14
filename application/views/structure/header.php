@@ -27,12 +27,21 @@
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li><a href="/participate/index">Participer</a></li>
-						<li><a href="/vote/index">Voter</a></li>
-						
-						<?php if ($_SESSION['facebook-is-admin']) { ?>
-							<li><a href="/backend/index">Administration</a></li>
-						<?php } ?>
+						<li>
+							<?php echo anchor('/participate/index', 'Participer', 'title="Participer au concours"'); ?>
+						</li>
+						<li>
+							<?php echo anchor('/vote/index', 'Voter', 'title="Voter pour les photos"'); ?>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">	
+						<?php 
+							if ($_SESSION['facebook-is-admin']) { 
+								echo '<li>';
+								echo anchor('/backend/index', 'Administration', 'title="Administrer l\'application" class="glyphicon glyphicon-log-in"');
+								echo '</li>';
+							}
+						?>
 					</ul>
 				</div>
 			</div>

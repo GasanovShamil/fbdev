@@ -6,10 +6,6 @@
 		<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.js"></script>
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/bootstrap.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style/site.css" />
-
-		<!-- Vote -->
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style/vote.css" />
-		<script type="text/javascript" src="<?php echo base_url(); ?>js/vote.js"></script>
 	</head>
 
 	<body>
@@ -23,11 +19,11 @@
 	                	<?php echo anchor('/backend/index', 'Accueil', 'title="Accueil"'); ?>
 	                </li>
 	                <li>
-	                	<?php echo anchor('/backend/createContest', 'Créer concours', 'title="Creer concours"'); ?>
+	                	<?php echo anchor('/backend/createContest', 'Créer concours', 'title="Créer concours"'); ?>
 	                </li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Site</a></li>
+					<?php echo anchor('/home/index', 'Site', 'title="Retour sur le site" class="glyphicon glyphicon-log-out"'); ?>	
 				</ul>
 			</div>
 		</nav>

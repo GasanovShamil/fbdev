@@ -27,7 +27,7 @@
 			$data['title'] = 'Create contest';
 			
 			if ($this->ContestService->getCurrentContest()!=null){
-				$data['alert'] = "Il y a un autre concours en cours. L'ajout d'un nouveau concours va desactiver l'ancien !!!";
+				$data['alert'] = 'Il y a un autre concours en cours. L\'ajout d\'un nouveau concours va désactiver l\'ancien !!!';
 			}
 			$this->form_validation->set_rules('name','Nom du concours', 'required');
             $this->form_validation->set_rules('startDate', 'Date de debut', 'required');
