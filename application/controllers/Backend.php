@@ -82,8 +82,8 @@
 
 				if (!$checkDates) {
 					$this->form_validation->set_message('verifDate', 'Vous avez un autre concours programmé pour ces dates!');
-				}
-
+					return false;
+			}
 				return true;
 			}
 		}

@@ -123,20 +123,7 @@
 			 		return false;	
 			 	} 
 			}
-			
 			return true;
 		}
-
-		// public function checkDates2($start, $end){
-		// 	$query = $this->db->get_where($this->table, 'status = 2');
-		// 	$result = $query->result();
-		// 	foreach ($result as $row) {
-		// 	 	if (($start >= $row->startDate && $start <= $row->endDate) || ($end >= $row->startDate && $end <= $row->endDate)){
-		// 	 		return false;	
-		// 	 	} 
-		// 	}
-			
-		// 	return true;
-		// }
 	}
 ?>
