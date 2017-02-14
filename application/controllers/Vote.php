@@ -38,9 +38,8 @@
 					$data['url'] = base_url();
 					$this->load->view('vote', $data);
 				} else {
-					// TODO : show no active contest
-					$data['test'] = 'NO CONTEST';
-					$this->load->view('showtest', $data);
+					$data['contest'] = getNextContest();
+					$this->load->view('no-contest', $data);
 				}
 
 				$this->load->view('structure/footer');
