@@ -45,30 +45,3 @@
 		</div>
 	</div>
 </div>
-
-<div id="confirmation-modal" tabindex="-1" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-sm" role="document">
-    <div class="modal-content">
-    	<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true">×</span>
-			</button>
-			<h4 class="modal-title">Êtes-vous sûr ?</h4>
-		</div>
-		<div class="modal-body">
-			<div class="row">
-				<div class="col-sm-2 col-sm-offset-2">
-					<a id="participate" class="btn btn-success" href="">
-						<span class="glyphicon glyphicon-ok"></span> Oui
-					</a>
-				</div>
-
-				<div class="col-sm-2 col-sm-offset-2">
-					<button type="button" data-dismiss="modal" class="btn btn-danger">
-						<span class="glyphicon glyphicon-remove"></span> Non
-					</button>
-				</div>
-		</div>
-    </div>
-  </div>
-</div>

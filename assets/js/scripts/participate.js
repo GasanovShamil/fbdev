@@ -11,17 +11,4 @@ $(document).ready(function() {
 			}
 		});
 	});
-
-	$("#confirmation-modal").off("show.bs.modal");
-	$("#confirmation-modal").on("show.bs.modal", function (event) {
-		// Source
-		var source = $(event.relatedTarget);
-
-		// Information
-		var participateUrl = $(this).data('participate');
-
-		// Change the modal
-		var modal = $(this);
-		modal.find("#participate").attr('href', participateUrl);
-	});
 });
