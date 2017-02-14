@@ -26,10 +26,7 @@
 					$row->name,
 					$row->startDate,
 					$row->endDate,
-					$row->prize,
-					$row->status,
-					$row->createdAt,
-					$row->createdBy
+					$row->prize
 				);
 
 				return $contest;
@@ -60,7 +57,6 @@
 		// }
 
 		public function addContest($name, $startDate, $endDate, $prize, $status, $createdAt, $createdBy) {
-			
 			$this->db->update($this->table, array('status' => 0), 'status = 1');
 
 			$this->name = $name;
