@@ -68,9 +68,6 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-						<?php echo anchor('/home/index', 'Site', 'title="Retour sur le site" class="glyphicon glyphicon-log-out"'); ?>
-					</li>
                 </ul>
                 <!-- DROPDOWN LOGIN ENDS HERE  -->
 				<ul class="nav navbar-nav navbar-right">
