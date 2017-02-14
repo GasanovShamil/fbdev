@@ -79,13 +79,17 @@
 		// }
 
 		public function addContest($name, $startDate, $endDate, $prize, $multipleParticipation, $createdBy) {
-			$this->db->update($this->table, array('status' => 0), 'status = 1');
+			if (!$this->checkDates($startDate, $endDate, 1)){
+				$this->db->update($this->table, array('status' => 0), 'status = 1');
+				$this->status=1;
+			} else {
+				$this->status=2;
+			}
 
 			$this->name = $name;
 			$this->startDate = $startDate;
 			$this->endDate = $endDate;
 			$this->prize = $prize;
-			$this->status = 1;
 			$this->multipleParticipation = $multipleParticipation;
 			$this->createdAt = date('Y-m-d');
 			$this->createdBy = $createdBy;
@@ -109,6 +113,21 @@
 
 		public function deleteContest($contestId) {
 			$this->db->delete($this->table, 'contestId = '.$contestId);
+		}
+
+		public function checkDates($start, $end, $status){
+			$query = $this->db->get_where($this->table, 'status ='.$status);
+			
+			if (!isset($query->row)) {
+				return true;
+			} else {
+				foreach ($query->result() as $row) {
+				 	if (($start <= $row->endDate) && ($end >= $row->startDate)){
+				 		return false;	
+				 	} 
+				}
+				return true;
+			}
 		}
 	}
 ?>

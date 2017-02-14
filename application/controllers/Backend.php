@@ -1,5 +1,6 @@
 <?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
+	require_once(dirname(__FILE__).'/../viewModels/Contest.php');
 
 	class Backend extends CI_Controller {
 
@@ -30,11 +31,11 @@
 			$this->load->model('ContestService');
 			$this->load->helper('form');
 			$this->load->library('form_validation');
-			
+			$contest = $this->ContestService->getCurrentContest();
 			$data['title'] = 'Create contest';
 			
-			if ($this->ContestService->getCurrentContest() != null) {
-				$data['alert'] = 'Il y a un autre concours en cours. L\'ajout d\'un nouveau concours va désactiver l\'ancien !!!';
+			if ($contest != null) {
+				$data['alert'] = 'Il y a un concours en cours ('.$contest->getDateRange().'). L\'ajout d\'un nouveau concours pour ces dates va désactiver l\'ancien !!!';
 			}
 			$this->form_validation->set_rules('name','Nom du concours', 'required');
 			$this->form_validation->set_rules('startDate', 'Date de debut', 'required|callback_verifDate');
@@ -77,10 +78,10 @@
 				return false;
 			} else {
 				$this->load->model('ContestService');
-				$checkDates = $this->ContestService->checkDates($start, $end);
+				$checkDates = $this->ContestService->checkDates($start, $end, 2);
 
-				if ($checkDates) {
-
+				if (!$checkDates) {
+					$this->form_validation->set_message('verifDate', 'Vous avez un autre concours programmé pour ces dates!');
 				}
 
 				return true;
