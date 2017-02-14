@@ -23,7 +23,7 @@
 			return 'unvote/'.$this->id;
 		}
 
-		public function getUnvoteUrl() {
+		public function getParticipateUrl() {
 			return 'participate/'.$this->id;
 		}
 	}
