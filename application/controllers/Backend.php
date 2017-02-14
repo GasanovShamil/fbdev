@@ -23,7 +23,9 @@
 		public function listContests() {
 			$this->load->model('ContestService');
 			$this->load->view('structure/admin_header_search.php');
-			$contests = $this->ContestService->getContests(null, null);
+			$before = $this->input->post('before');
+			$after = $this->input->post('after');
+			$contests = $this->ContestService->getContests($before, $after);
 			if(empty($contests)){
 				echo 'ERROR';
 			}else{
