@@ -7,7 +7,7 @@
 				<h3 class="panel-title">Mes albums</h3>
 			</div>
 
-			<div class="col-sm-11">
+			<div class="col-sm-1">
 				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
 			</div>
@@ -33,7 +33,7 @@
 				<h3 class="panel-title">Mes Photos</h3>
 			</div>
 
-			<div class="col-sm-11">
+			<div class="col-sm-1">
 				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
 			</div>
