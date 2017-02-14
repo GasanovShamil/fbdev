@@ -57,7 +57,7 @@
 		</div>
 		<div class="modal-body">
 			<div class="row">
-				<div class="col-sm-2 col-sm-offset-3">
+				<div class="col-sm-2 col-sm-offset-2">
 					<a id="participate" class="btn btn-success" href="">
 						<span class="glyphicon glyphicon-ok"></span> Oui
 					</a>

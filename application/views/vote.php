@@ -24,7 +24,7 @@
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-sm-12 center-div">
-						<img src="" alt="photo"/>
+						<img class="modal-img" src="" alt="photo"/>
 					</div>
 				</div>
 			</div>

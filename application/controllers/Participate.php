@@ -45,7 +45,7 @@
 
 					$albums = array();
 
-					try {
+					if (array_key_exists('data', $result)) {
 						foreach ($result['data'] as $album) {
 							$albums[] = new Album(
 									$album['id'],
@@ -53,7 +53,7 @@
 									$album['picture']['data']['url']
 								);
 						}
-					} catch(Exception $e) {}
+					}
 					
 					$data['contest'] = $currentContest;
 					$data['albums'] = $albums;
@@ -81,11 +81,12 @@
 				$result = $response->getDecodedBody();
 
 				$photos = array();
-				try {
+				
+				if (array_key_exists('photos', $result)) {
 					foreach ($result['photos']['data'] as $photo) {
 						$photos[] = new Photo($photo['id'], '', $photo['images'][0]['source'], 0, 0);
 					}
-				} catch(Exception $e) {}
+				}
 
 				$data['photos'] = $photos;
 				$this->load->view('templates/participate-list-photos', $data);
@@ -101,7 +102,7 @@
 				$rerequestUrl = $_SESSION['rerequest-url'];
 				$this->fblib->jsRedirect($rerequestUrl);
 			} else {
-				
+
 			}
 		}
 	}
