@@ -6,7 +6,8 @@
 <div class="container">
 	<?php
 		echo '<h1>'.$contest->name.'</h1>';
-		echo '<h3>Du '.$contest->startDate.' au '.$contest->endDate.'</h1>';
+		echo '<h3>Du '.$contest->startDate.' au '.$contest->endDate.'</h3>';
+		echo '<h3>Prix : '.$contest->prize.'</h3>';
 
 		echo '<div id="box-group" class="row">';
 
