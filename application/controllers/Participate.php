@@ -33,8 +33,18 @@
 				$this->load->view('structure/header');
 
 				if (isset($currentContest)) {
+					try {
+						$response = $this->facebook->get('me/photos?fields=id');
+					} catch(Exception $e) {
+						$data['message'] = $e->getMessage();
+						$this->load->view('errors/access.php', $data);
+					}
+
+					$result = $response->getGraphUser();
+
+					$data['check'] = $result['data'];
 					$data['contest'] = $currentContest;
-					$data['photos'] = $this->PhotoService->getPhotosOfContest($currentContest->contestId);
+					$data['photos'] = array();
 					$data['url'] = base_url();
 					$this->load->view('participate', $data);
 				} else {

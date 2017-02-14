@@ -7,6 +7,9 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style/site.css" />
 
+		<!-- Box -->
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style/box.css" />
+
 		<!-- Vote -->
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style/vote.css" />
 		<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/vote.js"></script>

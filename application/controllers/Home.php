@@ -42,7 +42,7 @@
 			} else {
 
 				try {
-					$response = $this->facebook->get("/me?fields=first_name,last_name,email,gender,birthday");
+					$response = $this->facebook->get('/me?fields=first_name,last_name,email,gender,birthday');
 				} catch(Exception $e) {
 					$data['message'] = $e->getMessage();
 					$this->load->view('errors/access.php', $data);

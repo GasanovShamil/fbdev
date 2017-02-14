@@ -1,0 +1,48 @@
+.center-div {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+
+#box-group {
+	margin: auto;
+}
+
+.box {
+	border: 2px solid #4267b2;
+	background-color: #fff;
+	border-radius: 8px;
+	margin-left: 25px;
+	margin-right: 25px;
+	margin-bottom: 25px;
+	overflow: hidden;
+}
+
+.box-header {
+	color: #fff;
+	background-color: #4267b2;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.box-content {
+	height: 150px;
+	background-color: #e9ebee;
+}
+
+.box-content img, #photo-modal-container img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.box-header, .box-footer {
+	font-family: 'gotham_bookregular','Roboto', sans-serif;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.box-footer {
+	background-color: #e9ebee;
+	color: #4267b2;
+	font-weight: 600;
+}
