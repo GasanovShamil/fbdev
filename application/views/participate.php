@@ -20,10 +20,10 @@
 	</div>
 
 	<div class="panel panel-info">
-		<div class="panel-heading">
+		<div class="panel-heading toggle-slide" data-slide="#albums">
 			<h3 class="panel-title">Mes Photos</h3>
 		</div>
-		<div class="panel-body">
+		<div class="panel-body" id="albums">
 			<div id="box-group" class="row">
 
 				<?php
