@@ -48,14 +48,13 @@
 				$this->load->view('structure/footer.php');
 			}
 			else
-			{	
-				$multiple=isset($this->input->post('multipleParticipation'));
+			{
 				$this->ContestService->addContest(
 					$this->input->post('name'),
 					$this->input->post('startDate'),
 					$this->input->post('endDate'),
 					$this->input->post('prize'),
-					$multiple,
+					$this->input->post('multipleParticipation'),
 					$_SESSION['facebook-user-id']
 				);
 

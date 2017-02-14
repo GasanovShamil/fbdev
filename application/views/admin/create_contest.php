@@ -20,7 +20,7 @@
 		<input type="text" class="form-control" id="prize" name="prize">
 	</div>
 	<div class="checkbox">
-    	<label><input type="checkbox" id="multipleParticipation" name="multipleParticipation"> Participation multiple</label>
+    	<label><input type="checkbox" id="multipleParticipation" name="multipleParticipation" value="1"> Participation multiple</label>
   	</div>
 	
 	<button type="submit" class="btn btn-default">Create</button>
