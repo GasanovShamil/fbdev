@@ -2,6 +2,7 @@
 	defined('BASEPATH') OR exit('No direct script access allowed');
 
 	require_once(dirname(__FILE__).'/../libraries/appconfig.php');
+	require_once(dirname(__FILE__).'/../viewModels/Album.php');
 
 	class Participate extends CI_Controller {
 
