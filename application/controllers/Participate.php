@@ -40,7 +40,7 @@
 						$this->load->view('errors/access.php', $data);
 					}
 
-					$result = $response->getGraphUser();
+					$result = $response->getGraphObject();
 
 					$data['check'] = $result['data'];
 					$data['contest'] = $currentContest;
