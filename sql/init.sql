@@ -15,21 +15,12 @@ CREATE TABLE `Users` (
 	PRIMARY KEY (facebookId)
 );
 
-CREATE TABLE `Prizes` (
-	prizeId int NOT NULL AUTO_INCREMENT,
-	description varchar(250),
-	image varchar(250),
-	createdAt DATETIME NOT NULL,
-	createdBy varchar(250) NOT NULL,
-	PRIMARY KEY (prizeId)
-);
-
 CREATE TABLE `Contests` (
 	contestId int NOT NULL AUTO_INCREMENT,
 	name varchar(250),
 	startDate DATETIME NOT NULL,
 	endDate DATETIME NOT NULL,
-	prize int,
+	prize varchar(250),
 	status BOOLEAN NOT NULL,
 	createdAt DATETIME NOT NULL,
 	createdBy varchar(250) NOT NULL,
@@ -70,7 +61,7 @@ INSERT INTO `Prizes` (`description`, `createdAt`, `createdBy`) VALUES
 ('Description du prix', '2017-02-10 15:50:00', 'admin');
 
 INSERT INTO `Contests` (`name`,`startDate`, `endDate`, `prize`, `status`, `createdAt`, `createdBy`) VALUES 
-('Concours Test', '2017-02-01 15:50:00', '2017-02-27 15:50:00', 1, 1, '2017-02-10 15:50:00', 'admin');
+('Concours Test', '2017-02-01 15:50:00', '2017-02-27 15:50:00', 'prix à gagner', 1, '2017-02-10 15:50:00', 'admin');
 
 INSERT INTO `Photos` (`contest`, `facebookUrl`, `createdAt`, `createdBy`) VALUES 
 (1, 'https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-9/16602588_615885281936972_8509153474097716860_n.jpg?oh=6bc8067ac729309f45c3c9f513947ac0&oe=593CF5F6', '2017-02-10 15:50:00', 'test-un'),
