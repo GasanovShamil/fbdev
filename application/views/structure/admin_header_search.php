@@ -34,7 +34,7 @@
 				    </li>
 				</ul>
 				<!-- DROPDOWN LOGIN STARTS HERE  -->
-				<ul id="signInDropdown" class="nav navbar-nav navbar-right">
+				<ul id="signInDropdown" class="nav navbar-nav">
                     <li class="dropdown">
                         <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-info navbar-btn dropdown-toggle"><i class="glyphicon glyphicon-user"></i> Search <span class="caret"></span></button>
                         <ul class="dropdown-menu">
@@ -62,7 +62,7 @@
                                     -->
                                     <div class="form-group">
                                         <!--BUTTON-->
-                                        <button type="submit" class="btn btn-primary form-control">Login</button>
+                                        <button type="submit" class="btn btn-primary form-control">Search</button>
                                     </div>
                                 </form>
                             </li>
@@ -73,7 +73,11 @@
 					</li>
                 </ul>
                 <!-- DROPDOWN LOGIN ENDS HERE  -->
-				
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<?php echo anchor('/home/index', 'Site', 'title="Retour sur le site" class="glyphicon glyphicon-log-out"'); ?>
+					</li>	
+				</ul>
 			</div>
 		</nav>
 		<?php
