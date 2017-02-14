@@ -13,11 +13,10 @@
 		public $createdAt;
 		public $createdBy;
 
-		public function addPhoto($photoId, $contest, $facebookUrl, $createdAt, $createdBy) {
-			$this->photoId = $photoId;
+		public function addPhoto($contest, $facebookUrl, $createdBy) {
 			$this->contest = $contest;
 			$this->facebookUrl = $facebookUrl;
-			$this->createdAt = $createdAt;
+			$this->createdAt = date('Y-m-d');
 			$this->createdBy = $createdBy;
 
 			$this->db->insert($this->table, $this);

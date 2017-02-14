@@ -14,8 +14,6 @@
 
 			$this->load->library('fblib');
 			$this->facebook = $this->fblib->getFacebook();
-
-			$this->load->model('VoteService');
 		}
 
 		public function index() {
@@ -28,8 +26,6 @@
 				$this->fblib->jsRedirect($rerequestUrl);
 			} else {
 				$this->load->model('ContestService');
-				$this->load->model('PhotoService');
-
 				$currentContest = $this->ContestService->getCurrentContest();
 
 				$data['links'] = array(
@@ -81,7 +77,7 @@
 				$result = $response->getDecodedBody();
 
 				$photos = array();
-				
+
 				if (array_key_exists('photos', $result)) {
 					foreach ($result['photos']['data'] as $photo) {
 						$photos[] = new Photo($photo['id'], '', $photo['images'][0]['source'], 0, 0);
@@ -102,7 +98,13 @@
 				$rerequestUrl = $_SESSION['rerequest-url'];
 				$this->fblib->jsRedirect($rerequestUrl);
 			} else {
+				$this->load->model('ContestService');
+				$currentContest = $this->ContestService->getCurrentContest();
 
+				if (isset($currentContest)) {
+					$this->load->model('PhotoService');
+					$currentContest = $this->PhotoService->addPhoto($currentContest->id, $photo, $_SESSION['facebook-user-id']);
+				}
 			}
 		}
 	}

@@ -24,7 +24,7 @@
 		}
 
 		public function getParticipateUrl() {
-			return 'participate/'.$this->id;
+			return 'participate/'.$this->url;
 		}
 	}
 

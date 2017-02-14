@@ -19,7 +19,6 @@ $(document).ready(function() {
 
 		// Information
 		var participateUrl = $(this).data('participate');
-		alert(participateUrl);
 
 		// Change the modal
 		var modal = $(this);
