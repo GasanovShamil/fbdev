@@ -42,27 +42,22 @@
                                 <form class="navbar-form form" role="form">
                                     <div class="form-group">
                                       <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
+                                            <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>-->
                                             <label for="before">Before</label>
                                             <input id="before" class="form-control" type="date" oninvalid="setCustomValidity('Please enter a valid email address!')" onchange="try{setCustomValidity('')}catch(e){}" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock color-blue"></i></span>
+                                           	<!-- <span class="input-group-addon"><i class="glyphicon glyphicon-lock color-blue"></i></span>-->
                                             <!--PASSWORD-->
                                             <label for="after">After</label>
                                             <input id="after" class="form-control" type="date" oninvalid="setCustomValidity('Please enter a password!')" onchange="try{setCustomValidity('')}catch(e){}" required="">
                                         </div>
                                     </div>
-                                    <!--  BASIC ERROR MESSAGE
-                                    <div class="form-group">
-                                    <label class="error-message color-red">*Email &amp; password don't match!</label>
-                                    </div>
-                                    -->
                                     <div class="form-group">
                                         <!--BUTTON-->
-                                        <button type="submit" class="btn btn-primary form-control">Search</button>
+                                        <button type="submit" class="btn facebook-blue form-control">Search</button>
                                     </div>
                                 </form>
                             </li>
