@@ -22,6 +22,7 @@ CREATE TABLE `Contests` (
 	endDate DATETIME NOT NULL,
 	prize varchar(250),
 	status BOOLEAN NOT NULL,
+	multipleParticipation BOOLEAN NOT NULL,
 	createdAt DATETIME NOT NULL,
 	createdBy varchar(250) NOT NULL,
 	PRIMARY KEY (contestId),
@@ -57,7 +58,7 @@ INSERT INTO `Users` (`facebookId`, `firstName`, `lastName`, `email`) VALUES
 ('test-trois', 'trois', 'test', 'trois@mail.com');
 
 INSERT INTO `Contests` (`name`,`startDate`, `endDate`, `prize`, `status`, `createdAt`, `createdBy`) VALUES 
-('Concours Test', '2017-02-01 15:50:00', '2017-02-27 15:50:00', 'prix à gagner', 1, '2017-02-10 15:50:00', 'admin');
+('Concours Test', '2017-02-01 15:50:00', '2017-02-27 15:50:00', 'prix à gagner', 1, 1, '2017-02-10 15:50:00', 'admin');
 
 INSERT INTO `Photos` (`contest`, `facebookUrl`, `createdAt`, `createdBy`) VALUES 
 (1, 'https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-9/16602588_615885281936972_8509153474097716860_n.jpg?oh=6bc8067ac729309f45c3c9f513947ac0&oe=593CF5F6', '2017-02-10 15:50:00', 'test-un'),
