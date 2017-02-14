@@ -68,7 +68,7 @@
 
 		public function verifDate() {
 			$start = $this->input->post('startDate');
-			$end = $this->input->post('endDate')
+			$end = $this->input->post('endDate');
 
 			if ($start < date("Y-m-d")) {
 				$this->form_validation->set_message('verifDate', 'La date de début est dans le passé !');
