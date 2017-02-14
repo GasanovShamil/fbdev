@@ -32,10 +32,10 @@
 				        </ul>
 				    </li>
 				</ul>
-				<form class="navbar-form form-inline navbar-left">
+				<form class="navbar-form navbar-left">
 				    <div class="form-group">
-				    	<label for="before">Avant:</label>
-				    	<input type="date" class="form-control" id="before">
+					    <label for="before">Avant:</label>
+					    <input type="date" class="form-control" id="before">
 				    </div>
 				    <div class="form-group">
 				    	<label for="after">Apres:</label>
