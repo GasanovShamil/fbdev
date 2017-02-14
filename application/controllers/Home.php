@@ -40,22 +40,15 @@
 				$rerequestUrl = $_SESSION['rerequest-url'];
 				$this->fblib->jsRedirect($rerequestUrl);
 			} else {
+				$response = $this->facebook->get('/me?fields=first_name,last_name,email,gender,birthday');
+				$user = $response->getGraphUser();
 
-				try {
-					$response = $this->facebook->get('/me?fields=first_name,last_name,email,gender,birthday');
-				} catch(Exception $e) {
-					$data['message'] = $e->getMessage();
-					$this->load->view('errors/access.php', $data);
-				}
-				
-				$result = $response->getGraphUser();
-
-				$facebookId = $result['id'];
-				$firstName = $result['first_name'];
-				$lastName = $result['last_name'];
-				$email = $result['email'];
-				$birth = $result['birthday'];
-				$gender = $result['gender'];
+				$facebookId = $user['id'];
+				$firstName = $user['first_name'];
+				$lastName = $user['last_name'];
+				$email = $user['email'];
+				$birth = $user['birthday'];
+				$gender = $user['gender'];
 				$token = $_SESSION['facebook-access-token'];
 
 				$_SESSION['facebook-user-id'] = $facebookId;
