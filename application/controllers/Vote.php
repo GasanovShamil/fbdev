@@ -34,7 +34,7 @@
 
 				if (isset($currentContest)) {
 					$data['contest'] = $currentContest;
-					$data['photos'] = $this->PhotoService->getPhotosOfContest($currentContest->contestId);
+					$data['photos'] = $this->PhotoService->getPhotosOfContest($currentContest->id);
 					$data['url'] = base_url();
 					$this->load->view('vote', $data);
 				} else {
