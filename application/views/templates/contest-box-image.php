@@ -1,6 +1,6 @@
 <?php
-	require_once(dirname(__FILE__).'/../view/templates/echoQuoted.php');
-	require_once(dirname(__FILE__).'/../viewModels/Photo.php');
+	require_once('echoQuoted.php');
+	require_once(dirname(__FILE__).'/../../viewModels/Photo.php');
 ?>
 
 <div class="col-sm-3 box">
