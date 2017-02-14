@@ -132,17 +132,12 @@
 
 		public function checkDates2($start, $end){
 			$query = $this->db->get_where($this->table, 'status = 2');
-			$row = $query->row();
-			if (!isset($row)) {
-				return true;
-			} else {
-				foreach ($query->result() as $row) {
-				 	if (($start <= $row->endDate) && ($end >= $row->startDate)){
-				 		return false;	
-				 	} 
-				}
-				return true;
+			foreach ($query->result() as $row) {
+			 	if (($start <= $row->endDate) && ($end >= $row->startDate)){
+			 		return false;	
+			 	} 
 			}
+			return true;
 		}
 	}
 ?>
