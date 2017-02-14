@@ -46,8 +46,8 @@
 			}else {
 				$where='status = 1';
 			}
-			if ($before != null) $where=$where.' AND endDate <= '.$before);
-			if ($after != null) $where=$where.' AND startDate >= '.$after);
+			if ($before != null) $where.=' AND endDate <= '.$before;
+			if ($after != null) $where.=' AND startDate >= '.$after;
 			
 			$query = $this->db->get_where($this->table, $where);
 			$result = $query->result;
