@@ -25,7 +25,6 @@ CREATE TABLE `Contests` (
 	createdAt DATETIME NOT NULL,
 	createdBy varchar(250) NOT NULL,
 	PRIMARY KEY (contestId),
-	FOREIGN KEY (prize) REFERENCES Prizes(prizeId),
 	FOREIGN KEY (createdBy) REFERENCES Users(facebookId)
 );
 
