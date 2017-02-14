@@ -41,9 +41,9 @@
 
 					foreach ($result['data'] as $album) {
 						$albums[] = new Album(
-								$result['id'],
-								$result['name'],
-								$result['picture']['url']
+								$album['id'],
+								$album['name'],
+								$album['picture']['url']
 							);
 					}
 					$data['result'] = $result;
