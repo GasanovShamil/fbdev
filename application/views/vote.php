@@ -1,8 +1,3 @@
-<?php
-	require_once(dirname(__FILE__).'/../viewModels/Contest.php');
-	require_once(dirname(__FILE__).'/../viewModels/Photo.php'); 
-?>
-
 <div class="container">
 	<?php $this->load->view('templates/contest-infos', array('contest' => $contest)); ?>
 
