@@ -50,7 +50,7 @@
 			if ($after != null) $where.=' AND startDate >= '.$after;
 			
 			$query = $this->db->get_where($this->table, $where);
-			$result = $query->result;
+			$result = $query->result();
 			$contest_array=array();
 			
 			foreach ($result as $row) {
