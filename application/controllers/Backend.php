@@ -49,12 +49,13 @@
 			}
 			else
 			{
+				$multiple = $this->input->post('multipleParticipation') != null ?1:0;
 				$this->ContestService->addContest(
 					$this->input->post('name'),
 					$this->input->post('startDate'),
 					$this->input->post('endDate'),
 					$this->input->post('prize'),
-					$this->input->post('multipleParticipation'),
+					$multiple,
 					$_SESSION['facebook-user-id']
 				);
 
