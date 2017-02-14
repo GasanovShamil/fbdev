@@ -118,7 +118,7 @@
 		public function checkDates1($start, $end){
 			$query = $this->db->get_where($this->table, 'status = 1');
 			
-			if (!isset($query->row)) {
+			if (!isset($query->row())) {
 				return true;
 			} else {
 				foreach ($query->result() as $row) {
@@ -133,7 +133,7 @@
 		public function checkDates2($start, $end){
 			$query = $this->db->get_where($this->table, 'status = 2');
 			
-			if (!isset($query->row)) {
+			if (!isset($query->row())) {
 				return true;
 			} else {
 				foreach ($query->result() as $row) {
