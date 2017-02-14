@@ -1,5 +1,3 @@
-<div class="container">
-	<?php
-		var_dump($test);
-	?>
-</div>
+<?php
+	var_dump($test);
+?>
