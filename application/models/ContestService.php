@@ -30,11 +30,16 @@
 					$row->prize,
 					$row->multipleParticipation
 				);
-
 				return $contest;
 			}
 
 			return null;
+		}
+
+		public function getFutureContests(){
+			$query = $this->db->get_where($this->table, 'status = 2');
+			
+			return $query->result_array();
 		}
 
 		public function getNextContest() {
