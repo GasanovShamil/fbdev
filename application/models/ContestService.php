@@ -41,8 +41,8 @@
 			$this->db->select('*');
 			$this->db->from($this->table);
 
-			if ($isFuture) $this->db->where('state = 2');
-			if ($isPast ) $this->db->where('state = 0');
+			if ($isFuture) $this->db->where('status = 2');
+			if ($isPast ) $this->db->where('status = 0');
 			if ($before != null) $this->db->where('endDate <= '.$before);
 			if ($after != null) $this->db->where('startDate >= '.$after);
 
