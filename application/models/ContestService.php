@@ -79,7 +79,7 @@
 		// }
 
 		public function addContest($name, $startDate, $endDate, $prize, $multipleParticipation, $createdBy) {
-			if (!$this->checkDates1($startDate, $endDate)){
+			if (!$this->checkDates($startDate, $endDate, 1)){
 				$this->db->update($this->table, array('status' => 0), 'status = 1');
 				$this->status=1;
 			} else {
@@ -115,8 +115,8 @@
 			$this->db->delete($this->table, 'contestId = '.$contestId);
 		}
 
-		public function checkDates1($start, $end){
-			$query = $this->db->get_where($this->table, 'status = 1');
+		public function checkDates($start, $end, $status){
+			$query = $this->db->get_where($this->table, 'status ='.$status);
 			$result = $query->result();
 			foreach ($result as $row) {
 			 	if (($start >= $row->startDate && $start <= $row->endDate) || ($end >= $row->startDate && $end <= $row->endDate)){
@@ -127,16 +127,16 @@
 			return true;
 		}
 
-		public function checkDates2($start, $end){
-			$query = $this->db->get_where($this->table, 'status = 2');
-			$result = $query->result();
-			foreach ($result as $row) {
-			 	if (($start >= $row->startDate && $start <= $row->endDate) || ($end >= $row->startDate && $end <= $row->endDate)){
-			 		return false;	
-			 	} 
-			}
+		// public function checkDates2($start, $end){
+		// 	$query = $this->db->get_where($this->table, 'status = 2');
+		// 	$result = $query->result();
+		// 	foreach ($result as $row) {
+		// 	 	if (($start >= $row->startDate && $start <= $row->endDate) || ($end >= $row->startDate && $end <= $row->endDate)){
+		// 	 		return false;	
+		// 	 	} 
+		// 	}
 			
-			return true;
-		}
+		// 	return true;
+		// }
 	}
 ?>
