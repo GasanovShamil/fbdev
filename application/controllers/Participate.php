@@ -46,7 +46,8 @@
 								$result['picture']['url']
 							);
 					}
-
+					$data['result'] = $result;
+					$data['resultData'] = $result['data'];
 					$data['contest'] = $currentContest;
 					$data['albums'] = $albums;
 					$data['url'] = base_url();
