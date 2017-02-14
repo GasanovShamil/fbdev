@@ -61,8 +61,9 @@
 				} else {
 					$this->UserService->addUser($facebookId, $firstName, $lastName, $email, $birth, $gender, $token);
 				}
-				
-				$this->load->view('structure/header');
+
+				$data['links'] = array();
+				$this->load->view('structure/header', $data);
 
 				$data['firstName'] = $firstName;
 				$this->load->view('index', $data);

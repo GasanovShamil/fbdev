@@ -6,17 +6,9 @@
 		<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.js"></script>
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style/site.css" />
+		<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/scripts/site.js"></script>
 
-		<!-- Box -->
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style/box.css" />
-
-		<!-- Vote -->
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style/vote.css" />
-		<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/scripts/vote.js"></script>
-
-		<!-- Participate -->
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style/participate.css" />
-		<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/scripts/participate.js"></script>
+		<?php foreach ($links as $link) { echo $link; } ?>
 	</head>
 
 	<body>

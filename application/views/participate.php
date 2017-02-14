@@ -3,6 +3,8 @@
 <div class="panel panel-info">
 	<div class="panel-heading toggle-slide" data-slide="#albums">
 		<h3 class="panel-title">Mes albums</h3>
+		<span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span>
+		<span class="glyphicon glyphicon-minus pull-right" aria-hidden="true"></span>
 	</div>
 	<div class="panel-body" id="albums">
 		<div id="box-group" class="row">

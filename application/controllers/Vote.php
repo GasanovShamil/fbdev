@@ -29,7 +29,12 @@
 			} else {
 				$currentContest = $this->ContestService->getCurrentContest();
 
-				$this->load->view('structure/header');
+				$data['links'] = array(
+					'<link rel="stylesheet" type="text/css" href="'.base_url().'assets/css/style/box.css" />',
+					'<link rel="stylesheet" type="text/css" href="'.base_url().'assets/css/style/vote.css" />',
+					'<script type="text/javascript" src="'.base_url().'assets/js/scripts/vote.js"></script>'
+				);
+				$this->load->view('structure/header', $data);
 
 				if (isset($currentContest)) {
 					$data['contest'] = $currentContest;

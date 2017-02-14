@@ -31,7 +31,12 @@
 
 				$currentContest = $this->ContestService->getCurrentContest();
 
-				$this->load->view('structure/header');
+				$data['links'] = array(
+					'<link rel="stylesheet" type="text/css" href="'.base_url().'assets/css/style/box.css" />',
+					'<link rel="stylesheet" type="text/css" href="'.base_url().'assets/css/style/participate.css" />',
+					'<script type="text/javascript" src="'.base_url().'assets/js/scripts/participate.js"></script>'
+				);
+				$this->load->view('structure/header', $data);
 
 				if (isset($currentContest)) {
 					$response = $this->facebook->get('/me/albums?fields=id,name,picture');
