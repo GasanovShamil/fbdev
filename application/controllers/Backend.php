@@ -78,7 +78,7 @@
 				return false;
 			} else {
 				$this->load->model('ContestService');
-				$checkDates = $this->ContestService->checkDates($start, $end, 2);
+				$checkDates = $this->ContestService->checkDates2($start, $end);
 
 				if (!$checkDates) {
 					$this->form_validation->set_message('verifDate', 'Vous avez un autre concours programmé pour ces dates!');
