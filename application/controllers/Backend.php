@@ -38,9 +38,9 @@
 				$data['alert'] = 'Il y a un concours en cours ('.$contest->getDateRange().'). L\'ajout d\'un nouveau concours pour ces dates va désactiver l\'ancien !!!';
 			}
 			$this->form_validation->set_rules('name','Nom du concours', 'required');
-			$this->form_validation->set_rules('startDate', 'Date de debut', 'required|callback_verifDate');
+			$this->form_validation->set_rules('startDate', 'Date de début', 'required|callback_verifDate');
 			$this->form_validation->set_rules('endDate', 'Date de fin', 'required');
-			$this->form_validation->set_rules('prize','Le pris', 'required');
+			$this->form_validation->set_rules('prize','Le prix', 'required');
 
 			if ($this->form_validation->run() === false) {
 				$this->load->view('structure/admin_header.php', $data);
