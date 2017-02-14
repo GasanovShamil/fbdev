@@ -44,7 +44,7 @@
 					$photos = array();
 
 					foreach ($result['data'] as $id) {
-						$photos[] = $id
+						$photos[] = $id;
 					}
 
 					$data['check'] = $photos;
