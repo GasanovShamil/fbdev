@@ -40,9 +40,14 @@
 
 			$this->db->select('*');
 			$this->db->from($this->table);
-
-			if ($isFuture) $this->db->where('state = 2');
-			if ($isPast ) $this->db->where('status = 0');
+			
+			if ($isFuture && $isPast){
+				$this->db->where('status = 2 OR status = 0');
+			} else if ($isPast ){
+				$this->db->where('status = 0');
+			}else {
+				$this->db->where('status = 1');
+			}
 			if ($before != null) $this->db->where('endDate <= '.$before);
 			if ($after != null) $this->db->where('startDate >= '.$after);
 
