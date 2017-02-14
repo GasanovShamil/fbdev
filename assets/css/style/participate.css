@@ -1,3 +1,7 @@
 .panel-title {
 	font-weight: 600;
 }
+
+.box-footer[class^="confirmation-"] {
+	display: none;
+}

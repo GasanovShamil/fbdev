@@ -14,7 +14,11 @@
 
 			<div class=<?php quote('box-footer col-sm-12 confirmation-'.$photo->id); ?>>
 				<div class="row">
-					<div class="col-sm-2 col-sm-offset-2">
+					<div class="col-sm-12 text-center">
+						<em>Êtes-vous sûr ?</em>
+					</div>
+
+					<div class="col-sm-2">
 						<a class="btn btn-sm btn-success" href=<?php quote($photo->getParticipateUrl()); ?>>
 							<span class="glyphicon glyphicon-ok"></span> Oui
 						</a>
