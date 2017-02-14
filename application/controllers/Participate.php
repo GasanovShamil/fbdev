@@ -40,7 +40,8 @@
 						$this->load->view('errors/access.php', $data);
 					}
 
-					$result = $response->getDecodedBody()->AsArray();
+					$result = $response->getDecodedBody();
+					$res = $result['data']->AsArray();
 					$photos = array();
 
 					foreach ($result as $id) {
