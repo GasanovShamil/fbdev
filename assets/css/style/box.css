@@ -30,7 +30,7 @@
 	background-color: #e9ebee;
 }
 
-.box-content img, #photo-modal-container img {
+.box-content img, .modal img {
 	max-width: 100%;
 	max-height: 100%;
 }
