@@ -1,24 +1,22 @@
 <?php
 
 	class Contest {
-		public $contestId;
+		public $id;
 		public $name;
-		public $startDate;
-		public $endDate;
+		public $start;
+		public $end;
 		public $prize;
-		public $status;
-		public $createdAt;
-		public $createdBy;
 
-		public function __construct($contestId, $name, $startDate, $endDate, $prize, $status, $createdAt, $createdBy) {
-			$this->contestId = $contestId;
+		public function __construct($id, $name, $start, $end, $prize) {
+			$this->id = $id;
 			$this->name = $name;
-			$this->startDate = $startDate;
-			$this->endDate = $endDate;
+			$this->start = $start;
+			$this->end = $end;
 			$this->prize = $prize;
-			$this->status = $status;
-			$this->createdAt = $createdAt;
-			$this->createdBy = $createdBy;
+		}
+
+		public function getDateRange() {
+			return 'Du '.$this->start.' au '.$this->end;
 		}
 	}
 

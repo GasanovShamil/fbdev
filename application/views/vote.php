@@ -4,51 +4,54 @@
 ?>
 
 <div class="container">
-	<?php
-		echo '<h1>'.$contest->name.'</h1>';
-		echo '<h3>Du '.$contest->startDate.' au '.$contest->endDate.'</h3>';
-		echo '<h3>Prix : '.$contest->prize.'</h3>';
+	<h1><?php echo $contest->name; ?></h1>
+	<h3><?php echo $contest->getDateRange(); ?></h3>
+	<h3>Prix : <?php echo $contest->prize; ?></h3>
 
-		echo '<div id="box-group" class="row">';
+	<div id="box-group" class="row">
 
-		foreach ($photos as $photo) {
-			echo '<div class="col-sm-3 box">';
-				echo '<div class="row">';
-					echo '<div class="box-header col-sm-12">';
-						echo $photo->author;
-					echo '</div>';
+		<?php foreach ($photos as $photo) { ?>
+			<div class="col-sm-3 box">
+				<div class="row">
+					<div class="box-header col-sm-12">
+						<?php echo $photo->author; ?>
+					</div>
 
-					echo '<div class="box-content center-div col-sm-12" ';
-					echo 'data-toggle="modal" ';
-					echo 'data-target="#photo-modal" ';
-					echo 'data-url="'.$photo->url.'" ';
-					echo 'data-name="'.$photo->author.'">';
-						echo '<img src="'.$photo->url.'" alt="photo"/>';
-					echo '</div>';
+					<div class="box-content center-div col-sm-12" data-toggle="modal" data-target="#photo-modal" data-url=<?php echo $photo->url; ?> data-name=<?php echo $photo->author; ?>>
+						<img src=<?php echo $photo->url; ?> alt="Photo"/>
+					</div>
 
-					echo '<div class="box-footer col-sm-12">';
-						echo '<div class="row">';
-							echo '<div class="col-sm-8 buttons">';
-								if ($photo->hasVoted) {
-									echo '<button class="btn-unvote btn btn-success" data-photo="'.$photo->id.'" data-unvote="'.$url.$photo->getUnvoteUrl().'"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>';
-									echo '<button class="hidden btn-vote btn btn-primary" data-photo="'.$photo->id.'" data-vote="'.$url.$photo->getVoteUrl().'">Je vote !</button>';
-								} else {
-									echo '<button class="hidden btn-unvote btn btn-success" data-photo="'.$photo->id.'" data-unvote="'.$url.$photo->getUnvoteUrl().'"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>';
-									echo '<button class="btn-vote btn btn-primary" data-photo="'.$photo->id.'" data-vote="'.$url.$photo->getVoteUrl().'">Je vote !</button>';
-								}
-							echo '</div>';
+					<div class="box-footer col-sm-12">
+						<div class="row">
+							<div class="col-sm-8 buttons">
+								<?php
+									$voteClass = 'btn-vote btn btn-primary';
+									$unvoteClass = 'btn-unvote btn btn-success';
 
-							echo '<div class="col-sm-4 center-div nb-votes">';
-								echo '<span class="photo-vote" data-photo="'.$photo->id.'"" data-photo="'.$photo->id.'">'.$photo->nbVotes.'</span>';
-							echo '</div>';
-						echo '</div>';
-					echo '</div>';
-				echo '</div>';
-			echo '</div>';
-		}
+									if ($photo->hasVoted) $voteClass .= ' hidden';
+									else $unvoteClass .= ' hidden';
+								?>
 
-		echo '</div>';
-	?>
+								<button class=<?php echo $voteClass; ?> data-photo=<?php echo $photo->id; ?> data-vote=<?php echo $url.$photo->getVoteUrl(); ?>>
+									Je vote !
+								</button>
+
+								<button class=<?php echo $unvoteClass; ?> data-photo=<?php echo $photo->id; ?> data-unvote=<?php echo $url.$photo->getUnvoteUrl(); ?>>
+									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+								</button>
+							</div>
+
+							<div class="col-sm-4 center-div nb-votes">
+								<span class="photo-vote" data-photo=<?php echo $photo->id; ?>>
+									<?php echo $photo->nbVotes; ?>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php } ?>
+
+	</div>
 </div>
 
 <!-- Modal -->
