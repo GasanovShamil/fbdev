@@ -40,7 +40,7 @@
 
 			$where='status != 1';
 			if ($before != null && $after != null){
-				$where='endDate <= '.$before.' AND startDate >= '.$after;
+				$where='endDate <= '.date($before).' AND startDate >= '.date($after);
 			} else if ($after != null){
 				$where='startDate >= '.$after;
 			} else if ($before != null){
