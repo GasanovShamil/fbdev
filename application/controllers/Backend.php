@@ -23,7 +23,7 @@
 		public function listContests() {
 			$this->load->model('ContestService');
 			$this->load->view('structure/admin_header.php');
-			$contests = $this->ContestService->getContests(true, true, null, null);
+			$contests = $this->ContestService->getContests(null, null);
 			if(empty($contests)){
 				echo 'ERROR';
 			}else{
