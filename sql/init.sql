@@ -57,7 +57,7 @@ INSERT INTO `Users` (`facebookId`, `firstName`, `lastName`, `email`) VALUES
 ('test-deux', 'deux', 'test', 'deux@mail.com'),
 ('test-trois', 'trois', 'test', 'trois@mail.com');
 
-INSERT INTO `Contests` (`name`,`startDate`, `endDate`, `prize`, `status`, `createdAt`, `createdBy`) VALUES 
+INSERT INTO `Contests` (`name`,`startDate`, `endDate`, `prize`, `status`,`multipleParticipation`, `createdAt`, `createdBy`) VALUES 
 ('Concours Test', '2017-02-01 15:50:00', '2017-02-27 15:50:00', 'prix à gagner', 1, 1, '2017-02-10 15:50:00', 'admin');
 
 INSERT INTO `Photos` (`contest`, `facebookUrl`, `createdAt`, `createdBy`) VALUES 
