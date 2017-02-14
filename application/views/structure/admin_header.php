@@ -21,11 +21,12 @@
 	                <li>
 	                	<?php echo anchor('/backend/createContest', 'Créer concours', 'title="Créer concours"'); ?>
 	                </li>
-	                <li class="pull-right">
-						<?php echo anchor('/home/index', 'Site', 'title="Retour sur le site" class="glyphicon glyphicon-log-out"'); ?>
-					</li>
 				</ul>
-				
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<?php echo anchor('/home/index', 'Site', 'title="Retour sur le site" class="glyphicon glyphicon-log-out"'); ?>
+					</li>	
+				</ul>
 			</div>
 		</nav>
 		<?php
