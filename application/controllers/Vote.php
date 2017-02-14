@@ -33,9 +33,9 @@
 				$this->load->view('structure/header');
 
 				if (isset($currentContest)) {
-					$data['start'] = $currentContest->startDate;
-					$data['end'] = $currentContest->endDate;
+					$data['contest'] = $currentContest;
 					$data['photos'] = $this->PhotoService->getPhotosOfContest($currentContest->contestId);
+					$data['url'] = base_url();
 					$this->load->view('vote', $data);
 				} else {
 					// TODO : show no active contest

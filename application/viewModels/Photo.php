@@ -18,7 +18,11 @@
 		}
 
 		public function getVoteUrl() {
-			return $this->url.'/contest-'.$this->contest.'/photo-'.$this->id;
+			return 'vote/vote/'.$this->id;
+		}
+
+		public function getUnvoteUrl() {
+			return 'vote/unvote/'.$this->id;
 		}
 	}
 

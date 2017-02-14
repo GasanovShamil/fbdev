@@ -1,8 +1,14 @@
-<?php require_once(dirname(__FILE__).'/../viewModels/Photo.php'); ?>
+<?php
+	require_once(dirname(__FILE__).'/../viewModels/Contest.php');
+	require_once(dirname(__FILE__).'/../viewModels/Photo.php'); 
+?>
 
 <div class="container">
 	<?php
-		echo '<h1>Concours du '.$start.' au '.$end.'</h1>';
+		echo '<h1>'.$contest->name.'</h1>';
+		echo '<h3>Du '.$contest->startDate.' au '.$contest->endDate.'</h3>';
+		echo '<h3>Prix : '.$contest->prize.'</h3>';
+
 		echo '<div id="box-group" class="row">';
 
 		foreach ($photos as $photo) {
@@ -22,12 +28,18 @@
 
 					echo '<div class="box-footer col-sm-12">';
 						echo '<div class="row">';
-							echo '<div class="col-sm-8">';
-								echo '<button id="btn-vote" class="btn btn-default">Je vote !</button>';
+							echo '<div class="col-sm-8 buttons">';
+								if ($photo->hasVoted) {
+									echo '<button class="btn-unvote btn btn-success" data-photo="'.$photo->id.'" data-unvote="'.$url.$photo->getUnvoteUrl().'"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>';
+									echo '<button class="hidden btn-vote btn btn-primary" data-photo="'.$photo->id.'" data-vote="'.$url.$photo->getVoteUrl().'">Je vote !</button>';
+								} else {
+									echo '<button class="hidden btn-unvote btn btn-success" data-photo="'.$photo->id.'" data-unvote="'.$url.$photo->getUnvoteUrl().'"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>';
+									echo '<button class="btn-vote btn btn-primary" data-photo="'.$photo->id.'" data-vote="'.$url.$photo->getVoteUrl().'">Je vote !</button>';
+								}
 							echo '</div>';
 
-							echo '<div class="col-sm-4 center-div">';
-								echo '<span>'.$photo->nbVotes.'</span>';
+							echo '<div class="col-sm-4 center-div nb-votes">';
+								echo '<span class="photo-vote" data-photo="'.$photo->id.'"" data-photo="'.$photo->id.'">'.$photo->nbVotes.'</span>';
 							echo '</div>';
 						echo '</div>';
 					echo '</div>';
