@@ -30,7 +30,7 @@
 				$data['alert'] = 'Il y a un autre concours en cours. L\'ajout d\'un nouveau concours va désactiver l\'ancien !!!';
 			}
 			$this->form_validation->set_rules('name','Nom du concours', 'required');
-            $this->form_validation->set_rules('startDate', 'Date de debut', 'required');
+            $this->form_validation->set_rules('startDate', 'Date de debut', 'required|callback_verifDate');
 			$this->form_validation->set_rules('endDate', 'Date de fin', 'required');
 			$this->form_validation->set_rules('prize','Le pris', 'required');
 			
@@ -54,18 +54,18 @@
 		}	
 
 
-		// public function verifDate($date_debut) |callback_verifDate
-	 //    {
-	 //        if ($date_debut < date("Y-m-d") || $date_debut > $this->input->post('date_END'))
-	 //        {
-	 //            $this->form_validation->set_message('verifDate', 'Veuillez vérifier vos dates');
-	 //            return FALSE;
-	 //        }
-	 //        else
-	 //        {
-	 //            return TRUE;
-	 //        }
-	 //    }	
+		public function verifDate($date_debut) 
+	    {
+	        if ($date_debut < date("Y-m-d") || $date_debut > $this->input->post('date_END'))
+	        {
+	            $this->form_validation->set_message('verifDate', 'Veuillez vérifier vos dates');
+	            return FALSE;
+	        }
+	        else
+	        {
+	            return TRUE;
+	        }
+	    }	
 
 
 	}
