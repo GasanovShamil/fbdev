@@ -2,7 +2,6 @@
 	defined('BASEPATH') OR exit('No direct script access allowed');
 
 	require_once(dirname(__FILE__).'/../libraries/appconfig.php');
-	// require_once(dirname(__FILE__).'/../viewModels/Contest.php');
 
 	class Participate extends CI_Controller {
 
@@ -37,11 +36,10 @@
 					$data['contest'] = $currentContest;
 					$data['photos'] = $this->PhotoService->getPhotosOfContest($currentContest->contestId);
 					$data['url'] = base_url();
-					$this->load->view('vote', $data);
+					$this->load->view('participate', $data);
 				} else {
-					// TODO : show no active contest
-					$data['test'] = 'NO CONTEST';
-					$this->load->view('showtest', $data);
+					$data['contest'] = getNextContest();
+					$this->load->view('no-contest', $data);
 				}
 
 				$this->load->view('structure/footer');

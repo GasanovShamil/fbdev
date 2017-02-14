@@ -35,7 +35,7 @@
 			return null;
 		}
 		public function getNextContest() {
-			$query = $this->db->get_where(MIN('startDate'))->where('status = 1')->from($this->table);
+			$query = $this->db->get_where($this->table, 'status = 2 AND startDate=MIN(startDate)');
 			$row = $query->row();
 
 			if (isset($row)) {
@@ -48,7 +48,6 @@
 				);
 
 				return $contest;
-				//return null;
 			}
 
 			return null;
