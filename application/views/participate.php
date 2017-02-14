@@ -55,14 +55,19 @@
 			</button>
 			<h4 class="modal-title">Êtes-vous sûr ?</h4>
 		</div>
-		<div class="model-body">
-			<a id="participate" class="btn btn-sm btn-success" href="">
-				<span class="glyphicon glyphicon-ok"></span> Oui
-			</a>
+		<div class="modal-body">
+			<div class="row">
+				<div class="col-sm-2 col-sm-offset-3">
+					<a id="participate" class="btn btn-success" href="">
+						<span class="glyphicon glyphicon-ok"></span> Oui
+					</a>
+				</div>
 
-			<button type="button" data-dismiss="modal" class="btn btn-sm btn-default">
-				<span class="glyphicon glyphicon-remove"></span> Non
-			</button>
+				<div class="col-sm-2 col-sm-offset-2">
+					<button type="button" data-dismiss="modal" class="btn btn-danger">
+						<span class="glyphicon glyphicon-remove"></span> Non
+					</button>
+				</div>
 		</div>
     </div>
   </div>
