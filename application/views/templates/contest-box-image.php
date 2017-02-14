@@ -24,7 +24,7 @@
 						else $unvoteClass .= ' hidden';
 					?>
 
-					<button class=<?php quote($voteClass); ?> data-photo=<?php quote($photo->id;) ?> data-vote=<?php quote($url.$photo->getVoteUrl()); ?>>
+					<button class=<?php quote($voteClass); ?> data-photo=<?php quote($photo->id); ?> data-vote=<?php quote($url.$photo->getVoteUrl()); ?>>
 						Je vote !
 					</button>
 
