@@ -49,7 +49,7 @@
             }
             else
             {
-        		$this->ContestService->addContest($this->input->post('name'), $this->input->post('startDate'),$this->input->post('endDate'), $this->input->post('prize'), 1, date("Y-m-d"), 'Admin');
+        		$this->ContestService->addContest($this->input->post('name'), $this->input->post('startDate'),$this->input->post('endDate'), $this->input->post('prize'), 1, isset(this->input->post('multipleParticipation')), date("Y-m-d"), 'Admin');
         		$this->load->view('structure/admin_header.php');
                 $this->load->view('admin/form_success.php');
                 $this->load->view('structure/footer.php');
