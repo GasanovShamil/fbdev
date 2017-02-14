@@ -20,8 +20,8 @@
 <div class="panel panel-info">
 	<div class="panel-heading toggle-slide" data-slide="#photos">
 		<h3 class="panel-title">Mes Photos</h3>
-		<span class="icon icon-plus pull-right" aria-hidden="true"></span>
-		<span class="icon icon-minus pull-right" aria-hidden="true"></span>
+		<span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span>
+		<span class="glyphicon glyphicon-minus pull-right" aria-hidden="true"></span>
 	</div>
 	<div class="panel-body" id="photos">
 		<div id="box-group" class="row">
