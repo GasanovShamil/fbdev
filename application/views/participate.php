@@ -46,22 +46,24 @@
 	</div>
 </div>
 
-<!-- Modal -->
-<div id="photo-modal-container" class="div-modal-container">
-	<div tabindex="-1" id="photo-modal" class="modal fade" role="dialog">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span class="icon icon-remove" aria-hidden="true"></span>
-					</button>
-					<h4 class="modal-title"></h4>
-				</div>
-
-				<div class="modal-body center-div">
-					<img src="" alt="photo"/>
-				</div>
-			</div>
+<div id="confirmation-modal" tabindex="-1" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+    	<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">×</span>
+			</button>
+			<h4 class="modal-title">Êtes-vous sûr ?</h4>
 		</div>
-	</div>
+		<div class="model-body">
+			<a id="participate" class="btn btn-sm btn-success" href="">
+				<span class="glyphicon glyphicon-ok"></span> Oui
+			</a>
+
+			<button type="button" data-dismiss="modal" class="btn btn-sm btn-default">
+				<span class="glyphicon glyphicon-remove"></span> Non
+			</button>
+		</div>
+    </div>
+  </div>
 </div>

@@ -45,13 +45,15 @@
 
 					$albums = array();
 
-					foreach ($result['data'] as $album) {
-						$albums[] = new Album(
-								$album['id'],
-								$album['name'],
-								$album['picture']['data']['url']
-							);
-					}
+					try {
+						foreach ($result['data'] as $album) {
+							$albums[] = new Album(
+									$album['id'],
+									$album['name'],
+									$album['picture']['data']['url']
+								);
+						}
+					} catch(Exception $e) {}
 					
 					$data['contest'] = $currentContest;
 					$data['albums'] = $albums;
@@ -66,7 +68,7 @@
 			}
 		}
 
-		public function showPhotosOfAlbum($albumId) {
+		public function showPhotosOfAlbum($album) {
 			if (!$this->fblib->checkAccessToken()) {
 				$redirectHelper = $this->facebook->getRedirectLoginHelper();
 				$loginUrl = $redirectHelper->getLoginUrl('https://www.facebook.com/projetconcourphoto/app/'.appconfig::getAppId().'/', appconfig::getAppPermissions());
@@ -75,17 +77,31 @@
 				$rerequestUrl = $_SESSION['rerequest-url'];
 				$this->fblib->jsRedirect($rerequestUrl);
 			} else {
-				$response = $this->facebook->get('/'.$albumId.'?fields=photos{id,images{source}}');
+				$response = $this->facebook->get('/'.$album.'?fields=photos{id,images{source}}');
 				$result = $response->getDecodedBody();
 
 				$photos = array();
-
-				foreach ($result['photos']['data'] as $photo) {
-					$photos[] = new Photo($photo['id'], '', $photo['images'][0]['source'], 0, 0);
-				}
+				try {
+					foreach ($result['photos']['data'] as $photo) {
+						$photos[] = new Photo($photo['id'], '', $photo['images'][0]['source'], 0, 0);
+					}
+				} catch(Exception $e) {}
 
 				$data['photos'] = $photos;
 				$this->load->view('templates/participate-list-photos', $data);
+			}
+		}
+
+		public function participate($photo) {
+			if (!$this->fblib->checkAccessToken()) {
+				$redirectHelper = $this->facebook->getRedirectLoginHelper();
+				$loginUrl = $redirectHelper->getLoginUrl('https://www.facebook.com/projetconcourphoto/app/'.appconfig::getAppId().'/', appconfig::getAppPermissions());
+				$this->fblib->jsRedirect($loginUrl);
+			} else if (!$this->fblib->checkPermissions()) {
+				$rerequestUrl = $_SESSION['rerequest-url'];
+				$this->fblib->jsRedirect($rerequestUrl);
+			} else {
+				
 			}
 		}
 	}

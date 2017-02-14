@@ -1,14 +1,27 @@
 $(document).ready(function() {
 	$(".album-item").click(function () {
 		$('#photos .box-group').html($("#waiting-div").html());
-		var album = $(this).data('show');
+		var showUrl = $(this).data('show');
 
 		$.ajax({
-			url: album,
+			url: showUrl,
 			dataType: "html",
 			success: function (data) {
 				$('#photos .box-group').html(data);
 			}
 		});
+	});
+
+	$("#confirmation-modal").off("show.bs.modal");
+	$("#confirmation-modal").on("show.bs.modal", function (event) {
+		// Source
+		var source = $(event.relatedTarget);
+
+		// Information
+		var participateUrl = $(this).data('participate');
+
+		// Change the modal
+		var modal = $(this);
+		modal.find("#participate").attr('href', participateUrl);
 	});
 });
