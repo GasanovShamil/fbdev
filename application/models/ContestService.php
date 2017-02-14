@@ -34,6 +34,25 @@
 
 			return null;
 		}
+		public function getNextContest() {
+			$query = $this->db->get_where($this->table, 'status = 1');
+			$row = $query->row();
+
+			if (isset($row)) {
+				$contest = new Contest(
+					$row->contestId,
+					$row->name,
+					$row->startDate,
+					$row->endDate,
+					$row->prize
+				);
+
+				return $contest;
+				return null;
+			}
+
+			return null;
+		}
 
 		// public function getContest($contestId) {
 		// 	$query = $this->db->get_where($this->table, 'contestId = '.$contestId);
