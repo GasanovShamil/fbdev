@@ -2,16 +2,14 @@
 
 	class Photo {
 		public $id;
-		public $contest;
-		public $author;
+		public $label;
 		public $url;
 		public $nbVotes;
 		public $hasVoted;
 
-		public function __construct($id, $contest, $author, $url, $nbVotes, $hasVoted) {
+		public function __construct($id, $label, $url, $nbVotes, $hasVoted) {
 			$this->id = $id;
-			$this->contest = $contest;
-			$this->author = $author;
+			$this->label = $label;
 			$this->url = $url;
 			$this->nbVotes = $nbVotes;
 			$this->hasVoted = $hasVoted;
@@ -23,6 +21,10 @@
 
 		public function getUnvoteUrl() {
 			return 'unvote/'.$this->id;
+		}
+
+		public function getUnvoteUrl() {
+			return 'participate/'.$this->id;
 		}
 	}
 

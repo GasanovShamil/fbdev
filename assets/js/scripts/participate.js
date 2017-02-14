@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$(".album-item").click(function () {
 		$('#photos .box-group').html($("#waiting-div").html());
-		var album = $(this).data('album');
+		var album = $(this).data('show');
 
 		$.ajax({
 			url: album,
