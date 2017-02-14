@@ -24,7 +24,7 @@
 			$this->load->model('ContestService');
 			$this->load->view('structure/admin_header.php');
 			$contests = $this->ContestService->getContests(true, true, null, null);
-			if(empty($contest)){
+			if(empty($contests)){
 				echo 'ERROR';
 			}else{
 				foreach ($contests as $contest) {
