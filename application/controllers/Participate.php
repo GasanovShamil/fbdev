@@ -41,8 +41,13 @@
 					}
 
 					$result = $response->getDecodedBody();
+					$photos = array();
 
-					$data['check'] = $result['data'];
+					foreach ($result['data'] as $id) {
+						$photos[] = $id
+					}
+
+					$data['check'] = $photos;
 					$data['contest'] = $currentContest;
 					$data['photos'] = array();
 					$data['url'] = base_url();
