@@ -74,7 +74,8 @@
 				$rerequestUrl = $_SESSION['rerequest-url'];
 				$this->fblib->jsRedirect($rerequestUrl);
 			} else {
-				$this->VoteService->vote($_SESSION['facebook-user-id'], $photo);
+				$data['test'] = 'ok ?';
+				$this->load->view('showtest', $data);
 			}
 		}
 	}

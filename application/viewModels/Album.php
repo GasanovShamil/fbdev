@@ -10,6 +10,10 @@
 			$this->name = $name;
 			$this->cover = $cover;
 		}
+
+		public function getPhotoOfAlbumUrl() {
+			return 'participate/showPhotosOfAlbum/'.$this->id;
+		}
 	}
 
 ?>

@@ -14,11 +14,11 @@
 		</div>
 	</div>
 	<div class="panel-body" id="albums">
-		<div id="box-group" class="row">
+		<div class="box-group" class="row">
 
 			<?php
 				foreach ($albums as $album) { 
-					$this->load->view('templates/participate-box-image', array('album' => $album));
+					$this->load->view('templates/participate-box-album', array('album' => $album));
 				}
 			?>
 
@@ -40,14 +40,8 @@
 		</div>
 	</div>
 	<div class="panel-body" id="photos">
-		<div id="box-group" class="row">
-
-			<?php
-				foreach ($albums as $album) { 
-					$this->load->view('templates/participate-box-image', array('album' => $album));
-				}
-			?>
-
+		<div class="box-group" class="row">
+			<em>Choisissez un album !</em>
 		</div>
 	</div>
 </div>

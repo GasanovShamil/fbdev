@@ -9,7 +9,7 @@
 			<?php limit($album->name); ?>
 		</div>
 
-		<div class="box-content center-div col-sm-12" data-album=<?php quote($album->id); ?>>
+		<div class="box-content center-div col-sm-12 album-item" data-album=<?php quote($album->getPhotoOfAlbumUrl()); ?>>
 			<img src=<?php quote($album->cover); ?> alt="Album"/>
 		</div>
 	</div>
