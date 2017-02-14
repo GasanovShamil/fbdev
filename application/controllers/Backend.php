@@ -73,11 +73,11 @@
 	            $this->form_validation->set_message('verifDate', 'La date de debut est apares la date de fin');
 	            return FALSE;
 	        }
-	         else if () 
-	        {
-	            $this->form_validation->set_message('verifDate', '');
-	            return FALSE;
-	        }
+	        //  else if () 
+	        // {
+	        //     $this->form_validation->set_message('verifDate', '');
+	        //     return FALSE;
+	        // }
 	        else
 	        {
 	            return TRUE;
