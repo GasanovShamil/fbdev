@@ -18,9 +18,20 @@
 					<li>
 	                	<?php echo anchor('/backend/index', 'Accueil', 'title="Accueil"'); ?>
 	                </li>
-	                <li>
-	                	<?php echo anchor('/backend/createContest', 'Créer concours', 'title="Créer concours"'); ?>
-	                </li>
+	                <li class="dropdown">
+				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Concours<span class="caret"></span></a>
+				        <ul class="dropdown-menu">
+					        <li>
+		                		<?php echo anchor('/backend/listContests', 'Gerer les concours', 'title="Gerer les concours"'); ?>
+		                	</li>
+		                	<li>
+		                		<?php echo anchor('/backend/createContest', 'Créer concours', 'title="Créer concours"'); ?>
+		                	</li>
+				        </ul>
+				    </li>
+
+
+	                
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li>

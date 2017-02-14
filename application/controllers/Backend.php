@@ -19,6 +19,13 @@
 			$this->load->view('structure/footer.php');
 		}
 
+		public function listContests(){
+
+			$this->load->view('structure/admin_header.php');
+
+			$this->load->view('structure/footer.php');
+		}
+
 		public function createContest(){
 			$this->load->model('ContestService');
 			$this->load->helper('form');
