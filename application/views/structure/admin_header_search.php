@@ -39,7 +39,7 @@
 				    <div class="form-group">
 				    	<input type="date" class="form-control" placeholder="after">
 				    </div>
-				    <button type="submit" class="btn btn-default">Submit</button>
+				    <button type="submit" class="btn btn-default">Chercher</button>
 			    </form>
 				<ul class="nav navbar-nav navbar-right">
 					<li>

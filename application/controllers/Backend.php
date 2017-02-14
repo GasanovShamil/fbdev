@@ -15,14 +15,14 @@
 		}
 
 		public function index() {
-			$this->load->view('structure/admin_header.php');
+			$this->load->view('structure/admin_header_search.php');
 			$this->load->view('admin/admin_index.php');
 			$this->load->view('structure/footer.php');
 		}
 
 		public function listContests() {
 			$this->load->model('ContestService');
-			$this->load->view('structure/admin_header.php');
+			$this->load->view('structure/admin_header_search.php');
 			$contests = $this->ContestService->getContests(null, null);
 			if(empty($contests)){
 				echo 'ERROR';
@@ -50,7 +50,7 @@
 			$this->form_validation->set_rules('prize','Le prix', 'required');
 
 			if ($this->form_validation->run() === false) {
-				$this->load->view('structure/admin_header.php', $data);
+				$this->load->view('structure/admin_header_search.php', $data);
 				$this->load->view('admin/create_contest.php');
 				$this->load->view('structure/footer.php');
 			} else {
@@ -63,7 +63,7 @@
 					$_SESSION['facebook-user-id']
 				);
 
-				$this->load->view('structure/admin_header.php');
+				$this->load->view('structure/admin_header_search.php');
 				$this->load->view('admin/form_success.php');
 				$this->load->view('structure/footer.php');
 			}
