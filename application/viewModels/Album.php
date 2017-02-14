@@ -12,7 +12,7 @@
 		}
 
 		public function getPhotoOfAlbumUrl() {
-			return 'participate/showPhotosOfAlbum/'.$this->id;
+			return 'showPhotosOfAlbum/'.$this->id;
 		}
 	}
 

@@ -18,11 +18,11 @@
 		}
 
 		public function getVoteUrl() {
-			return 'vote/vote/'.$this->id;
+			return 'vote/'.$this->id;
 		}
 
 		public function getUnvoteUrl() {
-			return 'vote/unvote/'.$this->id;
+			return 'unvote/'.$this->id;
 		}
 	}
 

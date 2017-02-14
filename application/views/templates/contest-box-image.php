@@ -24,11 +24,11 @@
 						else $unvoteClass .= ' hidden';
 					?>
 
-					<button class=<?php quote($voteClass); ?> data-photo=<?php quote($photo->id); ?> data-vote=<?php quote($url.$photo->getVoteUrl()); ?>>
+					<button class=<?php quote($voteClass); ?> data-photo=<?php quote($photo->id); ?> data-vote=<?php quote($photo->getVoteUrl()); ?>>
 						Je vote !
 					</button>
 
-					<button class=<?php quote($unvoteClass); ?> data-photo=<?php quote($photo->id); ?> data-unvote=<?php quote($url.$photo->getUnvoteUrl()); ?>>
+					<button class=<?php quote($unvoteClass); ?> data-photo=<?php quote($photo->id); ?> data-unvote=<?php quote($photo->getUnvoteUrl()); ?>>
 						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 					</button>
 				</div>
