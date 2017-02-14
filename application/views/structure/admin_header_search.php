@@ -32,12 +32,14 @@
 				        </ul>
 				    </li>
 				</ul>
-				<form class="navbar-form navbar-left">
+				<form class="navbar-form form-inline navbar-left">
 				    <div class="form-group">
-				    <input type="date" class="form-control" placeholder="before">
+				    	<label for="before">Avant:</label>
+				    	<input type="date" class="form-control" id="before">
 				    </div>
 				    <div class="form-group">
-				    	<input type="date" class="form-control" placeholder="after">
+				    	<label for="after">Apres:</label>
+				    	<input type="date" class="form-control" id="after">
 				    </div>
 				    <button type="submit" class="btn btn-default">Chercher</button>
 			    </form>
