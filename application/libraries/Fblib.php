@@ -39,7 +39,7 @@
 
 		public function checkPermissions() {
 			$redirectHelper = $this->facebook->getRedirectLoginHelper();
-			$response = $this->facebook->get("/me/permissions");
+			$response = $this->facebook->get('/me/permissions');
 			$userPermissions = $response->getDecodedBody();
 
 			foreach ($userPermissions['data'] as $value) {

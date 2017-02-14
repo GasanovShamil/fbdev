@@ -2,6 +2,7 @@
 	defined('BASEPATH') OR exit('No direct script access allowed');
 
 	require_once(dirname(__FILE__).'/../libraries/appconfig.php');
+	require_once(dirname(__FILE__).'/../viewModels/Album.php');
 
 	class Participate extends CI_Controller {
 
@@ -33,17 +34,19 @@
 				$this->load->view('structure/header');
 
 				if (isset($currentContest)) {
-					$result = $this->facebook->request('get', '/me/albums?fields=id,name,picture')['data'];
+					$response = $this->facebook->get('/me/albums?fields=id,name,picture');
+					$result = $response->getDecodedBody();
+
 					$albums = array();
 
-					foreach ($result as $album) {
+					foreach ($result['data'] as $album) {
 						$albums[] = new Album(
-								$result['id'],
-								$result['name'],
-								$result['picture']['url']
+								$album['id'],
+								$album['name'],
+								$album['picture']['data']['url']
 							);
 					}
-
+					
 					$data['contest'] = $currentContest;
 					$data['albums'] = $albums;
 					$data['url'] = base_url();
@@ -54,6 +57,19 @@
 				}
 
 				$this->load->view('structure/footer');
+			}
+		}
+
+		public function showPhotosOfAlbum($albumId) {
+			if (!$this->fblib->checkAccessToken()) {
+				$redirectHelper = $this->facebook->getRedirectLoginHelper();
+				$loginUrl = $redirectHelper->getLoginUrl('https://www.facebook.com/projetconcourphoto/app/'.appconfig::getAppId().'/', appconfig::getAppPermissions());
+				$this->fblib->jsRedirect($loginUrl);
+			} else if (!$this->fblib->checkPermissions()) {
+				$rerequestUrl = $_SESSION['rerequest-url'];
+				$this->fblib->jsRedirect($rerequestUrl);
+			} else {
+				$this->VoteService->vote($_SESSION['facebook-user-id'], $photo);
 			}
 		}
 	}

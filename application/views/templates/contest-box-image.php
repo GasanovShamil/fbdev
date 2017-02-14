@@ -6,7 +6,7 @@
 <div class="col-sm-3 box">
 	<div class="row">
 		<div class="box-header col-sm-12">
-			<?php echo $photo->author; ?>
+			<?php limit($photo->author); ?>
 		</div>
 
 		<div class="box-content center-div col-sm-12" data-toggle="modal" data-target="#photo-modal" data-url=<?php quote($photo->url); ?> data-name=<?php quote($photo->author); ?>>
