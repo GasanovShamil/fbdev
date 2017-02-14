@@ -33,24 +33,19 @@
 				$this->load->view('structure/header');
 
 				if (isset($currentContest)) {
-					try {
-						$response = $this->facebook->get('me/photos?fields=id');
-					} catch(Exception $e) {
-						$data['message'] = $e->getMessage();
-						$this->load->view('errors/access.php', $data);
+					$result = $this->facebook->request('get', '/me/albums?fields=id,name,picture')['data'];
+					$albums = array();
+
+					foreach ($result as $album) {
+						$albums[] = new Album(
+								$result['id'],
+								$result['name'],
+								$result['picture']['url']
+							);
 					}
 
-					$result = $response->getDecodedBody();
-					$res = $result['data']->AsArray();
-					$photos = array();
-
-					foreach ($result as $id) {
-						$photos[] = $id;
-					}
-
-					$data['check'] = $photos;
 					$data['contest'] = $currentContest;
-					$data['photos'] = array();
+					$data['albums'] = $albums;
 					$data['url'] = base_url();
 					$this->load->view('participate', $data);
 				} else {
