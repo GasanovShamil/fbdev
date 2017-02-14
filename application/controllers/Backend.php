@@ -65,28 +65,25 @@
 
 		}
 
+		public function verifDate() {
+			$start = $this->input->post('startDate');
+			$end = $this->input->post('endDate')
 
-		public function verifDate($start) {
-			if ($start < date("Y-m-d"))
-			{
+			if ($start < date("Y-m-d")) {
 				$this->form_validation->set_message('verifDate', 'La date de début est dans le passé !');
 				return false;
-			}
-			else if ($start > $this->input->post('endDate')) 
-			{
+			} else if ($start > $end) {
 				$this->form_validation->set_message('verifDate', 'La date de début est après la date de fin !');
 				return false;
-			}
-			//  else if () 
-			// {
-			//     $this->form_validation->set_message('verifDate', '');
-			//     return FALSE;
-			// }
-			else
-			{
+			} else {
+				$this->load->model('ContestService');
+				$checkDates = $this->ContestService->checkDates($start, $end);
+
+				if ($checkDates) {
+
+				}
+
 				return true;
 			}
 		}
-
-
 	}

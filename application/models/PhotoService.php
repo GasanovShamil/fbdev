@@ -13,6 +13,16 @@
 		public $createdAt;
 		public $createdBy;
 
+		public function addPhoto($photoId, $contest, $facebookUrl, $createdAt, $createdBy) {
+			$this->photoId = $photoId;
+			$this->contest = $contest;
+			$this->facebookUrl = $facebookUrl;
+			$this->createdAt = $createdAt;
+			$this->createdBy = $createdBy;
+
+			$this->db->insert($this->table, $this);
+		}
+
 		public function getPhotosOfContest($contest) {
 			$this->load->model('VoteService');
 
@@ -38,45 +48,6 @@
 			}
 
 			return $photos;
-		}
-
-		// public function getPhoto($photoId) {
-		// 	$query = $this->db->get_where($this->table, 'photoId = '.$photoId);
-		// 	$row = $query->row();
-
-		// 	if (isset($row)) {
-		// 		$user = new User(
-		// 			$row->$facebookId, 
-		// 			$row->$firstName, 
-		// 			$row->$lastName, 
-		// 			$row->$email, 
-		// 			$row->$birth, 
-		// 			$row->$gender, 
-		// 			$row->$token
-		// 		);
-
-		// 		return $user;
-		// 	}
-
-		// 	return null;
-		// }
-
-		public function addPhoto($photoId, $contest, $facebookUrl, $createdAt, $createdBy) {
-			$this->photoId = $photoId;
-			$this->contest = $contest;
-			$this->facebookUrl = $facebookUrl;
-			$this->createdAt = $createdAt;
-			$this->createdBy = $createdBy;
-
-			$this->db->insert($this->table, $this);
-		}
-
-		// public function updatePhoto($photo) {
-		// 	$this->db->update($this->table, $photo, 'photoId = '.$photo->photoId);
-		// }
-
-		public function deletePhoto($photoId) {
-			$this->db->delete($this->table, 'photoId = '.$photoId);
 		}
 	}
 ?>
