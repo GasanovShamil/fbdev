@@ -4,15 +4,14 @@ $(document).ready(function() {
 		$(this).addClass('btn-danger');
 		$(this).find('.glyphicon').removeClass('glyphicon-ok');
 		$(this).find('.glyphicon').addClass('glyphicon-remove');
-	});
 
-	$('.btn-danger').mouseleave(function () {
-		$(this).removeClass('btn-danger');
-		$(this).addClass('btn-success');
-		$(this).find('.glyphicon').removeClass('glyphicon-remove');
-		$(this).find('.glyphicon').addClass('glyphicon-ok');
+		$('.btn-danger').mouseleave(function () {
+			$(this).removeClass('btn-danger');
+			$(this).addClass('btn-success');
+			$(this).find('.glyphicon').removeClass('glyphicon-remove');
+			$(this).find('.glyphicon').addClass('glyphicon-ok');
+		});
 	});
-
 
 	$("#photo-modal").off("show.bs.modal");
 	$("#photo-modal").on("show.bs.modal", function (event) {
