@@ -12,7 +12,7 @@
 		public function vote($user, $photo) {
 			$this->user = $user;
 			$this->photo = $photo;
-			$this->createdAt = date('Y-m-d H:i:s').'.000';
+			$this->createdAt = date('Y-m-d H:i:s');
 
 			$this->db->insert($this->table, $this);
 		}

@@ -13,6 +13,7 @@
 		public $endDate;
 		public $prize;
 		public $status;
+		public $multipleParticipation;
 		public $createdAt;
 		public $createdBy;
 
@@ -26,7 +27,8 @@
 					$row->name,
 					$row->startDate,
 					$row->endDate,
-					$row->prize
+					$row->prize,
+					$row->multipleParticipation
 				);
 
 				return $contest;
@@ -34,6 +36,7 @@
 
 			return null;
 		}
+		
 		public function getNextContest() {
 			$query = $this->db->get_where($this->table, 'status = 2 AND startDate=MIN(startDate)');
 			$row = $query->row();
@@ -44,7 +47,8 @@
 					$row->name,
 					$row->startDate,
 					$row->endDate,
-					$row->prize
+					$row->prize,
+					$row->multipleParticipation
 				);
 
 				return $contest;
@@ -74,7 +78,7 @@
 		// 	return null;
 		// }
 
-		public function addContest($name, $startDate, $endDate, $prize, $status, $createdAt, $createdBy) {
+		public function addContest($name, $startDate, $endDate, $prize, $status, $multipleParticipation, $createdAt, $createdBy) {
 			$this->db->update($this->table, array('status' => 0), 'status = 1');
 
 			$this->name = $name;
@@ -82,15 +86,26 @@
 			$this->endDate = $endDate;
 			$this->prize = $prize;
 			$this->status = $status;
+			$this->multipleParticipation = $multipleParticipation;
 			$this->createdAt = $createdAt;
 			$this->createdBy = $createdBy;
 
 			$this->db->insert($this->table, $this);
 		}
 
-		// public function updateContest($contest) {
-		// 	$this->db->update($this->table, $contest, 'contestId = '.$contest->contestId);
-		// }
+		public function updateContest($contestId, $name, $startDate, $endDate, $prize, $status, $multipleParticipation, $createdAt, $createdBy) {
+			$this->contestId = $contestId;
+			$this->name = $name;
+			$this->startDate = $startDate;
+			$this->endDate = $endDate;
+			$this->prize = $prize;
+			$this->status = $status;
+			$this->multipleParticipation = $multipleParticipation;
+			$this->createdAt = $createdAt;
+			$this->createdBy = $createdBy;
+
+			$this->db->update($this->table, $this, 'contestId = '.$contestId);
+		}
 
 		public function deleteContest($contestId) {
 			$this->db->delete($this->table, 'contestId = '.$contestId);
