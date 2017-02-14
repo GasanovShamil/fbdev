@@ -2,9 +2,16 @@
 
 <div class="panel panel-info">
 	<div class="panel-heading toggle-slide" data-slide="#albums">
-		<h3 class="panel-title">Mes albums</h3>
-		<span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span>
-		<span class="glyphicon glyphicon-minus pull-right" aria-hidden="true"></span>
+		<div class="row">
+			<div class="col-sm-11">
+				<h3 class="panel-title">Mes albums</h3>
+			</div>
+
+			<div class="col-sm-11">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+			</div>
+		</div>
 	</div>
 	<div class="panel-body" id="albums">
 		<div id="box-group" class="row">
@@ -21,9 +28,16 @@
 
 <div class="panel panel-info">
 	<div class="panel-heading toggle-slide" data-slide="#photos">
-		<h3 class="panel-title">Mes Photos</h3>
-		<span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span>
-		<span class="glyphicon glyphicon-minus pull-right" aria-hidden="true"></span>
+		<div class="row">
+			<div class="col-sm-11">
+				<h3 class="panel-title">Mes Photos</h3>
+			</div>
+
+			<div class="col-sm-11">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+			</div>
+		</div>
 	</div>
 	<div class="panel-body" id="photos">
 		<div id="box-group" class="row">
