@@ -4,8 +4,8 @@
 		<div class="col-md-2 col-md-offset-2" id="logo">
 		</div>
 		<div class="col-md-6" id="titre">
-			<h1> Concours Photo </h1>
-			<h2> You wanna' be a future star <?php echo $firstName; ?> ? </h2>
+			<h1>Concours Photo</h1>
+			<h2>Tu veux devenir une star <?php echo $firstName; ?> ?</h2>
 		</div>
 	</div>
 

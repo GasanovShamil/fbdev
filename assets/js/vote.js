@@ -1,9 +1,16 @@
 $(document).ready(function() {
-	$('.btn-success').hover(function () {
+	$('.btn-success').mouseenter(function () {
 		$(this).removeClass('btn-success');
 		$(this).addClass('btn-danger');
-		$(this).child('.glyphicon').removeClass('glyphicon-ok');
-		$(this).child('.glyphicon').addClass('glyphicon-remove');
+		$(this).find('.glyphicon').removeClass('glyphicon-ok');
+		$(this).find('.glyphicon').addClass('glyphicon-remove');
+	});
+
+	$('.btn-danger').mouseleave(function () {
+		$(this).removeClass('btn-danger');
+		$(this).addClass('btn-success');
+		$(this).find('.glyphicon').removeClass('glyphicon-remove');
+		$(this).find('.glyphicon').addClass('glyphicon-ok');
 	});
 
 
@@ -33,8 +40,8 @@ $(document).ready(function() {
 				$('.btn-vote[data-photo="'+photo+'"]').addClass('hidden');
 				$('.btn-unvote[data-photo="'+photo+'"]').removeClass('hidden');
 				
-				var nbVotes = parseInt($('.nbVotes[data-photo="'+photo+'"]').html());
-				$('.nbVotes[data-photo="'+photo+'"]').html(++nbVotes);
+				var nbVotes = parseInt($('.photo-vote[data-photo="'+photo+'"]').html());
+				$('.photo-vote[data-photo="'+photo+'"]').html(++nbVotes);
 			}
 		});
 	});
