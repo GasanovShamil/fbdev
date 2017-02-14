@@ -15,6 +15,7 @@
 		<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/scripts/vote.js"></script>
 
 		<!-- Participate -->
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style/participate.css" />
 		<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/scripts/participate.js"></script>
 	</head>
 
