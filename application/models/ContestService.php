@@ -36,9 +36,19 @@
 			return null;
 		}
 
-		public function getFutureContests(){
-			$query = $this->db->get_where($this->table, 'status = 2');
-			foreach ($query->result() as $row) {
+		public function getContests($isFuture = false, $isPast = false, $before = null, $after = null) {
+
+			$this->db->select('*');
+			$this->db->from($this->table);
+
+			if ($isFuture) $this->db->where('state = 2');
+			if ($isPast ) $this->db->where('state = 0');
+			if ($before != null) $this->db->where('endDate <= '.$before);
+			if ($after != null) $this->db->where('startDate >= '.$after);
+
+			$result = $this->db->get()->result();
+			$contest_array=array();
+			foreach ($result as $row) {
 				$contest = new Contest(
 					$row->contestId,
 					$row->name,

@@ -23,7 +23,7 @@
 		public function listContests() {
 			$this->load->model('ContestService');
 			$this->load->view('structure/admin_header.php');
-			$contests = $this->ContestService->getFutureContests();
+			$contests = $this->ContestService->getContests(true, true);
 			foreach ($contests as $contest) {
 				$this->load->view('templates/contest-infos.php', array('contest' => $contest));
 			}
