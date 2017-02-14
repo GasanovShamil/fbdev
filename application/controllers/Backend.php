@@ -11,11 +11,6 @@
 			
 			$this->load->library('fblib');
 			$this->facebook = $this->fblib->getFacebook();
-
-			$this->load->model('UserService');
-			$this->load->model('PhotoService');
-			$this->load->model('PrizeService');
-			$this->load->model('VoteService');
 		}
 
 		public function index(){
@@ -41,16 +36,16 @@
 			
 			if ($this->form_validation->run() === FALSE)
             {                     
-                        $this->load->view('structure/admin_header.php', $data);
-                        $this->load->view('admin/create_contest.php');
-                        $this->load->view('structure/footer.php');
+                $this->load->view('structure/admin_header.php', $data);
+                $this->load->view('admin/create_contest.php');
+                $this->load->view('structure/footer.php');
             }
             else
             {
-                		$this->ContestService->addContest($this->input->post('name'), $this->input->post('startDate'),$this->input->post('endDate'), $this->input->post('prize'), 1, date("Y-m-d"), 'Admin');
-                		$this->load->view('structure/admin_header.php');
-                        $this->load->view('admin/form_success.php');
-                        $this->load->view('structure/footer.php');
+        		$this->ContestService->addContest($this->input->post('name'), $this->input->post('startDate'),$this->input->post('endDate'), $this->input->post('prize'), 1, date("Y-m-d"), 'Admin');
+        		$this->load->view('structure/admin_header.php');
+                $this->load->view('admin/form_success.php');
+                $this->load->view('structure/footer.php');
             }
 		}
 
