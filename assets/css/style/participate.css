@@ -3,5 +3,6 @@
 }
 
 .box-footer[class^="confirmation-"] {
+	border-top: 1px solid #4267b2;
 	display: none;
 }
