@@ -40,7 +40,7 @@
 						$this->load->view('errors/access.php', $data);
 					}
 
-					$result = $response->getGraphObject();
+					$result = $response->getDecodedBody();
 
 					$data['check'] = $result['data'];
 					$data['contest'] = $currentContest;
