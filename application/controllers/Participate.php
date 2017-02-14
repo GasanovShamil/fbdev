@@ -43,7 +43,7 @@
 						$albums[] = new Album(
 								$album['id'],
 								$album['name'],
-								$album['picture']['url']
+								$album['picture']['data']['url']
 							);
 					}
 					$data['result'] = $result;
