@@ -36,18 +36,16 @@
 			return null;
 		}
 
-		public function getContests($isFuture = false, $isPast = false, $before = null, $after = null) {
+		public function getContests($before = null, $after = null) {
 
 			$where='';
-			if ($isFuture && $isPast){
-				$where='status = 2 OR status = 0';
-			} else if ($isPast){
-				$where='status = 0';
-			}else {
-				$where='status = 1';
+			if ($before != null && $after != null){
+				$where.='endDate <= '.$before.' AND startDate >= '.$after;
+			} else if ($after != null){
+				$where.='startDate >= '.$after;
+			} else if ($before != null){
+				$where.='endDate <= '.$before;
 			}
-			if ($before != null) $where.=' AND endDate <= '.$before;
-			if ($after != null) $where.=' AND startDate >= '.$after;
 			
 			$query = $this->db->get_where($this->table, $where);
 			$result = $query->result();
