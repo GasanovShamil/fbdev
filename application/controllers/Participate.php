@@ -57,7 +57,7 @@
 					$data['url'] = base_url();
 					$this->load->view('participate', $data);
 				} else {
-					$data['contest'] = getNextContest();
+					$data['contest'] = $this->ContestService->getNextContest();
 					$this->load->view('no-contest', $data);
 				}
 
