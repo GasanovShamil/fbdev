@@ -8,7 +8,9 @@
 ?>
 	<div class="col-sm-3 box">
 		<div class="row">
-			<div class="box-content center-div col-sm-12 confirmation-slide" data-slide=<?php quote('#confirmation-'.$photo->id); ?>>
+			<div class="box-content center-div col-sm-12 box-slide" 
+			data-slide=<?php quote('#confirmation-'.$photo->id); ?> 
+			id=<?php quote('photo-'.$photo->id); ?>>
 				<img src=<?php quote($photo->url); ?> alt="Photo"/>
 			</div>
 
@@ -18,14 +20,14 @@
 						<em>Êtes-vous sûr ?</em>
 					</div>
 
-					<div class="col-sm-2 col-sm-offset-1">
+					<div class="col-sm-12">
 						<a class="btn btn-sm btn-success" href=<?php quote($photo->getParticipateUrl()); ?>>
 							<span class="glyphicon glyphicon-ok"></span> Oui
 						</a>
 					</div>
 
-					<div class="col-sm-2">
-						<button class="btn btn-sm btn-danger confirmation-slide" data-slide=<?php quote('#confirmation-'.$photo->id); ?>>
+					<div class="col-sm-12">
+						<button class="btn btn-sm btn-danger confirmation-slide" data-slide=<?php quote('#photo-'.$photo->id); ?>>
 							<span class="glyphicon glyphicon-remove"></span> Non
 						</button>
 					</div>
