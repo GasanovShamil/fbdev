@@ -49,14 +49,6 @@
 					}
 				}
 
-				$data['test'] = $participants;
-				$this->load->view('showtest.php', $data);
-
-				$data['test'] = $winners;
-				$this->load->view('showtest.php', $data);
-
-				return;
-
 				if (count($winnersId) > 1) {
 					$winningPhoto = appconfig::getAppImage();
 				} else {
@@ -97,6 +89,6 @@
 				$this->ContestService->stopContest($contest->id);
 			}
 
-			$this->ContestService->dailyCheckFutureContest();			
+			$this->ContestService->dailyCheckFutureContest();		
 		}
 	}
