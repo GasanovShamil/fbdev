@@ -1,6 +1,7 @@
 <?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 	require_once(dirname(__FILE__).'/../viewModels/Contest.php');
+	require_once(dirname(__FILE__).'/../libraries/PHPMailer/PHPMailerAutoload.php';
 
 	class Backend extends CI_Controller {
 
@@ -88,14 +89,40 @@
 		}
 
 		public function sendMail(){
-			$to      = 'gasanov.sh@gmail.com';
-			$subject = 'the subject';
-			$message = 'hello';
-			$headers = 'From: webmaster@example.com' . "\r\n" .
-    					'Reply-To: webmaster@example.com' . "\r\n" .
-    					'X-Mailer: PHP/' . phpversion();
+			require 'PHPMailerAutoload.php';
 
-			mail($to, $subject, $message, $headers);
+			$mail = new PHPMailer;
+
+			//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+
+			$mail->isSMTP();                                      // Set mailer to use SMTP
+			$mail->Host = 'smtp.gmail.com';  					  // Specify main and backup SMTP servers
+			$mail->SMTPAuth = true;                               // Enable SMTP authentication
+			$mail->Username = 'flowerpower.fbdev@gmail.com';                 // SMTP username
+			$mail->Password = 'flowerpower';                           // SMTP password
+			$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+			$mail->Port = 587;                                    // TCP port to connect to
+
+			$mail->setFrom('flowerpower.fbdev@gmail.com', 'Mailer');
+			$mail->addAddress('sh.gasanov@yandex.ru');               // Name is optional
+			// $mail->addReplyTo('info@example.com', 'Information');
+			// $mail->addCC('cc@example.com');
+			// $mail->addBCC('bcc@example.com');
+
+			// $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+			// $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+			$mail->isHTML(true);                                  // Set email format to HTML
+
+			$mail->Subject = 'Here is the subject';
+			$mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+			if(!$mail->send()) {
+			    echo 'Message could not be sent.';
+			    echo 'Mailer Error: ' . $mail->ErrorInfo;
+			} else {
+			    echo 'Message has been sent';
+			}
 		}
 
 		public function getStats() {
