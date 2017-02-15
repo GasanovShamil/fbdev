@@ -14,3 +14,7 @@ div[id*="confirmation-"] {
 	padding-top: 15px;
 	padding-bottom: 15px;
 }
+
+.row.text-center .btn {
+	margin: auto;
+}
