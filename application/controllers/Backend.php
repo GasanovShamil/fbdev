@@ -71,6 +71,14 @@
 			}
 		}
 
+		public function deleteContest($contestId){
+			$this->load->model('ContestService');
+			$this->ContestService->deleteContest($contestId);
+			$this->load->view('structure/admin_header_search.php');
+			$this->load->view('admin/form_success.php');
+			$this->load->view('structure/footer.php');
+		}
+
 		public function getStats() {
 
 		}
