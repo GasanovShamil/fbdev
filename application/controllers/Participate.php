@@ -132,16 +132,21 @@
 		}
 
 		public function uploadPhoto() {
+			echo 'ta mere la timpe';
 			if (!$this->fblib->checkAccessToken()) {
+				echo 'ta mere me pépom tte la nuit';
 				$redirectHelper = $this->facebook->getRedirectLoginHelper();
 				$loginUrl = $redirectHelper->getLoginUrl('https://www.facebook.com/projetconcourphoto/app/'.appconfig::getAppId().'/', appconfig::getAppPermissions());
 				$this->fblib->jsRedirect($loginUrl);
 			} else if (!$this->fblib->checkPermissions()) {
+				echo 'ta mere la pute a bougnoule';
 				$rerequestUrl = $_SESSION['rerequest-url'];
 				$this->fblib->jsRedirect($rerequestUrl);
 			} else {
+				echo '. . .';
 				$path = $this->input->post('path');
 				$description = $this->input->post('description');
+
 				if ($description == null) $description = 'PhotoUp - Concours PARDON MAMAN';
 
 
