@@ -127,7 +127,7 @@
 						'picture' => $photo
 					);
 
-					$response = $facebook->api('me/feed', 'POST', $data);
+					$response = $this->facebook->api('me/feed', 'POST', $data);
 
 					redirect('/vote/index');
 				}
