@@ -89,7 +89,7 @@
 		}
 
 		public function sendMail(){
-			require 'PHPMailerAutoload.php';
+			
 
 			$mail = new PHPMailer;
 
