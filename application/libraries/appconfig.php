@@ -15,5 +15,9 @@
 		public static function getAppPermissions() {
 			return ['email', 'user_likes', 'user_photos', 'user_birthday', 'user_friends', 'publish_pages'];
 		}
+
+		public static function getAppPageUrl() {
+			return 'https://www.facebook.com/projetconcourphoto/app/'.self::getAppId().'/';
+		}
 	}
 ?>

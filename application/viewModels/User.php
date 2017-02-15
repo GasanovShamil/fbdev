@@ -19,15 +19,9 @@
 			$this->token = $token;
 		}
 
-		// public function getAge() {
-		// 	$birth = explode('/', $this->birth);
-		// 	$now = explode('/', date('d/m/Y'));
-				
-		// 	if (($birth[1] < $now[1]) || (($birth[1] == $now[1]) && ($birth[0] <= $now[0])))
-		// 		return $now[2] - $birth[2];
-
-		// 	return $now[2] - $birth[2] - 1;
-		// }
+		public function getFullName() {
+			return $this->firstName.' '.$this->lastName;
+		}
 	}
 
 ?>

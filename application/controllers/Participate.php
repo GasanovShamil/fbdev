@@ -36,25 +36,32 @@
 				$this->load->view('structure/header', $data);
 
 				if (isset($currentContest)) {
-					//CHECK IF MULTIPLE
-					$response = $this->facebook->get('/me/albums?fields=id,name,picture{url}');
-					$result = $response->getDecodedBody();
+					$this->load->model('PhotoService');
+					$hasParticipated = $this->PhotoService->hasParticipated($_SESSION['facebook-user-id'], $currentContest->id);
 
-					$albums = array();
+					if (!$currentContest->multiple || !$hasParticipated) {
+						$response = $this->facebook->get('/me/albums?fields=id,name,picture{url}');
+						$result = $response->getDecodedBody();
 
-					if (array_key_exists('data', $result)) {
-						foreach ($result['data'] as $album) {
-							$albums[] = new Album(
-									$album['id'],
-									$album['name'],
-									$album['picture']['data']['url']
+						$albums = array();
+
+						if (array_key_exists('data', $result)) {
+							foreach ($result['data'] as $album) {
+								$albums[] = new Album(
+										$album['id'],
+										$album['name'],
+										$album['picture']['data']['url']
 								);
+							}
 						}
+						
+						$data['contest'] = $currentContest;
+						$data['albums'] = $albums;
+						$data['url'] = base_url();
+					} else {
+						$data['alert'] = 'Vous avez déjà participé au concours !';
 					}
-					
-					$data['contest'] = $currentContest;
-					$data['albums'] = $albums;
-					$data['url'] = base_url();
+
 					$this->load->view('participate', $data);
 				} else {
 					$data['contest'] = $this->ContestService->getNextContest();
@@ -103,8 +110,25 @@
 				$currentContest = $this->ContestService->getCurrentContest();
 
 				if (isset($currentContest)) {
+					$photo = $this->input->post('photo');
+
 					$this->load->model('PhotoService');
-					$currentContest = $this->PhotoService->addPhoto($currentContest->id, $this->input->post('photo'), $_SESSION['facebook-user-id']);
+					$this->PhotoService->addPhoto($currentContest->id, $photo, $_SESSION['facebook-user-id']);
+
+					$this->load->model('UserService');
+					$user = $this->UserService->getUser($_SESSION['facebook-user-id']);
+
+					$data = array(
+						'caption' => $currentContest->name,
+						'description' => 'Je viens de m\'inscrire au concours, venez voter pour moi !',
+						'from' => array('id' => $user->id, 'name' => $user->getFullName()),
+						'link' => appconfig::getAppPageUrl(),
+						'name' => 'PhotoUp',
+						'picture' => $photo
+					);
+
+					$response = $facebook->api('me/feed', 'POST', $data);
+
 					redirect('/vote/index');
 				}
 			}

@@ -1,4 +1,12 @@
-<?php $this->load->view('templates/contest-infos', array('contest' => $contest)); ?>
+<?php
+	$this->load->view('templates/contest-infos', array('contest' => $contest));
+
+	if (isset($alert)) {
+?>		
+	<div class="alert alert-warning">
+		<strong>Attention : </strong><?php echo $alert; ?>
+	</div>
+<?php } else { ?>
 
 <div class="panel panel-info">
 	<div class="panel-heading toggle-slide" data-slide="#albums">
@@ -44,4 +52,6 @@
 			<em>Choisissez un album !</em>
 		</div>
 	</div>
-</div>
+</div
+
+<?php } ?>

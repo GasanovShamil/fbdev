@@ -2,6 +2,7 @@
 	defined('BASEPATH') OR exit('No direct script access allowed');
 
 	require_once(dirname(__FILE__).'/../viewModels/Photo.php');
+	require_once(dirname(__FILE__).'/../viewModels/Participant.php');
 
 	class PhotoService extends CI_Model {
 
@@ -47,6 +48,46 @@
 			}
 
 			return $photos;
+		}
+
+		public function hasParticipated($user, $contest) {
+			$result = $this->db->select('COUNT(photoId) AS hasParticipated')
+								->from($this->table)
+								->where('createdBy ='.$user.' AND contest = '.$contest)
+								->get()
+								->row();
+
+			return $result->hasParticipated > 0;
+		}
+
+		public function getParticipants($contest) {
+			$this->load->model('VoteService');
+
+			$result = $this->db->select('Photos.photoId, Photos.createdBy, Users.firstName, Users.lastName, Users.email, Users.birth, Users.gender')
+					->from($this->table)
+					->join('Users', 'Users.facebookId = Photos.createdBy', 'inner')
+					->where('Photos.contest ='.$contest)
+					->order_by('Photos.createdAt')
+					->get()
+					->result();
+
+			$participants = array();
+			
+			foreach ($result as $row) {
+				$photo = $row->photoId;
+
+				$id = $row->createdBy;
+				$firstName = $row->firstName;
+				$lastName = $row->lastName;
+				$email = $row->email;
+				$birth = $row->birth;
+				$gender = $row->gender;
+				$nbVotes = $this->VoteService->getNbVotes($photo);
+
+				$participants[] = new User($id, $firstName, $lastName, $email, $birth, $gender, $nbVotes);
+			}
+
+			return $participants;
 		}
 	}
 ?>
