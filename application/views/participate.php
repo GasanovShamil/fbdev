@@ -21,10 +21,18 @@
 	</div>
 	<div class="panel-body" id="upload">
 		<div class="box-group" class="row">
-			<form method="post" action="upload" enctype="multipart/form-data">
+			<form action="upload" method="post" enctype="multipart/form-data">
 					Importer une photo sur facebook <input type="file" name="path" /><br />
 					Description <input type="text" name="description" /><br />
 					<input type="submit" value="Ajouter à mes photos" class="button" name="submit">
+			</form>
+			<form action="upload" method="post" enctype="multipart/form-data">
+				Importer une photo sur facebook <input type="file" name="path" /><br />
+				Description <input type="text" name="description" /><br />
+			
+				<button type="submit" class="btn btn-success col-sm-6 col-sm-offset-3">
+					<span class="glyphicon glyphicon-ok"></span> Ajouter à mes photos
+				</button>
 			</form>
 		</div>
 	</div>

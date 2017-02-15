@@ -25,7 +25,7 @@
 							<form action="participate" method="post">
 								<input type="hidden" name="photo" value=<?php quote($photo->url); ?>>
 							
-								<button type="submit" class="btn btn-success col-sm-6 col-sm-offset-3" href=>
+								<button type="submit" class="btn btn-success col-sm-6 col-sm-offset-3">
 									<span class="glyphicon glyphicon-ok"></span> Oui
 								</button>
 							</form>
