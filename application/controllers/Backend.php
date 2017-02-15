@@ -93,7 +93,7 @@
 	        
 			$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-			$fp = fopen('file.csv', 'w');
+			$fp = fopen('/home/flowerpower.fbdev/file.csv', 'w');
 
 			foreach ($row as $val) {
 			    fputcsv($fp, $val);
