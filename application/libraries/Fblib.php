@@ -96,7 +96,7 @@
 
 		public function massPublish($title, $description, $users, $photo) {
 			foreach ($users as $user) {
-				$this->publish($title, $description, $user, $photo)
+				$this->publish($title, $description, $user, $photo);
 			}
 		}
 
