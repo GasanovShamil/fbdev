@@ -15,16 +15,16 @@
 			$this->mail->Password = appconfig::getAdminSenderPassword();
 			$this->mail->SMTPSecure = 'tls';
 			$this->mail->Port = 587;
-			$this->mail->setFrom(appconfig::getAdminSenderLogin(), 'Mailer');
+			$this->mail->setFrom(appconfig::getAdminSenderLogin(), 'Admin PhotoUp');
 			$this->mail->isHTML(true);
 			$this->mail->Subject = '[PhotoUp] Admin Notification';
 		}
 
 		public function sendMail($recipients, $message) {
-			foreach ($variable as $mail) {
+			foreach ($recipients as $mail) {
 				$this->mail->addAddress($mail);
 			}
-			
+
 			$this->mail->Body = $message;
 			$this->mail->send();
 		}
