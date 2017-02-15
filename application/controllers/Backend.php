@@ -1,7 +1,7 @@
 <?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 	require_once(dirname(__FILE__).'/../viewModels/Contest.php');
-	require_once(dirname(__FILE__).'/../libraries/PHPMailer/PHPMailerAutoload.php';
+	require_once(dirname(__FILE__).'/../libraries/PHPMailer/PHPMailerAutoload.php');
 
 	class Backend extends CI_Controller {
 
