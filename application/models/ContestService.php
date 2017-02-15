@@ -131,13 +131,23 @@
 
 		public function dailyCheckCurrentContest() {
 			$yesterday = date('Y-m-d', strtotime('-1 days'));
-			$row = $this->db->select('*')
-							->from($this->table)
-							->where('status = 1 AND endDate = \''.$yesterday.'\'')
-							->get()
-							->row();
+			$row = $this->db->get_where($this->table, 'status = 1 AND endDate = \''.$yesterday.'\'')->row();
 
-			return isset($row) ? $row : null;
+			if (isset($row)) {
+				$contest = new Contest(
+					$row->contestId,
+					$row->name,
+					$row->startDate,
+					$row->endDate,
+					$row->prize,
+					$row->status,
+					$row->multipleParticipation
+				);
+
+				return $contest;
+			}
+
+			return null;
 		}
 
 		public function dailyCheckFutureContest() {
