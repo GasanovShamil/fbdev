@@ -99,7 +99,7 @@
 			foreach($names as $value) {
 			    $header .= $value->name.";";
 			    }
-			}
+			
 			//put rows from your query
 			while($row = $result->fetch_row())  {
 			    $line = '';
