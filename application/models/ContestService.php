@@ -39,7 +39,7 @@
 
 		public function getContests($before = null, $after = null) {
 
-			$where='status != 1';
+			$where='status != 9';
 			if ($before != null && $after != null){
 				$where='endDate <= \''.$before.'\' AND startDate >= \''.$after.'\'';
 			} else if ($after != null){
