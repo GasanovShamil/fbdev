@@ -9,11 +9,10 @@ $(document).ready(function() {
 			success: function (data) {
 				$('#photos .box-group').html(data);
 
-				$( ".toggle-slide" ).click(function() {
+				$( ".confirmation-slide" ).click(function() {
 					var target = $(this).data('slide');
+					$(this).slideToggle();
 					$(target).slideToggle();
-					$(this).find('.glyphicon-plus').toggle();
-					$(this).find('.glyphicon-minus').toggle();
 				});
 			}
 		});

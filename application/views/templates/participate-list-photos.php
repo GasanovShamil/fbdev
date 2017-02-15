@@ -8,11 +8,11 @@
 ?>
 	<div class="col-sm-3 box">
 		<div class="row">
-			<div class="box-content center-div col-sm-12 toggle-slide" data-slide=<?php quote('#confirmation-'.$photo->id); ?>>
+			<div class="box-content center-div col-sm-12 confirmation-slide" data-slide=<?php quote('#confirmation-'.$photo->id); ?>>
 				<img src=<?php quote($photo->url); ?> alt="Photo"/>
 			</div>
 
-			<div id=<?php quote('confirmation-'.$photo->id); ?> class="box-footer col-sm-12">
+			<div id=<?php quote('confirmation-'.$photo->id); ?> class="box-content center-div col-sm-12">
 				<div class="row">
 					<div class="col-sm-12 text-center">
 						<em>Êtes-vous sûr ?</em>
@@ -25,7 +25,7 @@
 					</div>
 
 					<div class="col-sm-2" data-slide=<?php quote('#confirmation-'.$photo->id); ?>>
-						<button class="btn btn-sm btn-danger toggle-slide">
+						<button class="btn btn-sm btn-danger confirmation-slide">
 							<span class="glyphicon glyphicon-remove"></span> Non
 						</button>
 					</div>
