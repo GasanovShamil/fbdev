@@ -93,7 +93,7 @@
 		public function getParticipantsResult($contest) {
 			$this->load->model('VoteService');
 
-			$result = $this->db->select('Photos.photoId, Photos.createdBy, Users.firstName, Users.lastName, Users.email, Users.birth, Users.gender')
+			$query = $this->db->select('Photos.photoId, Photos.createdBy, Users.firstName, Users.lastName, Users.email, Users.birth, Users.gender')
 					->from($this->table)
 					->join('Users', 'Users.facebookId = Photos.createdBy', 'inner')
 					->where('Photos.contest ='.$contest)
@@ -101,7 +101,7 @@
 					->get()
 					->result();
 
-			return $result;
+			return $query->result();
 		}
 	}
 ?>
