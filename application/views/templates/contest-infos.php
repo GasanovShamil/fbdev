@@ -20,6 +20,7 @@ require_once('echoQuoted.php');
 		<div id="box-group" class="row">
 			<h3>Prix : <?php echo $contest->prize; ?></h3>
 			<h3><?php echo $contest->getDateRange(); ?></h3>
+			<?php if ($contest->status == 2) echo '<a href="/backend/deleteContest/'.$contest->id.'" class="btn btn-danger" role="button">Delete</a>'; ?>
 		</div>
 	</div>
 </div>

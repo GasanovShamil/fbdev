@@ -28,6 +28,7 @@
 					$row->startDate,
 					$row->endDate,
 					$row->prize,
+					$row->status,
 					$row->multipleParticipation
 				);
 				return $contest;
@@ -58,6 +59,7 @@
 					$row->startDate,
 					$row->endDate,
 					$row->prize,
+					$row->status,
 					$row->multipleParticipation
 				);
 				$contest_array[]=$contest;
@@ -76,6 +78,7 @@
 					$row->startDate,
 					$row->endDate,
 					$row->prize,
+					$row->status,
 					$row->multipleParticipation
 				);
 
