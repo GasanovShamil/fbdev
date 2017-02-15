@@ -26,14 +26,11 @@
 			$before = $this->input->post('before');
 			$after = $this->input->post('after');
 			$contests = $this->ContestService->getContests($before, $after);
-			if(empty($contests)){
-				echo 'ERROR';
-			}else{
-				foreach ($contests as $contest) {
-					$this->load->view('templates/contest-infos.php', array('contest' => $contest));
-				}
-			$this->load->view('structure/footer.php');
+			foreach ($contests as $contest) {
+				$this->load->view('templates/admin-contest-infos.php', array('contest' => $contest));
 			}
+			$this->load->view('structure/footer.php');
+			
 		}
 
 		public function createContest() {
