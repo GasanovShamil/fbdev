@@ -104,7 +104,7 @@
 				if (isset($currentContest)) {
 					$this->load->model('PhotoService');
 					$currentContest = $this->PhotoService->addPhoto($currentContest->id, $photo, $_SESSION['facebook-user-id']);
-					$this->fblib->jsRedirect(base_url().'vote/index');
+					$this->fblib->jsRedirect('vote/index');
 				}
 			}
 		}
