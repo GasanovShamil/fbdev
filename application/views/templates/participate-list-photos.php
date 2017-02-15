@@ -19,15 +19,19 @@
 					<div class="col-sm-12 text-center">
 						<h1><em>Êtes-vous sûr ?</em></h1>
 					</div>
-					<br />
+
 					<div class="col-sm-12">
 						<div class="row">
-							<a class="btn btn-success col-sm-6 col-sm-offset-3" href=<?php quote($photo->getParticipateUrl()); ?>>
-								<span class="glyphicon glyphicon-ok"></span> Oui
-							</a>
+							<form action="participate" method="post">
+								<input type="hidden" name="photo" value=<?php quote($photo->url); ?>>
+							
+								<button type="submit" class="btn btn-success col-sm-6 col-sm-offset-3" href=>
+									<span class="glyphicon glyphicon-ok"></span> Oui
+								</button>
+							</form>
 						</div>
 					</div>
-					<br />
+
 					<div class="col-sm-12 m-t-10">
 						<div class="row">
 							<button class="btn btn-danger col-sm-6 col-sm-offset-3 confirmation-slide" data-slide=<?php quote($photo->id); ?>>

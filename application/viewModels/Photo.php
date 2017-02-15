@@ -22,10 +22,6 @@
 		public function getUnvoteUrl() {
 			return 'unvote/'.$this->id;
 		}
-
-		public function getParticipateUrl() {
-			return 'participate/'.$this->url;
-		}
 	}
 
 ?>

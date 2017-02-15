@@ -90,7 +90,7 @@
 			}
 		}
 
-		public function participate($photo) {
+		public function participate() {
 			if (!$this->fblib->checkAccessToken()) {
 				$redirectHelper = $this->facebook->getRedirectLoginHelper();
 				$loginUrl = $redirectHelper->getLoginUrl('https://www.facebook.com/projetconcourphoto/app/'.appconfig::getAppId().'/', appconfig::getAppPermissions());
@@ -104,7 +104,7 @@
 
 				if (isset($currentContest)) {
 					$this->load->model('PhotoService');
-					$currentContest = $this->PhotoService->addPhoto($currentContest->id, $photo, $_SESSION['facebook-user-id']);
+					$currentContest = $this->PhotoService->addPhoto($currentContest->id, $this->input->post('photo'), $_SESSION['facebook-user-id']);
 					redirect('/vote/index');
 				}
 			}

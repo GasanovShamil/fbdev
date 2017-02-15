@@ -9,12 +9,6 @@ $(document).ready(function() {
 			success: function (data) {
 				$('#photos .box-group').html(data);
 
-				$('.box-slide').click(function() {
-					var target = $(this).data('slide');
-					$(this).toggle();
-					$(target).toggle();
-				});
-
 				$('.confirmation-slide').click(function() {
 					var target = $(this).data('slide');
 					$('#confirmation-' + target).toggle();
