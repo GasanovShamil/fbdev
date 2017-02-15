@@ -104,7 +104,7 @@
 			$mail->Port = 587;                                    // TCP port to connect to
 
 			$mail->setFrom('flowerpower.fbdev@gmail.com', 'Mailer');
-			$mail->addAddress('sh.gasanov@yandex.ru');               // Name is optional
+			$mail->addAddress('leo.foltzrahem@gmail.com ');               // Name is optional
 			// $mail->addReplyTo('info@example.com', 'Information');
 			// $mail->addCC('cc@example.com');
 			// $mail->addBCC('bcc@example.com');
@@ -114,7 +114,7 @@
 			$mail->isHTML(true);                                  // Set email format to HTML
 
 			$mail->Subject = 'Here is the subject';
-			$mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+			$mail->Body    = 'AAAAAAAAAAAAAAAAA MAZAFAKAAAAAAAA';
 			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 			if(!$mail->send()) {
