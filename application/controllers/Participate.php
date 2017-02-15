@@ -39,7 +39,7 @@
 					$this->load->model('PhotoService');
 					$hasParticipated = $this->PhotoService->hasParticipated($_SESSION['facebook-user-id'], $currentContest->id);
 
-					if (!$currentContest->multiple || !$hasParticipated) {
+					if ($currentContest->multiple || !$hasParticipated) {
 						$response = $this->facebook->get('/me/albums?fields=id,name,picture{url}');
 						$result = $response->getDecodedBody();
 

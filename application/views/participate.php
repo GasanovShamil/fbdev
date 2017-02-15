@@ -1,12 +1,10 @@
-<?php
-	$this->load->view('templates/contest-infos', array('contest' => $contest));
-
-	if (isset($alert)) {
-?>		
+<?php if (isset($alert)) { ?>		
 	<div class="alert alert-warning">
 		<strong>Attention : </strong><?php echo $alert; ?>
 	</div>
-<?php } else { ?>
+<?php } else { 
+	$this->load->view('templates/contest-infos', array('contest' => $contest));
+?>
 
 <div class="panel panel-info">
 	<div class="panel-heading toggle-slide" data-slide="#albums">
