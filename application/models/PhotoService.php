@@ -72,7 +72,7 @@
 					->result();
 
 			$participants = array();
-			
+
 			foreach ($result as $row) {
 				$photo = $row->photoId;
 
@@ -84,7 +84,7 @@
 				$gender = $row->gender;
 				$nbVotes = $this->VoteService->getNbVotes($photo);
 
-				$participants[] = new User($id, $firstName, $lastName, $email, $birth, $gender, $nbVotes);
+				$participants[] = new Participant($id, $firstName, $lastName, $email, $birth, $gender, $nbVotes);
 			}
 
 			return $participants;

@@ -58,9 +58,13 @@
 			return true;
 		}
 
-		public function isAdmin() {
+		public function getAdmins() {
 			$response = $this->facebook-> get('/'.appconfig::getAppId().'/roles?fields=role,user', appconfig::getAppToken());
-			$admins = $response->getDecodedBody();
+			return $response->getDecodedBody();
+		}
+
+		public function isAdmin() {
+			$admins = $this->getAdmins();
 
 			foreach ($admins['data'] as $value) {
 				if ($value['user'] == $_SESSION['facebook-user-id'] && $value['role'] == 'administrators') {
@@ -69,6 +73,19 @@
 			}
 
 			return false;
+		}
+
+		public function publish($title, $description, $user, $name, $photo) {
+			$data = array(
+				'caption' => $title,
+				'description' => $description,
+				'from' => array('id' => $user, 'name' => $name),
+				'link' => appconfig::getAppPageUrl(),
+				'name' => 'PhotoUp',
+				'picture' => $photo
+			);
+
+			return $this->facebook->post('/me/feed', $data);
 		}
 
 		public function jsRedirect($url) {

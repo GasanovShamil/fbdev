@@ -118,16 +118,13 @@
 					$this->load->model('UserService');
 					$user = $this->UserService->getUser($_SESSION['facebook-user-id']);
 
-					$data = array(
-						'caption' => $currentContest->name,
-						'description' => 'Je viens de m\'inscrire au concours, venez voter pour moi !',
-						'from' => array('id' => $user->facebookId, 'name' => $user->getFullName()),
-						'link' => appconfig::getAppPageUrl(),
-						'name' => 'PhotoUp',
-						'picture' => $photo
+					$response = $this->fblib->publish(
+						$currentContest->name,
+						'Je viens de m\'inscrire au concours, venez voter pour moi !',
+						$user->facebookId,
+						$user->getFullName(),
+						$photo
 					);
-
-					$response = $this->facebook->post('/me/feed', $data);
 
 					redirect('/vote/index');
 				}
