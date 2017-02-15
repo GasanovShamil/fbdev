@@ -101,7 +101,7 @@
 					->get()
 					->result();
 
-			return $result;
+			return $query;
 		}
 	}
 ?>
