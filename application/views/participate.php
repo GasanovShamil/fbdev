@@ -22,25 +22,9 @@
 	<div class="panel-body" id="upload">
 		<div class="box-group" class="row">
 			<form method="post" action="/participate/upload" enctype="multipart/form-data">
-				<div class="row">
-					<div class="col-sm-4">
-						Importer une photo sur facebook
-					</div>
-					<div class="col-sm-8">
-						<input type="file" name="path" />
-					</div>
-
-					<div class="col-sm-4">
-						Description
-					</div>
-					<div class="col-sm-8">
-						<input type="text" name="description" />
-					</div>
-
-					<div class="col-md-12" >
-						<input type="submit" value="Ajouter à mes photos" class="button" name="submit">
-					</div>
-				</div>
+					Importer une photo sur facebook <input type="file" name="path" /><br />
+					Description <input type="text" name="description" /><br />
+					<input type="submit" value="Ajouter à mes photos" class="button" name="submit">
 			</form>
 		</div>
 	</div>
