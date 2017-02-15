@@ -87,6 +87,7 @@
 		public function exportData($contestId){
 			$this->load->model('PhotoService');
 			$this->load->dbutil();
+			$this->load->helper('file');
 			
 			$result = $this->PhotoService->getParticipantsResult($contestId);
 			var_dump($result);

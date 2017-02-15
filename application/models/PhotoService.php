@@ -94,14 +94,12 @@
 			$this->load->model('VoteService');
 
 			$query = $this->db->select('Photos.photoId, Photos.createdBy, Users.firstName, Users.lastName, Users.email, Users.birth, Users.gender')
-					->from($this->table)
 					->join('Users', 'Users.facebookId = Photos.createdBy', 'inner')
 					->where('Photos.contest ='.$contest)
 					->order_by('Photos.createdAt')
-					->get()
-					->result();
+					->get($this->table);
 
-			return $query->result();
+			return $query;
 		}
 	}
 ?>
