@@ -17,6 +17,47 @@
 		public $createdAt;
 		public $createdBy;
 
+		public function addContest($name, $startDate, $endDate, $prize, $multipleParticipation, $createdBy) {
+			if (!$this->checkDates($startDate, $endDate, 1)){
+				$this->db->update($this->table, array('status' => 0), 'status = 1');
+				$this->status=1;
+			} else {
+				$this->status=2;
+			}
+
+			$this->name = $name;
+			$this->startDate = $startDate;
+			$this->endDate = $endDate;
+			$this->prize = $prize;
+			$this->multipleParticipation = $multipleParticipation;
+			$this->createdAt = date('Y-m-d');
+			$this->createdBy = $createdBy;
+
+			$this->db->insert($this->table, $this);
+		}
+
+		public function updateContest($contestId, $name, $startDate, $endDate, $prize, $multipleParticipation, $createdBy) {
+			$this->contestId = $contestId;
+			$this->name = $name;
+			$this->startDate = $startDate;
+			$this->endDate = $endDate;
+			$this->prize = $prize;
+			$this->status = 1;
+			$this->multipleParticipation = $multipleParticipation;
+			$this->createdAt = date('Y-m-d');
+			$this->createdBy = $createdBy;
+
+			$this->db->update($this->table, $this, 'contestId = '.$contestId);
+		}
+
+		public function deleteContest($contestId) {
+			$this->db->delete($this->table, 'contestId = '.$contestId);
+		}
+
+		public function stopContest($contestId){
+			$this->db->update($this->table, array('status' => 0), 'contestId = '.$contestId);
+		}
+
 		public function getCurrentContest() {
 			$query = $this->db->get_where($this->table, 'status = 1');
 			$row = $query->row();
@@ -88,66 +129,20 @@
 			return null;
 		}
 
-		// public function getContest($contestId) {
-		// 	$query = $this->db->get_where($this->table, 'contestId = '.$contestId);
-		// 	$row = $query->row();
+		public function dailyCheckCurrentContest() {
+			$yesterday = date('Y-m-d', strtotime('-1 days'));
+			$row = $this->db->select('*')
+							->from($this->table)
+							->where('status = 1 AND endDate = \''.$yesterday.'\'')
+							->get()
+							->row();
 
-		// 	if (isset($row)) {
-		// 		$contest = new Contest(
-		// 			$row->contestId,
-		// 			$row->startDate,
-		// 			$row->endDate,
-		// 			$row->prize,
-		// 			$row->status,
-		// 			$row->createdAt,
-		// 			$row->createdBy
-		// 		);
-
-		// 		return $contest;
-		// 	}
-
-		// 	return null;
-		// }
-
-		public function addContest($name, $startDate, $endDate, $prize, $multipleParticipation, $createdBy) {
-			if (!$this->checkDates($startDate, $endDate, 1)){
-				$this->db->update($this->table, array('status' => 0), 'status = 1');
-				$this->status=1;
-			} else {
-				$this->status=2;
-			}
-
-			$this->name = $name;
-			$this->startDate = $startDate;
-			$this->endDate = $endDate;
-			$this->prize = $prize;
-			$this->multipleParticipation = $multipleParticipation;
-			$this->createdAt = date('Y-m-d');
-			$this->createdBy = $createdBy;
-
-			$this->db->insert($this->table, $this);
+			return isset($row) ? $row : null;
 		}
 
-		public function updateContest($contestId, $name, $startDate, $endDate, $prize, $multipleParticipation, $createdBy) {
-			$this->contestId = $contestId;
-			$this->name = $name;
-			$this->startDate = $startDate;
-			$this->endDate = $endDate;
-			$this->prize = $prize;
-			$this->status = 1;
-			$this->multipleParticipation = $multipleParticipation;
-			$this->createdAt = date('Y-m-d');
-			$this->createdBy = $createdBy;
-
-			$this->db->update($this->table, $this, 'contestId = '.$contestId);
-		}
-
-		public function deleteContest($contestId) {
-			$this->db->delete($this->table, 'contestId = '.$contestId);
-		}
-
-		public function stopContest($contestId){
-			$this->db->update($this->table, array('status' => 0), 'contestId = '.$contestId);
+		public function dailyCheckFutureContest() {
+			$today = date('Y-m-d');
+			$this->db->update($this->table, array('status' => 1), 'status = 2 AND startDate = \''.$today.'\'');
 		}
 
 		public function checkDates($start, $end, $status){

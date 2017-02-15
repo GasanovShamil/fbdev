@@ -15,27 +15,6 @@
 
 		protected $table = "Users";
 
-		public function getUser($facebookId) {
-			$query = $this->db->get_where($this->table, 'facebookId = '.$facebookId);
-			$row = $query->row();
-
-			if (isset($row)) {
-				$user = new User(
-					$row->facebookId,
-					$row->firstName,
-					$row->lastName,
-					$row->email,
-					$row->birth,
-					$row->gender,
-					$row->token
-				);
-
-				return $user;
-			}
-
-			return null;
-		}
-
 		public function addUser($facebookId, $firstName, $lastName, $email, $birth, $gender, $token) {
 			$this->facebookId = $facebookId;
 			$this->firstName = $firstName;
@@ -60,8 +39,25 @@
 			$this->db->update($this->table, $this, 'facebookid = '.$this->facebookId);
 		}
 
-		// public function deleteUser($facebookId) {
-		// 	$this->db->delete($this->table, 'facebookid = '.$facebookId);
-		// }
+		public function getUser($facebookId) {
+			$query = $this->db->get_where($this->table, 'facebookId = '.$facebookId);
+			$row = $query->row();
+
+			if (isset($row)) {
+				$user = new User(
+					$row->facebookId,
+					$row->firstName,
+					$row->lastName,
+					$row->email,
+					$row->birth,
+					$row->gender,
+					$row->token
+				);
+
+				return $user;
+			}
+
+			return null;
+		}
 	}
 ?>

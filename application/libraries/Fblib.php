@@ -75,17 +75,29 @@
 			return false;
 		}
 
-		public function publish($title, $description, $user, $name, $photo) {
+		public function publish($title, $description, $user, $photo, $self = false) {
+			$id = $user->facebookId;
+			$name = $user->getFullName();
+			$token = $user->token;
+
 			$data = array(
 				'caption' => $title,
 				'description' => $description,
-				'from' => array('id' => $user, 'name' => $name),
-				'link' => appconfig::getAppPageUrl(),
-				'name' => 'PhotoUp',
+				'from' => array('id' => $id, 'name' => $name),
+				'link' => base_url(),
+				'name' => 'PhotoUp - Concours PARDON MAMAN',
 				'picture' => $photo
 			);
 
-			return $this->facebook->post('/me/feed', $data);
+			return $self ?
+				$this->facebook->post('/me/feed', $data) :
+				$this->facebook->post('/me/feed', $data, $token) ;
+		}
+
+		public function massPublish($title, $description, $users, $photo) {
+			foreach ($users as $user) {
+				$this->publish($title, $description, $user, $photo)
+			}
 		}
 
 		public function jsRedirect($url) {

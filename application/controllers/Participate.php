@@ -121,9 +121,9 @@
 					$response = $this->fblib->publish(
 						$currentContest->name,
 						'Je viens de m\'inscrire au concours, venez voter pour moi !',
-						$user->facebookId,
-						$user->getFullName(),
-						$photo
+						$user,
+						$photo,
+						true
 					);
 
 					redirect('/vote/index');
