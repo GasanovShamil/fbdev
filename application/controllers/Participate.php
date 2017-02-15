@@ -131,7 +131,7 @@
 			}
 		}
 
-		public function upload() {
+		public function uploadPhoto() {
 			if (!$this->fblib->checkAccessToken()) {
 				$redirectHelper = $this->facebook->getRedirectLoginHelper();
 				$loginUrl = $redirectHelper->getLoginUrl('https://www.facebook.com/projetconcourphoto/app/'.appconfig::getAppId().'/', appconfig::getAppPermissions());

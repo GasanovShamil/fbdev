@@ -21,7 +21,7 @@
 	</div>
 	<div class="panel-body" id="upload">
 		<div class="box-group" class="row">
-			<form action="upload" method="post" enctype="multipart/form-data">
+			<form action="uploadPhoto" method="post" enctype="multipart/form-data">
 				Importer une photo sur facebook <input type="file" name="path" /><br />
 				Description <input type="text" name="description" /><br />
 			
