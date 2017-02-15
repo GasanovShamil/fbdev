@@ -86,22 +86,67 @@
 
 		public function exportData($contestId){
 			$this->load->model('PhotoService');
-			$this->load->dbutil();
-			$this->load->helper('file');
-			
+			$count = 0;
+			$header = "";
+			$data = "";
+			//query
 			$result = $this->PhotoService->getParticipantsResult($contestId);
-			var_dump($result);
-	        $delimiter = ";";
-	        $newline = "\r\n";
-	        $csv = $this->dbutil->csv_from_result($result, $delimiter, $newline);
-	        if (!write_file('test.csv', $csv))
-	        {
-	        echo 'Un problème est survenu lors de la génération du fichier CSV';
-	        }
-	        else
-	        {
-	        echo 'La liste des concours a bien été exportée';
-	        }
+			//count fields
+			$count = $result->field_count;
+			//columns names
+			$names = $result->fetch_fields();
+			//put column names into header
+			foreach($names as $value) {
+			    $header .= $value->name.";";
+			    }
+			}
+			//put rows from your query
+			while($row = $result->fetch_row())  {
+			    $line = '';
+			    foreach($row as $value)       {
+			        if(!isset($value) || $value == "")  {
+			            $value = ";"; //in this case, ";" separates columns
+			    } else {
+			            $value = str_replace('"', '""', $value);
+			            $value = '"' . $value . '"' . ";"; //if you change the separator before, change this ";" too
+			        }
+			        $line .= $value;
+			    } //end foreach
+			    $data .= trim($line)."\n";
+			} //end while
+			//avoiding problems with data that includes "\r"
+			$data = str_replace("\r", "", $data);
+			//if empty query
+			if ($data == "") {
+			    $data = "\nno matching records found\n";
+			}
+			$count = $result->field_count;
+
+			//Download csv file
+			header("Content-type: application/octet-stream");
+			header("Content-Disposition: attachment; filename=FILENAME.csv");
+			header("Pragma: no-cache");
+			header("Expires: 0");
+			echo $header."\n".$data."\n";
+
+			
+			// $this->load->model('PhotoService');
+			// $this->load->dbutil();
+			// $this->load->helper('file');
+			
+			// $result = $this->PhotoService->getParticipantsResult($contestId);
+			// var_dump($result);
+	  //       $delimiter = ";";
+	  //       $newline = "\r\n";
+	  //       $csv = $this->dbutil->csv_from_result($result, $delimiter, $newline);
+	  //       if (!write_file('test.csv', $csv))
+	  //       {
+	  //       echo 'Un problème est survenu lors de la génération du fichier CSV';
+	  //       }
+	  //       else
+	  //       {
+	  //       echo 'La liste des concours a bien été exportée';
+	  //       }
 		}
 
 		public function sendMail($to,$message){

@@ -98,9 +98,10 @@
 					->join('Users', 'Users.facebookId = Photos.createdBy', 'inner')
 					->where('Photos.contest ='.$contest)
 					->order_by('Photos.createdAt')
-					->get();
+					->get()
+					->result();
 
-			return $query;
+			return $result;
 		}
 	}
 ?>
