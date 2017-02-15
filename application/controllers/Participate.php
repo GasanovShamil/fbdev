@@ -130,4 +130,43 @@
 				}
 			}
 		}
+
+		public function upload() {
+			if (!$this->fblib->checkAccessToken()) {
+				$redirectHelper = $this->facebook->getRedirectLoginHelper();
+				$loginUrl = $redirectHelper->getLoginUrl('https://www.facebook.com/projetconcourphoto/app/'.appconfig::getAppId().'/', appconfig::getAppPermissions());
+				$this->fblib->jsRedirect($loginUrl);
+			} else if (!$this->fblib->checkPermissions()) {
+				$rerequestUrl = $_SESSION['rerequest-url'];
+				$this->fblib->jsRedirect($rerequestUrl);
+			} else {
+				$path = $this->input->post('path');
+				$description = $this->input->post('description');
+				if ($description == null) $description = 'PhotoUp - Concours PARDON MAMAN';
+
+
+				if ($path != null) {
+					$data = [
+						'message' => $description,
+						'source' => $fb->fileToUpload($path)
+					];
+
+					try {
+						$response = $fb->post('/me/photos', $data);
+						$node = $response->getGraphNode();
+						$photo = $node['id'];
+
+						$response = $this->facebook->get('/'.$photo.'?fields=picture');
+						$result = $response->getDecodedBody();
+
+						$_POST['photo'] = $result['picture'];
+
+						redirect('/participate/participate');
+					} catch(Exception $e) {
+						$data['test'] = 'Un problème est survenu.';
+						$this->load->view('showtest.php', $data);
+					}
+				}
+			}
+		}
 	}
