@@ -146,6 +146,10 @@
 			$this->db->delete($this->table, 'contestId = '.$contestId);
 		}
 
+		public function stopContest($contestId){
+			$this->db->update($this->table, array('status' => 0), 'contestId = '.$contestId);
+		}
+
 		public function checkDates($start, $end, $status){
 			$query = $this->db->get_where($this->table, 'status ='.$status);
 			$result = $query->result();

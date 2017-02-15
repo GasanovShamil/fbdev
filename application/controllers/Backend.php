@@ -79,6 +79,14 @@
 			$this->load->view('structure/footer.php');
 		}
 
+		public function stopContest($contestId){
+			$this->load->model('ContestService');
+			$this->ContestService->stopContest($contestId);
+			$this->load->view('structure/admin_header_search.php');
+			$this->load->view('admin/form_success.php');
+			$this->load->view('structure/footer.php');
+		}
+
 		public function getStats() {
 
 		}
