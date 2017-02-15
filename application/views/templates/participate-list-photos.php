@@ -12,7 +12,7 @@
 				<img src=<?php quote($photo->url); ?> alt="Photo"/>
 			</div>
 
-			<div id=<?php quote('confirmation-'.$photo->id); ?> class="box-content center-div col-sm-12">
+			<div class="box-content col-sm-12" id=<?php quote('confirmation-'.$photo->id); ?>>
 				<div class="row">
 					<div class="col-sm-12 text-center">
 						<em>Êtes-vous sûr ?</em>
