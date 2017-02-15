@@ -42,16 +42,16 @@
 		}
 
 		public function getMaxPhotoFromUser($user, $contest) {
-			$result = $this->db->select('Votes.photo, Photos.facebookUrl, COUNT(Votes.user) AS nbVotes')
+			$row = $this->db->select('Votes.photo, Photos.facebookUrl, COUNT(Votes.user) AS nbVotes')
 								->from($this->table)
 								->join('Photos', 'Votes.photo = Photos.photoId', 'inner')
 								->where('Photos.contest ='.$contest)
-								->group_by('facebookUrl')
+								->group_by('Votes.photo')
 								->order_by('nbVotes DESC')
 								->get()
 								->row();
 
-			return $result->facebookUrl;
+			return $row->facebookUrl;
 		}
 	}
 ?>

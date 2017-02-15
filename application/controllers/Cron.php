@@ -33,17 +33,25 @@
 					if ($participant->nbVotes == $max) {
 						$winners[] = $participant->getFullName();
 					} else if ($participant->nbVotes > $max) {
-						$winners = array($participant->getFullName());
+						$winners = array();
+						$winners[] = $participant->getFullName();
 						$max = $participant->nbVotes;
 					}
 				}
+
+				$data['test'] = $participants;
+				$this->load->view('showtest.php', $data);
+
+				$data['test'] = $winners;
+				$this->load->view('showtest.php', $data);
+
+				return;
 
 				if (count($winners) > 1) {
 					$winningPhoto = appconfig::getAppImage();
 				} else {
 					$this->load->model('VoteService');
 					$winningPhoto = $this->VoteService->getMaxPhotoFromUser($winners[0]->facebookId, $contest->id);
-					$winningPhoto = appconfig::getAppImage();
 				}
 
 				$this->fblib->massPublish(
@@ -59,7 +67,7 @@
 
 				foreach ($admins['data'] as $value) {
 					if ($value['role'] == 'administrators') {
-						$admin = $this->userService->getUser($value['user']);
+						$admin = $this->UserService->getUser($value['user']);
 
 						if ($admin != null) {
 							$recipients[] = $admin->email;
@@ -75,6 +83,8 @@
 				$result .= '<br>Nombre participant(s) : '.count($participants);
 
 				$this->maillib->sendMail($recipients, $result);
+
+				$this->ContestService->stopContest($contest->id);
 			}
 
 			$this->ContestService->dailyCheckFutureContest();			
