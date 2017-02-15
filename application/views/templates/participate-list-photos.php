@@ -9,8 +9,8 @@
 	<div class="col-sm-3 box">
 		<div class="row">
 			<div class="box-content center-div col-sm-12 confirmation-slide slide-open" 
-			data-slide=<?php quote('#confirmation-'.$photo->id); ?> 
-			id=<?php quote($photo->id); ?>>
+			data-slide=<?php quote($photo->id); ?> 
+			id=<?php quote('photo-'.$photo->id); ?>>
 				<img src=<?php quote($photo->url); ?> alt="Photo"/>
 			</div>
 
