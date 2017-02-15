@@ -88,7 +88,7 @@
 			$this->load->model('PhotoService');
 			$this->load->dbutil();
 			
-			$result = $this->PhotoService->getParticipants($contestId);
+			$result = $this->PhotoService->getParticipantsResult($contestId);
 			
 	        $delimiter = ";";
 	        $newline = "\r\n";
