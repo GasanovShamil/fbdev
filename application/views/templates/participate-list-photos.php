@@ -8,13 +8,13 @@
 ?>
 	<div class="col-sm-3 box">
 		<div class="row">
-			<div class="box-content center-div col-sm-12 box-slide" 
+			<div class="box-content center-div col-sm-12 confirmation-slide slide-open" 
 			data-slide=<?php quote('#confirmation-'.$photo->id); ?> 
-			id=<?php quote('photo-'.$photo->id); ?>>
+			id=<?php quote($photo->id); ?>>
 				<img src=<?php quote($photo->url); ?> alt="Photo"/>
 			</div>
 
-			<div class="box-content col-sm-12" id=<?php quote('confirmation-'.$photo->id); ?>>
+			<div class="box-content col-sm-12 slide-close" id=<?php quote('confirmation-'.$photo->id); ?>>
 				<div class="row">
 					<div class="col-sm-12 text-center">
 						<h1><em>Êtes-vous sûr ?</em></h1>
