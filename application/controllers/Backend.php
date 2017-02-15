@@ -89,7 +89,7 @@
 			$this->load->dbutil();
 			
 			$result = $this->PhotoService->getParticipantsResult($contestId);
-			
+			var_dump($result);
 	        $delimiter = ";";
 	        $newline = "\r\n";
 	        $csv = $this->dbutil->csv_from_result($result, $delimiter, $newline);
