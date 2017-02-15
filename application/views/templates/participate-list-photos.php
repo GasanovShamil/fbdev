@@ -17,16 +17,16 @@
 			<div class="box-content col-sm-12" id=<?php quote('confirmation-'.$photo->id); ?>>
 				<div class="row">
 					<div class="col-sm-12 text-center">
-						<em>Êtes-vous sûr ?</em>
+						<h1><em>Êtes-vous sûr ?</em></h1>
 					</div>
-
-					<div class="col-sm-12">
+					<br />
+					<div class="col-sm-12 text-center">
 						<a class="btn btn-sm btn-success" href=<?php quote($photo->getParticipateUrl()); ?>>
 							<span class="glyphicon glyphicon-ok"></span> Oui
 						</a>
 					</div>
-
-					<div class="col-sm-12">
+					<br />
+					<div class="col-sm-12 text-center">
 						<button class="btn btn-sm btn-danger confirmation-slide" data-slide=<?php quote($photo->id); ?>>
 							<span class="glyphicon glyphicon-remove"></span> Non
 						</button>

@@ -9,18 +9,6 @@ $(document).ready(function() {
 			success: function (data) {
 				$('#photos .box-group').html(data);
 
-				// $('.box-slide').click(function() {
-				// 	var target = $(this).data('slide');
-				// 	$(this).slideToggle();
-				// 	$(target).slideToggle();
-				// });
-
-				// $('.confirmation-slide').click(function() {
-				// 	var target = $(this).data('slide');
-				// 	$('#confirmation-' + target).slideToggle();
-				// 	$('#photo-' + target).slideToggle();
-				// });
-
 				$('.box-slide').click(function() {
 					var target = $(this).data('slide');
 					$(this).toggle();

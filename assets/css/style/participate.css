@@ -5,3 +5,12 @@
 div[id*="confirmation-"] {
 	display: none;
 }
+
+.box-content h1 {
+	color: #4267b2;
+	font-family: 'gotham_bookregular','Roboto', sans-serif;
+	font-size: 15px;
+	font-weight: 600;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
