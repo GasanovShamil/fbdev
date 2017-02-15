@@ -91,12 +91,10 @@
 			
 			$result = $this->PhotoService->getParticipantsResult($contestId);
 	        
-			$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+			$fp = fopen('/home/flowerpower.fbdev/tmp/file.csv', 'w');
 
-			$fp = fopen('/home/flowerpower.fbdev/file.csv', 'w');
-
-			foreach ($row as $val) {
-			    fputcsv($fp, $val);
+			foreach ($result as $row) {
+			    fputcsv($fp, $row);
 			}
 
 			fclose($fp);
