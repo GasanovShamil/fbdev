@@ -30,7 +30,6 @@
 				$this->load->view('templates/admin-contest-infos.php', array('contest' => $contest));
 			}
 			$this->load->view('structure/footer.php');
-			
 		}
 
 		public function createContest() {
@@ -84,6 +83,21 @@
 			$this->load->view('structure/footer.php');
 		}
 
+		public function exportData($contestId){
+
+		}
+
+		public function sendMail(){
+			$to      = 'gasanov.sh@gmail.com';
+			$subject = 'the subject';
+			$message = 'hello';
+			$headers = 'From: webmaster@example.com' . "\r\n" .
+    					'Reply-To: webmaster@example.com' . "\r\n" .
+    					'X-Mailer: PHP/' . phpversion();
+
+			mail($to, $subject, $message, $headers);
+		}
+
 		public function getStats() {
 
 		}
@@ -109,4 +123,6 @@
 				return true;
 			}
 		}
+
+
 	}

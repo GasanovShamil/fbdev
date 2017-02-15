@@ -22,8 +22,13 @@ require_once('echoQuoted.php');
 			<h3><?php echo $contest->getDateRange(); ?></h3>
 			<?php if ($contest->status == 2) {
 				echo '<a href="/backend/deleteContest/'.$contest->id.'" class="btn btn-danger" role="button">Delete</a>'; 
-			}else{
-				if ($contest->status == 1) echo '<a href="/backend/stopContest/'.$contest->id.'" class="btn btn-warning" role="button">Stop</a>'; 
+			}
+			if ($contest->status == 0) {
+				echo '<a href="/backend/exportData/'.$contest->id.'" class="btn btn-warning" role="button">Export</a>'; 
+			}
+			if ($contest->status == 1){
+				echo '<a href="/backend/exportData/'.$contest->id.'" class="btn btn-warning" role="button">Export</a>';
+				echo '<a href="/backend/stopContest/'.$contest->id.'" class="btn btn-warning" role="button">Stop</a>'; 
 			}
 			?>
 		</div>
