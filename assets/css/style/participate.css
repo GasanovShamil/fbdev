@@ -12,7 +12,7 @@ div[id*="confirmation-"] {
 	font-size: 16px;
 	font-weight: 600;
 	padding-top: 15px;
-	padding-bottom: 15px;
+	padding-bottom: 5px;
 }
 
 .row.text-center .btn {

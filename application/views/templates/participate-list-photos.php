@@ -28,7 +28,7 @@
 						</div>
 					</div>
 					<br />
-					<div class="col-sm-12">
+					<div class="col-sm-12 m-t-10">
 						<div class="row">
 							<button class="btn btn-danger col-sm-6 col-sm-offset-3 confirmation-slide" data-slide=<?php quote($photo->id); ?>>
 								<span class="glyphicon glyphicon-remove"></span> Non
