@@ -9,16 +9,16 @@ $(document).ready(function() {
 			success: function (data) {
 				$('#photos .box-group').html(data);
 
-				$( ".box-slide" ).click(function() {
+				$('.box-slide').click(function() {
 					var target = $(this).data('slide');
 					$(this).slideToggle();
 					$(target).slideToggle();
 				});
 
-				$( ".confirmation-slide" ).click(function() {
+				$('.confirmation-slide').click(function() {
 					var target = $(this).data('slide');
-					$('#photo-' + target).slideToggle();
 					$('#confirmation-' + target).slideToggle();
+					$('#photo-' + target).slideToggle();
 				});
 			}
 		});
