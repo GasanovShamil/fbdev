@@ -27,7 +27,7 @@ require_once('echoQuoted.php');
 				echo '<a href="/backend/exportData/'.$contest->id.'" class="btn btn-warning" role="button">Export</a>'; 
 			}
 			if ($contest->status == 1){
-				echo '<a href="/backend/exportData/'.$contest->id.'" class="btn btn-warning" role="button">Export</a>';
+				echo '<a href="/backend/sendMail" class="btn btn-warning" role="button">Export</a>';
 				echo '<a href="/backend/stopContest/'.$contest->id.'" class="btn btn-warning" role="button">Stop</a>'; 
 			}
 			?>
