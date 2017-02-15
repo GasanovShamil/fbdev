@@ -85,7 +85,22 @@
 		}
 
 		public function exportData($contestId){
+			$this->load->model('PhotoService');
+			$this->load->dbutil();
 			
+			$result = $this->PhotoService->getParticipants($contestId);
+			
+	        $delimiter = ";";
+	        $newline = "\r\n";
+	        $csv = $this->dbutil->csv_from_result($result, $delimiter, $newline);
+	        if (!write_file('test.csv', $csv))
+	        {
+	        echo 'Un problème est survenu lors de la génération du fichier CSV';
+	        }
+	        else
+	        {
+	        echo 'La liste des concours a bien été exportée';
+	        }
 		}
 
 		public function sendMail($to,$message){
