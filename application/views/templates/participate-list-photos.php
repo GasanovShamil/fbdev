@@ -21,15 +21,19 @@
 					</div>
 					<br />
 					<div class="col-sm-12 text-center">
-						<a class="btn btn-sm btn-success" href=<?php quote($photo->getParticipateUrl()); ?>>
-							<span class="glyphicon glyphicon-ok"></span> Oui
-						</a>
+						<div class="row">
+							<a class="btn btn-sm btn-success col-sm-4" href=<?php quote($photo->getParticipateUrl()); ?>>
+								<span class="glyphicon glyphicon-ok"></span> Oui
+							</a>
+						</div>
 					</div>
 					<br />
 					<div class="col-sm-12 text-center">
-						<button class="btn btn-sm btn-danger confirmation-slide" data-slide=<?php quote($photo->id); ?>>
-							<span class="glyphicon glyphicon-remove"></span> Non
-						</button>
+						<div class="row">
+							<button class="btn btn-sm btn-danger col-sm-4 confirmation-slide" data-slide=<?php quote($photo->id); ?>>
+								<span class="glyphicon glyphicon-remove"></span> Non
+							</button>
+						</div>
 					</div>
 				</div>
 		</div>
