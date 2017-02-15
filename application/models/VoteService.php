@@ -40,5 +40,7 @@
 
 			return $result->hasVoted;
 		}
+
+		public function 
 	}
 ?>

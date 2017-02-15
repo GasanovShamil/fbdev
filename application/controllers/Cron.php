@@ -14,6 +14,8 @@
 
 			$this->load->library('fblib');
 			$this->facebook = $this->fblib->getFacebook();
+
+			$this->load->library('maillib');
 		}
 
 		public function index() {
@@ -31,7 +33,24 @@
 					$winningPhoto
 				);
 
-				//SEND MAIL
+				$this->load->model('UserService');
+				$admins = $this->fblib->getAdmins();
+				$recipients = array();
+
+				foreach ($admins['data'] as $value) {
+					if ($value['role'] == 'administrators') {
+						$admin = $this->userService->getUser($value['user']);
+
+						if ($admin != null) {
+							$recipients[] = $admin->email;
+						}
+					}
+				}
+
+				$result = '';
+
+
+				$this->maillib->sendMail($recipients, $result);
 			}
 
 			$this->ContestService->dailyCheckFutureContest();			

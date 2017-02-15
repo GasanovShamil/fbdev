@@ -16,8 +16,12 @@
 			return ['email', 'user_likes', 'user_photos', 'user_birthday', 'user_friends', 'publish_actions'];
 		}
 
-		public static function getAppPageUrl() {
-			return 'https://www.facebook.com/projetconcourphoto/app/'.self::getAppId().'/';
+		public static function getAdminSenderLogin() {
+			return 'flowerpower.fbdev@gmail.com';
+		}
+
+		public static function getAdminSenderPassword() {
+			return 'flowerpower';
 		}
 	}
 ?>

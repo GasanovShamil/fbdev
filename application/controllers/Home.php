@@ -71,31 +71,4 @@
 				$this->load->view('structure/footer');
 			}
 		}
-
-		// public function callback() {
-		// 	try {
-		// 		$redirectHelper = $this->facebook->getRedirectLoginHelper();
-		// 		$accessToken = $redirectHelper->getAccessToken();
-
-		// 		// $response = $this->facebook->get("/me?fields=id", $accessToken);
-		// 		// $result = $response->getGraphUser();
-		// 		// $facebookId = $result['id'];
-		// 	} catch(Facebook\Exceptions\FacebookResponseException $e) {
-		// 		$data['message'] = 'Graph returned an error: ' . $e->getMessage() . '<div>' . $this->input->get('state') . '</div>';
-		// 		$this->load->view('errors/access.php', $data);
-		// 	} catch(Facebook\Exceptions\FacebookSDKException $e) {
-		// 		$data['message'] = 'Facebook SDK returned an error: '  . '<div>' . $this->input->get('state') . '</div>';
-		// 		$this->load->view('errors/access.php', $data);
-		// 	}
-
-		// 	if (isset($accessToken))
-		// 		$_SESSION['facebook-access-token'] = (string) $accessToken;
-
-		// 	// if (isset($facebookId))
-		// 	// 	$_SESSION['facebook-user-id'] = (string) $facebookId;
-				
-		// 	//redirect('https://www.facebook.com/projetconcourphoto/app/1158724760874896/', 'refresh');
-		// 	//redirect('/', 'refresh');
-		// 	$this->index();
-		// }
 	}
