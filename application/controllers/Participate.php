@@ -121,7 +121,7 @@
 					$data = array(
 						'caption' => $currentContest->name,
 						'description' => 'Je viens de m\'inscrire au concours, venez voter pour moi !',
-						'from' => array('id' => $user->id, 'name' => $user->getFullName()),
+						'from' => array('id' => $user->facebookId, 'name' => $user->getFullName()),
 						'link' => appconfig::getAppPageUrl(),
 						'name' => 'PhotoUp',
 						'picture' => $photo
