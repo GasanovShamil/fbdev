@@ -36,6 +36,7 @@
 				$this->load->view('structure/header', $data);
 
 				if (isset($currentContest)) {
+					//CHECK IF MULTIPLE
 					$response = $this->facebook->get('/me/albums?fields=id,name,picture{url}');
 					$result = $response->getDecodedBody();
 
@@ -104,7 +105,8 @@
 				if (isset($currentContest)) {
 					$this->load->model('PhotoService');
 					$currentContest = $this->PhotoService->addPhoto($currentContest->id, $photo, $_SESSION['facebook-user-id']);
-					$this->fblib->jsRedirect('/vote/index');
+					// $this->fblib->jsRedirect('/vote/index');
+					redirect('/vote/index');
 				}
 			}
 		}
