@@ -26,15 +26,25 @@
 				$this->load->model('PhotoService');
 				$participants = $this->PhotoService->getParticipants($contest->id);
 
-				$winners = array();
+				$winnersId = array();
+				$winnersName = array();
+				$winnersEmail = array();
 				$max = 0;
 
 				foreach ($participants as $participant) {
 					if ($participant->nbVotes == $max) {
-						$winners[] = $participant->getFullName();
+						$winnersId[] = $participant->facebookId;
+						$winnersName[] = $participant->getFullName();
+						$winnersEmail[] = $participant->email;
 					} else if ($participant->nbVotes > $max) {
-						$winners = array();
-						$winners[] = $participant->getFullName();
+						$winnersId = array();
+						$winnersName = array();
+						$winnersEmail = array();
+
+						$winnersId[] = $participant->facebookId;
+						$winnersName[] = $participant->getFullName();
+						$winnersEmail[] = $participant->email;
+
 						$max = $participant->nbVotes;
 					}
 				}
@@ -47,17 +57,17 @@
 
 				return;
 
-				if (count($winners) > 1) {
+				if (count($winnersId) > 1) {
 					$winningPhoto = appconfig::getAppImage();
 				} else {
 					$this->load->model('VoteService');
-					$winningPhoto = $this->VoteService->getMaxPhotoFromUser($winners[0]->facebookId, $contest->id);
+					$winningPhoto = $this->VoteService->getMaxPhotoFromUser($winnersId[0], $contest->id);
 				}
 
 				$this->fblib->massPublish(
 					$contest->name,
-					'Félicitations à '.join(', ', $winners).' !!',
-					$participants,
+					'Félicitations à '.join(', ', $winnersName).' !!',
+					$winnersEmail,
 					$winningPhoto
 				);
 
