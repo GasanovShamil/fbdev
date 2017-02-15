@@ -30,6 +30,10 @@
 
 			return $now[2] - $birth[2] - 1;
 		}
+
+		public function getFullName() {
+			return $this->firstName.' '.$this->lastName;
+		}
 	}
 
 ?>

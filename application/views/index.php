@@ -12,7 +12,7 @@
 <!-- TODO : les deux pages des boutons -->
 <div class="row">
 	<div class="col-md-3" id="button_participate">
-		<a href="#" class="btn btn-primary btn-lg">Je participe !</a>
+		<a href="/cron/index" class="btn btn-primary btn-lg">Cron</a>
 	</div>
 	<div class="col-md-3" id="button_see">
 		<a href="/vote/index" class="btn btn-primary btn-lg">Votez !</a>
