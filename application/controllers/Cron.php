@@ -76,7 +76,7 @@
 				$result .= '<br>Prix : '.$contest->prize;
 				$result .= '<br>Début : '.$contest->start;
 				$result .= '<br>Fin : '.$contest->end;
-				$result .= '<br>Vainqueur(s) : '.join(', ', $winners);
+				$result .= '<br>Vainqueur(s) : '.join(', ', $winnersName);
 				$result .= '<br>Nombre participant(s) : '.count($participants);
 
 				$this->maillib->sendMail($recipients, $result);
